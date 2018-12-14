@@ -129,6 +129,60 @@
           }
         }
       }
+    },
+    "wordpress-marbles": {
+      "root": "apps/wordpress-marbles",
+      "sourceRoot": "apps/wordpress-marbles/src",
+      "projectType": "application",
+      "prefix": "wordpress-marbles",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "outputPath": "dist/apps/wordpress-marbles",
+            "main": "apps/wordpress-marbles/src/main.ts",
+            "tsConfig": "apps/wordpress-marbles/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/wordpress-marbles/src/environments/environment.ts",
+                  "with": "apps/wordpress-marbles/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "wordpress-marbles:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/wordpress-marbles/tsconfig.app.json",
+              "apps/wordpress-marbles/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/wordpress-marbles/jest.config.js",
+            "tsConfig": "apps/wordpress-marbles/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
