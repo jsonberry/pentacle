@@ -9,6 +9,6 @@ export const getUsersEffect$: Effect = req$ =>
     appServices.users.allEntities$,
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('No Users found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('No Users found', HttpStatus.NOT_FOUND)),
+    ),
   );

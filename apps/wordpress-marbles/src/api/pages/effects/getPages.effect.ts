@@ -10,11 +10,11 @@ export const getPagesEffect$: Effect = req$ =>
     map(pages =>
       pages.set.map(page => ({
         id: page.id,
-        title: page.title
-      }))
+        title: page.title,
+      })),
     ),
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('No pages found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('No pages found', HttpStatus.NOT_FOUND)),
+    ),
   );

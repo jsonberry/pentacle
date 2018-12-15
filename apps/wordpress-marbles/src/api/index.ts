@@ -21,5 +21,5 @@ export const api$ = combineRoutes('/api/v1', [
   users$,
   categories$,
   assets$,
-  notFound$
+  notFound$,
 ]);

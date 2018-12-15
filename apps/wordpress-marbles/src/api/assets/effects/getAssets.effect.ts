@@ -8,9 +8,8 @@ export const getAssetsEffect$: Effect = req$ =>
   req$.pipe(
     appServices.assets.allEntities$,
     bodyResTransducer,
-    catchError((err) => {
+    catchError(err => {
       console.log(err);
       return throwError(new HttpError('No Assets found', HttpStatus.NOT_FOUND));
-    }
-    )
+    }),
   );

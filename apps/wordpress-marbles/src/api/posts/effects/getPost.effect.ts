@@ -10,7 +10,7 @@ export const getPostEffect$: Effect = req$ =>
     withLatestFrom(
       appServices.store.USERS,
       appServices.store.CATEGORIES,
-      appServices.store.ASSETS
+      appServices.store.ASSETS,
     ),
     map(([post, users, categories, assets]) => {
       const author = users && users.dictionary[post.author_id];
@@ -26,7 +26,7 @@ export const getPostEffect$: Effect = req$ =>
         image: assets && assets.dictionary[post.featured_media_id],
         author: {
           name: author && author.name,
-          id: author && author.id
+          id: author && author.id,
         },
         categories:
           post.categories &&
@@ -35,15 +35,15 @@ export const getPostEffect$: Effect = req$ =>
               id =>
                 categories &&
                 categories.dictionary[id] &&
-                categories.dictionary[id].id
+                categories.dictionary[id].id,
             )
             .join(', '),
         content: post.content,
-        acf: post.acf && post.acf.flex_content
+        acf: post.acf && post.acf.flex_content,
       };
     }),
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('Post not found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('Post not found', HttpStatus.NOT_FOUND)),
+    ),
   );

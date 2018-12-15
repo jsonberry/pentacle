@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@pentacle/home": [
+        "libs/home/src/index.ts"
+      ]
     }
   },
   "exclude": [

@@ -16,15 +16,15 @@ export class AssetsDao extends EntitiesDao<Asset> {
     (acc, val) => ({
       dictionary: {
         ...acc.dictionary,
-        [val._wp_id]: val
+        [val._wp_id]: val,
       },
       index: {
         ...acc.index,
-        [val.id]: val._wp_id
+        [val.id]: val._wp_id,
       },
-      set: [...acc.set, val]
+      set: [...acc.set, val],
     }),
-    { dictionary: {}, index: {}, set: [] }
+    { dictionary: {}, index: {}, set: [] },
   );
   public readonly transducer = stream$ =>
     stream$.pipe(
@@ -45,18 +45,18 @@ export class AssetsDao extends EntitiesDao<Asset> {
           medium: get(asset, 'media_details.sizes.medium.source_url'),
           medium_large: get(
             asset,
-            'media_details.sizes.medium_large.source_url'
+            'media_details.sizes.medium_large.source_url',
           ),
           large: get(asset, 'media_details.sizes.large.source_url'),
-          full: get(asset, 'media_details.sizes.full.source_url')
-        })
-      )
-    )
+          full: get(asset, 'media_details.sizes.full.source_url'),
+        }),
+      ),
+    );
 
   constructor(
     http: HttpService,
     store: StoreService,
-    @Inject(URL_BASE_TOKEN) urlBase
+    @Inject(URL_BASE_TOKEN) urlBase,
   ) {
     super(http, store, urlBase);
   }

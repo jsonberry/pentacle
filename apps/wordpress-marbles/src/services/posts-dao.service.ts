@@ -21,12 +21,9 @@ export class PostsDao extends EntitiesDao<Post> {
         ...acc.index,
         [val.id]: val._wp_id,
       },
-      set: [
-        ...acc.set,
-        val,
-      ]
+      set: [...acc.set, val],
     }),
-    {dictionary: {}, index: {}, set: []}
+    { dictionary: {}, index: {}, set: [] },
   );
   public readonly transducer = stream$ =>
     stream$.pipe(
@@ -39,21 +36,21 @@ export class PostsDao extends EntitiesDao<Post> {
           featured_media_id: post.featured_media,
           date: {
             created: post.date,
-            modified: post.modified
+            modified: post.modified,
           },
           categories: post.categories,
           tags: post.tags,
           author_id: post.author,
           content: post.content && post.content.rendered,
-          acf: post.acf
-        })
-      )
-    )
+          acf: post.acf,
+        }),
+      ),
+    );
 
   constructor(
     http: HttpService,
     store: StoreService,
-    @Inject(URL_BASE_TOKEN) urlBase
+    @Inject(URL_BASE_TOKEN) urlBase,
   ) {
     super(http, store, urlBase);
   }

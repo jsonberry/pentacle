@@ -2,7 +2,7 @@ import { combineRoutes, EffectFactory } from '@marblejs/core';
 import {
   getCategoriesEffect$,
   getCategoryEffect$,
-  postFlushCategoriesCacheEffect$
+  postFlushCategoriesCacheEffect$,
 } from './effects';
 export * from './categories.model';
 
@@ -19,5 +19,5 @@ export const getCategories$ = EffectFactory.matchPath('/')
   .use(getCategoriesEffect$);
 
 export const categories$ = combineRoutes('/categories', {
-  effects: [flushCategoriesCache$, getCategory$, getCategories$]
+  effects: [flushCategoriesCache$, getCategory$, getCategories$],
 });

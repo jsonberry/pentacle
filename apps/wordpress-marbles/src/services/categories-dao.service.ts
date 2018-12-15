@@ -21,12 +21,9 @@ export class CategoriesDao extends EntitiesDao<Category> {
         ...acc.index,
         [val.id]: val._wp_id,
       },
-      set: [
-        ...acc.set,
-        val,
-      ]
+      set: [...acc.set, val],
     }),
-    {dictionary: {}, index: {}, set: []}
+    { dictionary: {}, index: {}, set: [] },
   );
   public readonly transducer = stream$ =>
     stream$.pipe(
@@ -36,14 +33,14 @@ export class CategoriesDao extends EntitiesDao<Category> {
           id: category.slug,
           name: category.name,
           acf: category.acf,
-        })
-      )
-    )
+        }),
+      ),
+    );
 
   constructor(
     http: HttpService,
     store: StoreService,
-    @Inject(URL_BASE_TOKEN) urlBase
+    @Inject(URL_BASE_TOKEN) urlBase,
   ) {
     super(http, store, urlBase);
   }

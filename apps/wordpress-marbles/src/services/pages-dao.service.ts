@@ -21,12 +21,9 @@ export class PagesDao extends EntitiesDao<Page> {
         ...acc.index,
         [val.id]: val._wp_id,
       },
-      set: [
-        ...acc.set,
-        val,
-      ]
+      set: [...acc.set, val],
     }),
-    {dictionary: {}, index: {}, set: []}
+    { dictionary: {}, index: {}, set: [] },
   );
   public readonly transducer = stream$ =>
     stream$.pipe(
@@ -37,18 +34,18 @@ export class PagesDao extends EntitiesDao<Page> {
           title: page.title && page.title.rendered,
           date: {
             created: page.date,
-            modified: page.modified
+            modified: page.modified,
           },
           content: page.content && page.content.rendered,
-          acf: page.acf
-        })
-      )
-    )
+          acf: page.acf,
+        }),
+      ),
+    );
 
   constructor(
     http: HttpService,
     store: StoreService,
-    @Inject(URL_BASE_TOKEN) urlBase
+    @Inject(URL_BASE_TOKEN) urlBase,
   ) {
     super(http, store, urlBase);
   }
