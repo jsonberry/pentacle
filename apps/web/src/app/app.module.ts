@@ -11,7 +11,13 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     NxModule.forRoot(),
     RouterModule.forRoot(
-      [{ path: '', loadChildren: '@pentacle/home#HomeModule' }],
+      [
+        { path: '', loadChildren: '@pentacle/home#HomeModule' },
+        {
+          path: 'expertise',
+          loadChildren: '@pentacle/expertise#ExpertiseModule',
+        },
+      ],
       { initialNavigation: 'enabled' },
     ),
   ],

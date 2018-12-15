@@ -18,6 +18,9 @@
     "paths": {
       "@pentacle/home": [
         "libs/home/src/index.ts"
+      ],
+      "@pentacle/expertise": [
+        "libs/expertise/src/index.ts"
       ]
     }
   },

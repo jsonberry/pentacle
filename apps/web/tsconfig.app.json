@@ -12,5 +12,7 @@
     "**/*.ts"
   
     , "../../libs/home/src/index.ts"
+
+    , "../../libs/expertise/src/index.ts"
 ]
 }
