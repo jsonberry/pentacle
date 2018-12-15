@@ -19,5 +19,5 @@ export const getPages$ = EffectFactory.matchPath('/')
   .use(getPagesEffect$);
 
 export const pages$ = combineRoutes('/pages', {
-  effects: [flushPagesCache$, getPage$, getPages$]
+  effects: [flushPagesCache$, getPage$, getPages$],
 });

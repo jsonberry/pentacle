@@ -9,6 +9,6 @@ export const getPageEffect$: Effect = req$ =>
     appServices.pages.entity$,
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('Page not found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('Page not found', HttpStatus.NOT_FOUND)),
+    ),
   );

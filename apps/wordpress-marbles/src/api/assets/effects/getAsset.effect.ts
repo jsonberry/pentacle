@@ -24,6 +24,6 @@ export const getAssetEffect$: Effect = req$ =>
     appServices.assets.entity$,
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('Asset not found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('Asset not found', HttpStatus.NOT_FOUND)),
+    ),
   );

@@ -8,13 +8,16 @@
     "nx.json": "*"
   },
   "projects": {
+    "wordpress-marbles": {
+      "tags": []
+    },
     "web": {
       "tags": []
     },
     "web-e2e": {
       "tags": []
     },
-    "wordpress-marbles": {
+    "home": {
       "tags": []
     }
   }

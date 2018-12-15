@@ -16,11 +16,11 @@ export const getPostsEffect$: Effect = req$ =>
         image:
           assets &&
           assets.dictionary[post.featured_media_id] &&
-          assets.dictionary[post.featured_media_id].thumbnail
+          assets.dictionary[post.featured_media_id].thumbnail,
       }));
     }),
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('No posts found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('No posts found', HttpStatus.NOT_FOUND)),
+    ),
   );

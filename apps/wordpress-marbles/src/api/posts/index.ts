@@ -2,7 +2,7 @@ import { combineRoutes, EffectFactory } from '@marblejs/core';
 import {
   getPostEffect$,
   getPostsEffect$,
-  postFlushPostsCacheEffect$
+  postFlushPostsCacheEffect$,
 } from './effects';
 export * from './posts.model';
 
@@ -19,5 +19,5 @@ export const getPosts$ = EffectFactory.matchPath('/')
   .use(getPostsEffect$);
 
 export const posts$ = combineRoutes('/posts', {
-  effects: [flushPostsCache$, getPost$, getPosts$]
+  effects: [flushPostsCache$, getPost$, getPosts$],
 });

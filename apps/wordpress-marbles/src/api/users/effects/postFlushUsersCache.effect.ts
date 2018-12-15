@@ -5,5 +5,5 @@ import appServices from '../../../services';
 export const postFlushUsersCacheEffect$: Effect = req$ =>
   req$.pipe(
     tap(_ => appServices.users.flushCache()),
-    map(_ => ({body: 'Successfully cleared Users cache'}))
+    map(_ => ({ body: 'Successfully cleared Users cache' })),
   );

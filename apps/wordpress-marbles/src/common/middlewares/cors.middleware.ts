@@ -9,7 +9,7 @@ export const cors$: Middleware = (req$, res) =>
         'Authorization',
         'Content-Type',
         'Origin',
-        '*'
+        '*',
       ]);
       res.setHeader('Access-Control-Allow-Methods', [
         'OPTIONS',
@@ -18,7 +18,7 @@ export const cors$: Middleware = (req$, res) =>
         'POST',
         'PUT',
         'DELETE',
-        'HEAD'
+        'HEAD',
       ]);
-    })
+    }),
   );

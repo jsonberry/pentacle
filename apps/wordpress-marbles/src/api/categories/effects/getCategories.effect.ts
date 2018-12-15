@@ -9,6 +9,6 @@ export const getCategoriesEffect$: Effect = req$ =>
     appServices.categories.allEntities$,
     bodyResTransducer,
     catchError(() =>
-      throwError(new HttpError('No Categories found', HttpStatus.NOT_FOUND))
-    )
+      throwError(new HttpError('No Categories found', HttpStatus.NOT_FOUND)),
+    ),
   );

@@ -98,6 +98,9 @@
           { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
         ]
       }
-    ]
+    ],
+
+    // @pentacle specific
+    "trailing-comma": true
   }
 }

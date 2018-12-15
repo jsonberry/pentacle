@@ -2,7 +2,7 @@ import { combineRoutes, EffectFactory } from '@marblejs/core';
 import {
   getAssetsEffect$,
   getAssetEffect$,
-  postFlushAssetsCacheEffect$
+  postFlushAssetsCacheEffect$,
 } from './effects';
 export * from './assets.model';
 
@@ -19,5 +19,5 @@ export const getAssets$ = EffectFactory.matchPath('/')
   .use(getAssetsEffect$);
 
 export const assets$ = combineRoutes('/assets', {
-  effects: [flushAssetsCache$, getAsset$, getAssets$]
+  effects: [flushAssetsCache$, getAsset$, getAssets$],
 });
