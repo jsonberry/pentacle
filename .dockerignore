@@ -1,0 +1,6 @@
+tools
+node_modules
+libs
+coverage
+apps/web
+apps/web-e2e

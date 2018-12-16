@@ -3,19 +3,19 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "wordpress-marbles": {
-      "root": "apps/wordpress-marbles",
-      "sourceRoot": "apps/wordpress-marbles/src",
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
       "projectType": "application",
-      "prefix": "wordpress-marbles",
+      "prefix": "api",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/builders:node-build",
           "options": {
-            "outputPath": "dist/apps/wordpress-marbles",
-            "main": "apps/wordpress-marbles/src/main.ts",
-            "tsConfig": "apps/wordpress-marbles/tsconfig.app.json"
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json"
           },
           "configurations": {
             "production": {
@@ -23,8 +23,8 @@
               "extractLicenses": true,
               "fileReplacements": [
                 {
-                  "replace": "apps/wordpress-marbles/src/environments/environment.ts",
-                  "with": "apps/wordpress-marbles/src/environments/environment.prod.ts"
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -33,15 +33,15 @@
         "serve": {
           "builder": "@nrwl/builders:node-execute",
           "options": {
-            "buildTarget": "wordpress-marbles:build"
+            "buildTarget": "api:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/wordpress-marbles/tsconfig.app.json",
-              "apps/wordpress-marbles/tsconfig.spec.json"
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -51,8 +51,8 @@
         "test": {
           "builder": "@nrwl/builders:jest",
           "options": {
-            "jestConfig": "apps/wordpress-marbles/jest.config.js",
-            "tsConfig": "apps/wordpress-marbles/tsconfig.spec.json"
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
           }
         }
       }
@@ -115,7 +115,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "web:build"
+            "browserTarget": "web:build",
+            "proxyConfig": "apps/web/proxy.config.json"
           },
           "configurations": {
             "production": {
