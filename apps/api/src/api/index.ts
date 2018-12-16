@@ -15,7 +15,7 @@ export const notFound$ = EffectFactory.matchPath('*')
   .matchType('*')
   .use(notFoundEffect$);
 
-export const api$ = combineRoutes('/api/v1', [
+export const api$ = combineRoutes('/v1', [
   pages$,
   posts$,
   users$,
