@@ -12,13 +12,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     NxModule.forRoot(),
     RouterModule.forRoot(
-      [
-        { path: '', loadChildren: '@pentacle/home#HomeModule' },
-        {
-          path: 'expertise',
-          loadChildren: '@pentacle/expertise#ExpertiseModule',
-        },
-      ],
+      [{ path: '', loadChildren: '@pentacle/home#HomeModule' }],
       { initialNavigation: 'enabled' },
     ),
   ],
