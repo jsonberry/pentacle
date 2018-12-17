@@ -16,6 +16,8 @@
     "api:build:image": "docker build -f ./apps/api/Dockerfile -t pentacle-api:latest .",
     "api:publish": "docker save pentacle-api:latest | bzip2 | pv | ssh $PENTACLE_USER_NAME@$PENTACLE_DOMAIN 'bunzip2 | docker load'",
     "api:start": "API_BASE=http://cms.pentacledev.com/wp-json npm run start api",
+    "web:start:local": "PROXY_TARGET=local npm run start web",
+    "web:start:live": "PROXY_TARGET=live npm run start web",
     "build": "ng build",
     "cm": "git-cz",
     "dep-graph": "./node_modules/.bin/nx dep-graph",
