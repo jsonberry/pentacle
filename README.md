@@ -9,8 +9,20 @@ Install dependencies
 npm i
 ```
 
+## Web
+Spin up the `web` app and proxy to the live API:
+```bash
+npm run web:start:live
+```
+
+You can proxy to the local `api` application too for doing API development and seeing changes in `web`:
+```bash
+npm run web:start:local
+```
+You'll need to spin up the `api` project, see below.
+
 ## API Development
-For local development spin up the api:
+For local API development spin up the api:
 ```bash
 npm run api:start
 ```
