@@ -59,7 +59,8 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.3.3",
     "rxjs-toolkit": "^1.1.2",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@ngrx/entity": "6.1.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",

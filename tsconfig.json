@@ -18,6 +18,9 @@
     "paths": {
       "@pentacle/home": [
         "libs/home/src/index.ts"
+      ],
+      "@pentacle/router-state": [
+        "libs/router-state/src/index.ts"
       ]
     }
   },
