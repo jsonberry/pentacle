@@ -1,4 +1,3 @@
-import * as dotenv from 'dotenv';
 import { ReflectiveInjector } from 'injection-js';
 import { HttpService } from './http.service';
 import { URL_BASE_TOKEN } from './injection-tokens';
@@ -8,7 +7,6 @@ import { StoreService } from './store.service';
 import { UsersDao } from './users-dao.service';
 import { CategoriesDao } from './categories-dao.service';
 import { AssetsDao } from './assets-dao.service';
-dotenv.config();
 
 export const rootInjector = ReflectiveInjector.resolveAndCreate([
   HttpService,
