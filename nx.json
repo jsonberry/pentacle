@@ -19,6 +19,9 @@
     },
     "home": {
       "tags": []
+    },
+    "router-state": {
+      "tags": []
     }
   }
 }
