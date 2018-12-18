@@ -16,8 +16,15 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
     } = routerState;
     const { params } = route;
 
-    // Only return an object including the URL, params and query params
-    // instead of the entire snapshot
-    return { url, params, queryParams };
+    return {
+      url,
+      params,
+      queryParams,
+      // The root is included here so that the DataPersistence.navigation helper from Nx can work properly
+      // By it's recursive nature, this traditionally would crash StoreDevToolsModule
+      // There's a custom replacer in the StoreDevToolsModule instrument configuration that strips this out of the DevTools
+      // https://github.com/nrwl/nx/issues/191#issuecomment-448312694
+      root: routerState.root,
+    };
   }
 }

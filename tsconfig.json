@@ -24,6 +24,15 @@
       ],
       "@pentacle/not-found": [
         "libs/not-found/src/index.ts"
+      ],
+      "@pentacle/pages-state": [
+        "libs/pages-state/src/index.ts"
+      ],
+      "@pentacle/models": [
+        "libs/models/src/index.ts"
+      ],
+      "@pentacle/services": [
+        "libs/services/src/index.ts"
       ]
     }
   },

@@ -1,3 +1,3 @@
-<div
-  [innerHTML]="(homePage | async)?.content"
-></div>
+<main
+  [innerHTML]="(homePageData$ | async)?.content"
+></main>
