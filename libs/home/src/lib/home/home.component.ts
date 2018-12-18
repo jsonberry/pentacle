@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HomeFacade } from '../+state/home.facade';
 
 @Component({
   selector: 'pentacle-home',
@@ -7,6 +7,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  homePage = this.http.get<any>('/api/v1/pages/home'); // this is just temporary, move this into state
-  constructor(private http: HttpClient) {}
+  homePageData$ = this.homeFacade.homePageData$;
+  constructor(private homeFacade: HomeFacade) {}
 }

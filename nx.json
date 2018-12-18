@@ -25,6 +25,15 @@
     },
     "not-found": {
       "tags": []
+    },
+    "pages-state": {
+      "tags": []
+    },
+    "models": {
+      "tags": []
+    },
+    "services": {
+      "tags": []
     }
   }
 }
