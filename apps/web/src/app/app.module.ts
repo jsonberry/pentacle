@@ -23,7 +23,10 @@ export const getMetaReducers = (): MetaReducer<State>[] =>
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(
-      [{ path: '', loadChildren: '@pentacle/home#HomeModule' }],
+      [
+        { path: '', loadChildren: '@pentacle/home#HomeModule' },
+        { path: '**', loadChildren: '@pentacle/not-found#NotFoundModule' },
+      ],
       { initialNavigation: 'enabled' },
     ),
     RouterStateModule,

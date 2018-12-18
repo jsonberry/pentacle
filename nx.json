@@ -22,6 +22,9 @@
     },
     "router-state": {
       "tags": []
+    },
+    "not-found": {
+      "tags": []
     }
   }
 }

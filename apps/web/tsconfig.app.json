@@ -14,5 +14,7 @@
     , "../../libs/home/src/index.ts"
 
     , "../../libs/expertise/src/index.ts"
+
+    , "../../libs/not-found/src/index.ts"
 ]
 }
