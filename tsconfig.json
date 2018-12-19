@@ -33,6 +33,9 @@
       ],
       "@pentacle/services": [
         "libs/services/src/index.ts"
+      ],
+      "@pentacle/introduction": [
+        "libs/introduction/src/index.ts"
       ]
     }
   },

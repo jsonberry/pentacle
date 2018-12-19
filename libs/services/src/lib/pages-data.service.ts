@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Page } from '@pentacle/pages-state';
+import { Page } from '@pentacle/models';
 
 @Injectable({
   providedIn: 'root',
