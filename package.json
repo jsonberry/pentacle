@@ -49,6 +49,7 @@
     "@marblejs/middleware-joi": "^1.2.1",
     "@marblejs/middleware-logger": "^1.2.1",
     "@ngrx/effects": "6.1.0",
+    "@ngrx/entity": "6.1.0",
     "@ngrx/router-store": "6.1.0",
     "@ngrx/store": "6.1.0",
     "@nrwl/nx": "7.0.2",
@@ -56,11 +57,11 @@
     "core-js": "^2.5.4",
     "injection-js": "^2.2.1",
     "lodash": "^4.17.11",
+    "ngrx-store-localstorage": "^5.1.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.3.3",
     "rxjs-toolkit": "^1.1.2",
-    "zone.js": "^0.8.26",
-    "@ngrx/entity": "6.1.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
