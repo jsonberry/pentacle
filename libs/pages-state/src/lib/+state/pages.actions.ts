@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Page } from './pages.reducer';
+import { Page } from '@pentacle/models';
 
 export enum PagesActionTypes {
   LoadPage = '[Pages] Load Page',

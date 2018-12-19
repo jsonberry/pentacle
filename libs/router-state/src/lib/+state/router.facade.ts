@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { State } from '@pentacle/models';
 import { Back, Forward, Go } from './router.actions';
-import { RouterState } from './router.reducer';
 import { routerQuery } from './router.selectors';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class RouterFacade {
   params = this.store.pipe(select(routerQuery.getParams));
   queryParams = this.store.pipe(select(routerQuery.getQueryParams));
 
-  constructor(private store: Store<RouterState>) {}
+  constructor(private store: Store<State>) {}
 
   go(params) {
     this.store.dispatch(new Go(params));

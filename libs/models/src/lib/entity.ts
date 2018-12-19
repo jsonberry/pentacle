@@ -7,4 +7,5 @@ export interface Entity {
   id: string;
   status?: string;
   title?: string;
+  content?: string;
 }

@@ -3,20 +3,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/nx';
-import { RouterState, RouterStateModule } from '@pentacle/router-state';
+import { RouterStateModule } from '@pentacle/router-state';
+import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
-import { PagesPartialState } from '@pentacle/pages-state';
-import { localStorageSync } from 'ngrx-store-localstorage';
-
-export interface State {
-  router: RouterState;
-  pages: PagesPartialState;
-}
+import { PagesStateModule } from '@pentacle/pages-state';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
@@ -37,12 +32,22 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path: '', loadChildren: '@pentacle/home#HomeModule' },
+        {
+          path: '',
+          pathMatch: 'full',
+          loadChildren: '@pentacle/home#HomeModule',
+        },
+        {
+          path: 'introduction',
+          pathMatch: 'full',
+          loadChildren: '@pentacle/introduction#IntroductionModule',
+        },
         { path: '**', loadChildren: '@pentacle/not-found#NotFoundModule' },
       ],
       { initialNavigation: 'enabled' },
     ),
     RouterStateModule,
+    PagesStateModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, { metaReducers }),
     environment.production

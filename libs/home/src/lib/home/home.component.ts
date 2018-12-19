@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomeFacade } from '../+state/home.facade';
+import { PagesFacade } from '@pentacle/pages-state';
 
 @Component({
   selector: 'pentacle-home',
@@ -7,6 +7,6 @@ import { HomeFacade } from '../+state/home.facade';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  homePageData$ = this.homeFacade.homePageData$;
-  constructor(private homeFacade: HomeFacade) {}
+  homePageData$ = this.pagesFacade.page$('home');
+  constructor(private pagesFacade: PagesFacade) {}
 }
