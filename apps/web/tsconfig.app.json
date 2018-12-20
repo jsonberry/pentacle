@@ -18,5 +18,7 @@
     , "../../libs/not-found/src/index.ts"
 
     , "../../libs/introduction/src/index.ts"
+
+    , "../../libs/overview/src/index.ts"
 ]
 }
