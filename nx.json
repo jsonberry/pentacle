@@ -40,6 +40,9 @@
     },
     "overview": {
       "tags": []
+    },
+    "layers": {
+      "tags": []
     }
   }
 }
