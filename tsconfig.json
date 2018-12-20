@@ -39,6 +39,9 @@
       ],
       "@pentacle/overview": [
         "libs/overview/src/index.ts"
+      ],
+      "@pentacle/layers": [
+        "libs/layers/src/index.ts"
       ]
     }
   },
