@@ -36,6 +36,9 @@
       ],
       "@pentacle/introduction": [
         "libs/introduction/src/index.ts"
+      ],
+      "@pentacle/overview": [
+        "libs/overview/src/index.ts"
       ]
     }
   },
