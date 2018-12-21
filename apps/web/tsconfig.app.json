@@ -22,5 +22,7 @@
     , "../../libs/overview/src/index.ts"
 
     , "../../libs/layers/src/index.ts"
+
+    , "../../libs/resources/src/index.ts"
 ]
 }

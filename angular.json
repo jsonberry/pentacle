@@ -430,6 +430,62 @@
           }
         }
       }
+    },
+    "resources": {
+      "root": "libs/resources",
+      "sourceRoot": "libs/resources/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/resources/tsconfig.lib.json",
+              "libs/resources/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/resources/jest.config.js",
+            "tsConfig": "libs/resources/tsconfig.spec.json",
+            "setupFile": "libs/resources/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "posts-state": {
+      "root": "libs/posts-state",
+      "sourceRoot": "libs/posts-state/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/posts-state/tsconfig.lib.json",
+              "libs/posts-state/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/posts-state/jest.config.js",
+            "tsConfig": "libs/posts-state/tsconfig.spec.json",
+            "setupFile": "libs/posts-state/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {
