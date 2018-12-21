@@ -12,12 +12,13 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
 import { PagesStateModule } from '@pentacle/pages-state';
+import { PostsStateModule } from '@pentacle/posts-state';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
 ): ActionReducer<any> {
   return localStorageSync({
-    keys: ['pages'],
+    keys: ['pages', 'posts'],
     rehydrate: true,
     storage: sessionStorage,
   })(reducer);
@@ -51,11 +52,16 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
           path: 'layers',
           loadChildren: '@pentacle/layers#LayersModule',
         },
+        {
+          path: 'resources',
+          loadChildren: '@pentacle/resources#ResourcesModule',
+        },
         { path: '**', loadChildren: '@pentacle/not-found#NotFoundModule' },
       ],
       { initialNavigation: 'enabled' },
     ),
     RouterStateModule,
+    PostsStateModule,
     PagesStateModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, { metaReducers }),

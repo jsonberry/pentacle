@@ -42,6 +42,12 @@
       ],
       "@pentacle/layers": [
         "libs/layers/src/index.ts"
+      ],
+      "@pentacle/resources": [
+        "libs/resources/src/index.ts"
+      ],
+      "@pentacle/posts-state": [
+        "libs/posts-state/src/index.ts"
       ]
     }
   },

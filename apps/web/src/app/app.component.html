@@ -1,7 +1,23 @@
 <ng-container *ngIf="show">
-  <a [routerLink]="['/']">Home</a>
-  <a [routerLink]="['/introduction']">Introduction</a>
-  <a [routerLink]="['/overview']">Overview</a>
-  <a [routerLink]="['/layers']">Layers</a>
+  <ul>
+    <li><a [routerLink]="['/']">Home</a></li>
+    <li><a [routerLink]="['/introduction']">Introduction</a></li>
+    <li><a [routerLink]="['/overview']">Overview</a></li>
+    <li>
+      <a [routerLink]="['/layers']">Layers</a>
+      <ul>
+        <li><a [routerLink]="['/layers/presentation']">Presentation</a></li>
+        <li><a [routerLink]="['/layers/containers']">Containers</a></li>
+      </ul>
+    </li>
+    <li>
+      <a [routerLink]="['/resources']">Resources</a>
+      <ul>
+        <li><a [routerLink]="['/resources/read']">Read</a></li>
+        <li><a [routerLink]="['/resources/watch']">Watch</a></li>
+        <li><a [routerLink]="['/resources/listen']">Listen</a></li>
+      </ul>
+    </li>
+  </ul>
 </ng-container>
 <router-outlet></router-outlet>

@@ -1,8 +1,4 @@
 import { EntityState } from '@ngrx/entity';
-import { Entity } from './entity';
-
-export interface Page extends Entity {
-  content: string;
-}
+import { Page } from './page';
 
 export type PagesState = EntityState<Page>;
