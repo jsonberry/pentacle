@@ -1,6 +1,6 @@
 import { EntityState } from '@ngrx/entity';
-import { Post } from './post';
+import { PostDTO, PostDetailDTO } from './post';
 
-export interface PostsState extends EntityState<Post> {
+export interface PostsState extends EntityState<PostDTO | PostDetailDTO> {
   loaded: boolean;
 }

@@ -4,7 +4,7 @@ import { State } from '@pentacle/models';
 import { PostsDataService } from '@pentacle/services';
 import { filter, map, switchMapTo } from 'rxjs/operators';
 import { fromPostsActions } from './posts.actions';
-import { postsQuery } from './posts.selectors';
+import { postsQuery, isPostDetailDTO } from './posts.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -36,9 +36,8 @@ export class PostsFacade {
   }
 
   fetchPost$(id: string) {
-    console.log('fetchPost$ id', id);
     return this.post$(id).pipe(
-      filter(post => !post || !post.content),
+      filter(post => !isPostDetailDTO(post)),
       switchMapTo(
         this.postsDataService
           .getPost(id)

@@ -1,11 +1,10 @@
-import { EntityDate } from './entity.date';
+import { EntityDate } from './entity-date.model';
 
 export interface Entity {
-  _wp_id: number;
   acf?: Record<string, any>;
-  date?: EntityDate;
+  _wp_id: number;
   id: string;
-  status?: string;
-  title?: string;
-  content?: string;
+  title: string;
+  date: EntityDate;
+  content: string;
 }
