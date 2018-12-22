@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Post } from '@pentacle/models';
+import { PostDetailDTO, PostDTO } from '@pentacle/models';
 
 export enum PostsActionTypes {
   LoadPost = '[Posts] Load Post',
@@ -21,7 +21,7 @@ export class PostLoadError implements Action {
 
 export class PostLoaded implements Action {
   readonly type = PostsActionTypes.PostLoaded;
-  constructor(public post: Post) {}
+  constructor(public post: PostDetailDTO) {}
 }
 
 export class LoadPosts implements Action {
@@ -35,7 +35,7 @@ export class PostsLoadError implements Action {
 
 export class PostsLoaded implements Action {
   readonly type = PostsActionTypes.PostsLoaded;
-  constructor(public posts: Post[]) {}
+  constructor(public posts: PostDTO[]) {}
 }
 
 export type PostsAction =

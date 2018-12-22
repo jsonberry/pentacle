@@ -1,9 +1,11 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { Post, PostsState } from '@pentacle/models';
+import { PostsState, PostDTO, PostDetailDTO } from '@pentacle/models';
 import { PostsAction, PostsActionTypes } from './posts.actions';
 
 export const POSTS_FEATURE_KEY = 'posts';
-export const adapter: EntityAdapter<Post> = createEntityAdapter<Post>();
+export const adapter: EntityAdapter<
+  PostDTO | PostDetailDTO
+> = createEntityAdapter<PostDTO | PostDetailDTO>();
 export const initialState: PostsState = adapter.getInitialState({
   loaded: false,
 });

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
-import { State } from '@pentacle/models';
+import { PostDetailDTO, State } from '@pentacle/models';
+import { isPostDetailDTO } from '@pentacle/posts-state';
+import { filter, map } from 'rxjs/operators';
 import { resourcesQuery } from './resources.selectors';
 
 @Injectable({
@@ -14,5 +17,9 @@ export class ResourcesFacade {
     select(resourcesQuery.getResourcesByRoute),
   );
   resourceByRoute$ = this.store.pipe(select(resourcesQuery.getResourceByRoute));
-  constructor(private store: Store<State>) {}
+  contentByRoute$ = this.resourceByRoute$.pipe(
+    filter((post): post is PostDetailDTO => !!post && isPostDetailDTO(post)),
+    map(post => this.sanitizer.bypassSecurityTrustHtml(post.content)),
+  );
+  constructor(private store: Store<State>, private sanitizer: DomSanitizer) {}
 }

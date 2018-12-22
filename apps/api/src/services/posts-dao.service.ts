@@ -1,11 +1,11 @@
 import { Inject, Injectable } from 'injection-js';
 import { map, reduce } from 'rxjs/operators';
-import { Post } from '../api';
 import { EntitiesDao } from './entities-dao.service';
 import { HttpService } from './http.service';
 import { URL_BASE_TOKEN } from './injection-tokens';
 import { StoreService } from './store.service';
 import { EntityState } from '../common';
+import { Post } from '@pentacle/models';
 
 @Injectable()
 export class PostsDao extends EntitiesDao<Post> {
@@ -29,20 +29,20 @@ export class PostsDao extends EntitiesDao<Post> {
     stream$.pipe(
       map(
         (post: any): Post => ({
-          _wp_id: post.id,
-          id: post.slug,
-          title: post.title && post.title.rendered,
-          excerpt: post.excerpt && post.excerpt.rendered,
-          featured_media_id: post.featured_media,
+          _wp_id: post && post.id,
+          id: post && post.slug,
+          title: post && post.title && post.title.rendered,
+          excerpt: post && post.excerpt && post.excerpt.rendered,
+          featured_media_id: post && post.featured_media,
           date: {
-            created: post.date,
-            modified: post.modified,
+            created: post && post.date,
+            modified: post && post.modified,
           },
-          categories: post.categories,
-          tags: post.tags,
-          author_id: post.author,
-          content: post.content && post.content.rendered,
-          acf: post.acf,
+          categories: post && post.categories,
+          tags: post && post.tags,
+          author_id: post && post.author,
+          content: post && post.content && post.content.rendered,
+          acf: post && post.acf,
         }),
       ),
     );
