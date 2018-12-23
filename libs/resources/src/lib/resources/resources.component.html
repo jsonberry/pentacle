@@ -1,5 +1,17 @@
-<ng-container *ngFor="let resource of resources$ | async">
-  <a [routerLink]="[ '/resources', resource.id ]">
-    <p>{{resource.title}}</p>
-  </a>
-</ng-container>
+<h1>Resources</h1>
+
+<pentacle-resources-filter-container></pentacle-resources-filter-container>
+
+<div *ngIf="(resources$ | async) as resources">
+  <div *ngIf="!resources.length; else hasResourcesTemplate">
+    No resources available for your filter criteria
+  </div>
+  <ng-template #hasResourcesTemplate>
+    <a
+      *ngFor="let resource of resources"
+      [routerLink]="['/resources', resource.id]"
+    >
+      <p>{{ resource.title }}</p>
+    </a>
+  </ng-template>
+</div>

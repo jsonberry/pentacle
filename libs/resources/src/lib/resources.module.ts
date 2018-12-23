@@ -1,30 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ResourcesComponent } from './resources/resources.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ResourcesEffects } from './+state/resources.effects';
 import { ResourcesDetailComponent } from './resources-detail/resources-detail.component';
+import { ResourcesFilterContainerComponent } from './resources-filter-container/resources-filter-container.component';
+import { ResourcesFilterComponent } from './resources-filter/resources-filter.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '',
         children: [
-          {
-            path: 'read',
-            component: ResourcesComponent,
-          },
-          {
-            path: 'watch',
-            component: ResourcesComponent,
-          },
-          {
-            path: 'listen',
-            component: ResourcesComponent,
-          },
           {
             path: ':id',
             component: ResourcesDetailComponent,
@@ -38,6 +30,11 @@ import { ResourcesDetailComponent } from './resources-detail/resources-detail.co
     ]),
     EffectsModule.forFeature([ResourcesEffects]),
   ],
-  declarations: [ResourcesComponent, ResourcesDetailComponent],
+  declarations: [
+    ResourcesComponent,
+    ResourcesDetailComponent,
+    ResourcesFilterContainerComponent,
+    ResourcesFilterComponent,
+  ],
 })
 export class ResourcesModule {}

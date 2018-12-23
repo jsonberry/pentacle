@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "downlevelIteration": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -48,6 +49,9 @@
       ],
       "@pentacle/posts-state": [
         "libs/posts-state/src/index.ts"
+      ],
+      "@pentacle/tags-state": [
+        "libs/tags-state/src/index.ts"
       ]
     }
   },

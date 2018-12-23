@@ -19,6 +19,7 @@ export const getPostsEffect$: Effect = req$ =>
           id: post && post.id,
           date: post && post.date,
           title: post && post.title,
+          format: post.format,
           categories:
             post &&
             post.categories &&

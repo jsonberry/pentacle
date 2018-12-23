@@ -1,42 +1,73 @@
 import { createSelector } from '@ngrx/store';
+import { ResourcesFilterFormGroups } from '@pentacle/models';
 import { postsQuery } from '@pentacle/posts-state';
 import { routerQuery } from '@pentacle/router-state';
+import { tagsQuery } from '@pentacle/tags-state';
+import {
+  getInitialOptions,
+  getProjectedOptions,
+  getSelectedOptions,
+} from './resources.utils';
 
-const getAllResources = createSelector(postsQuery.getPostsArray, posts =>
-  posts.filter(post => post.categories.includes('resources')),
-);
-const getReadResources = createSelector(getAllResources, posts =>
-  posts.filter(post => post.categories.includes('read')),
-);
-const getWatchResources = createSelector(getAllResources, posts =>
-  posts.filter(post => post.categories.includes('watch')),
-);
-const getResourcesByRoute = createSelector(
-  getAllResources,
-  routerQuery.getUrl,
-  (posts, url) => {
-    switch (true) {
-      case url.includes('read'):
-        return posts.filter(post => post.categories.includes('read'));
-      case url.includes('watch'):
-        return posts.filter(post => post.categories.includes('watch'));
-      case url.includes('listen'):
-        return posts.filter(post => post.categories.includes('listen'));
-      default:
-        return posts;
+const getResources = createSelector(
+  postsQuery.getPostsArray,
+  routerQuery.getQueryParams,
+  (posts, queryParams) => {
+    if (!queryParams.formats && !queryParams.topics) {
+      return posts;
     }
+
+    return posts.filter(
+      post =>
+        (!queryParams.formats || queryParams.formats.includes(post.format)) &&
+        (!queryParams.topics ||
+          post.tags.some(tag => queryParams.topics.includes(tag))),
+    );
   },
 );
+
 const getResourceByRoute = createSelector(
   postsQuery.getPostsDictionary,
   routerQuery.getParams,
   (resources, params) => (resources[params.id] ? resources[params.id] : null),
 );
 
+const getResourceFilterFormGroups = createSelector(
+  routerQuery.getQueryParams,
+  tagsQuery.getTagsDictionary,
+  tagsQuery.getTagsArray,
+  (queryParams, tags, tagsArray): ResourcesFilterFormGroups => {
+    const availableFormats = [
+      {
+        id: 'read',
+        title: 'Read',
+      },
+      { id: 'watch', title: 'Watch' },
+      { id: 'listen', title: 'Listen' },
+    ];
+
+    return {
+      availableFormats: availableFormats.reduce(
+        (acc, cur) => ({ ...acc, [cur.id]: cur }),
+        {},
+      ),
+      availableTopics: tags,
+      groups: {
+        formats: getProjectedOptions(
+          getInitialOptions(availableFormats),
+          getSelectedOptions(queryParams.formats),
+        ),
+        topics: getProjectedOptions(
+          getInitialOptions(tagsArray),
+          getSelectedOptions(queryParams.topics),
+        ),
+      },
+    };
+  },
+);
+
 export const resourcesQuery = {
-  getAllResources,
-  getReadResources,
-  getWatchResources,
-  getResourcesByRoute,
+  getResources,
   getResourceByRoute,
+  getResourceFilterFormGroups,
 };
