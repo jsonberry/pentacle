@@ -4,7 +4,6 @@ import {
   getPostsEffect$,
   postFlushPostsCacheEffect$,
 } from './effects';
-export * from './posts.model';
 
 export const flushPostsCache$ = EffectFactory.matchPath('/flush')
   .matchType('POST')

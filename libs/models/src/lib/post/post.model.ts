@@ -1,4 +1,4 @@
-import { Entity } from '../entity';
+import { Entity } from '../entity/entity.model';
 
 export interface Post extends Entity {
   excerpt?: string;
