@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
 import { PagesStateModule } from '@pentacle/pages-state';
 import { PostsStateModule } from '@pentacle/posts-state';
+import { TagsStateModule } from '@pentacle/tags-state';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
@@ -63,6 +64,7 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
     RouterStateModule,
     PostsStateModule,
     PagesStateModule,
+    TagsStateModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, { metaReducers }),
     environment.production

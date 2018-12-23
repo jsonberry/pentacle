@@ -7,6 +7,6 @@ import { ResourcesFacade } from '../+state/resources.facade';
   styleUrls: ['./resources.component.scss'],
 })
 export class ResourcesComponent {
-  resources$ = this.resourcesFacade.resourcesByRoute$;
+  resources$ = this.resourcesFacade.resources$;
   constructor(private resourcesFacade: ResourcesFacade) {}
 }
