@@ -1,9 +1,11 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { Page, PagesState } from '@pentacle/models';
+import { PageDetailDTO, PagesState } from '@pentacle/models';
 import { PagesAction, PagesActionTypes } from './pages.actions';
 
 export const PAGES_FEATURE_KEY = 'pages';
-export const adapter: EntityAdapter<Page> = createEntityAdapter<Page>();
+export const adapter: EntityAdapter<PageDetailDTO> = createEntityAdapter<
+  PageDetailDTO
+>();
 export const initialState: PagesState = adapter.getInitialState();
 
 export function pagesReducer(

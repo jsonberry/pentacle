@@ -4,7 +4,6 @@ import {
   getPagesEffect$,
   getPageEffect$,
 } from './effects';
-export * from './pages.model';
 
 export const flushPagesCache$ = EffectFactory.matchPath('/flush') // consider moving this to a rehydrate endpoint
   .matchType('POST')

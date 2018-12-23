@@ -1,6 +1,6 @@
 import { Inject, Injectable } from 'injection-js';
 import { map, reduce } from 'rxjs/operators';
-import { Page } from '../api';
+import { Page } from '@pentacle/models';
 import { EntitiesDao } from './entities-dao.service';
 import { HttpService } from './http.service';
 import { URL_BASE_TOKEN } from './injection-tokens';
@@ -29,15 +29,15 @@ export class PagesDao extends EntitiesDao<Page> {
     stream$.pipe(
       map(
         (page: any): Page => ({
-          _wp_id: page.id,
-          id: page.slug,
-          title: page.title && page.title.rendered,
+          _wp_id: page && page.id,
+          id: page && page.slug,
+          title: page && page.title && page.title.rendered,
           date: {
-            created: page.date,
-            modified: page.modified,
+            created: page && page.date,
+            modified: page && page.modified,
           },
-          content: page.content && page.content.rendered,
-          acf: page.acf,
+          content: page && page.content && page.content.rendered,
+          acf: page && page.acf,
         }),
       ),
     );

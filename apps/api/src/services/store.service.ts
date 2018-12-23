@@ -1,6 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { Asset, Category, Page, Post, User } from '../api';
+import { Asset, Category, User } from '../api';
 import { EntityCache, EntityState } from '../common';
+import { Page, Post } from '@pentacle/models';
 
 export interface Store {
   ASSETS: EntityCache<Asset>;

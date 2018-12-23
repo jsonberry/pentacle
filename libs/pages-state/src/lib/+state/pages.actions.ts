@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Page } from '@pentacle/models';
+import { PageDetailDTO } from '@pentacle/models';
 
 export enum PagesActionTypes {
   LoadPage = '[Pages] Load Page',
@@ -18,7 +18,7 @@ export class PageLoadError implements Action {
 
 export class PageLoaded implements Action {
   readonly type = PagesActionTypes.PageLoaded;
-  constructor(public page: Page) {}
+  constructor(public page: PageDetailDTO) {}
 }
 
 export type PagesAction = LoadPage | PageLoaded | PageLoadError;
