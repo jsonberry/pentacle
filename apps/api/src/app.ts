@@ -101,6 +101,9 @@ of('Hydrating stores...')
         appServices.categories
           .newRequest$()
           .pipe(tap(() => console.log('Categories loaded...'))),
+        appServices.tags
+          .newRequest$()
+          .pipe(tap(() => console.log('Tags loaded...'))),
       ),
     ),
   )

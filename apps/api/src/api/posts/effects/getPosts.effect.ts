@@ -8,9 +8,13 @@ import appServices from '../../../services';
 export const getPostsEffect$: Effect = req$ =>
   req$.pipe(
     appServices.posts.allEntities$,
-    withLatestFrom(appServices.store.ASSETS, appServices.store.CATEGORIES),
+    withLatestFrom(
+      appServices.store.ASSETS,
+      appServices.store.CATEGORIES,
+      appServices.store.TAGS,
+    ),
     map(
-      ([posts, assets, categories]): PostDTO[] => {
+      ([posts, assets, categories, tags]): PostDTO[] => {
         return posts.set.map(post => ({
           id: post && post.id,
           date: post && post.date,
@@ -25,6 +29,18 @@ export const getPostsEffect$: Effect = req$ =>
                     categories.dictionary &&
                     categories.dictionary[catId] &&
                     categories.dictionary[catId].id) as PostCategory,
+              )
+              .filter(Boolean),
+          tags:
+            post &&
+            post.tags &&
+            post.tags
+              .map(
+                tagId =>
+                  tags &&
+                  tags.dictionary &&
+                  tags.dictionary[tagId] &&
+                  tags.dictionary[tagId].id,
               )
               .filter(Boolean),
           image:

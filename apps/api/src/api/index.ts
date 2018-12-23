@@ -5,11 +5,13 @@ import { posts$ } from './posts';
 import { users$ } from './users';
 import { categories$ } from './categories';
 import { assets$ } from './assets';
+import { tags$ } from './tags';
 export * from './categories';
 export * from './pages';
 export * from './posts';
 export * from './users';
 export * from './assets';
+export * from './tags';
 
 export const notFound$ = EffectFactory.matchPath('*')
   .matchType('*')
@@ -21,5 +23,6 @@ export const api$ = combineRoutes('/v1', [
   users$,
   categories$,
   assets$,
+  tags$,
   notFound$,
 ]);
