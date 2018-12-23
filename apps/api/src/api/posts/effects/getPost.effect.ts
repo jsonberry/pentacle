@@ -12,9 +12,10 @@ export const getPostEffect$: Effect = req$ =>
       appServices.store.USERS,
       appServices.store.CATEGORIES,
       appServices.store.ASSETS,
+      appServices.store.TAGS,
     ),
     map(
-      ([post, users, categories, assets]): PostDetailDTO => {
+      ([post, users, categories, assets, tags]): PostDetailDTO => {
         const author = users && users.dictionary[post.author_id];
         return {
           id: post && post.id,
@@ -40,6 +41,16 @@ export const getPostEffect$: Effect = req$ =>
                     categories.dictionary[catId].id) as PostCategory,
               )
               .filter(Boolean),
+          tags:
+            post &&
+            post.tags &&
+            post.tags.map(
+              tagId =>
+                tags &&
+                tags.dictionary &&
+                tags.dictionary[tagId] &&
+                tags.dictionary[tagId].id,
+            ),
           content: post && post.content,
         };
       },

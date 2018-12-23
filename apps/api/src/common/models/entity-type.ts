@@ -1,6 +1,7 @@
 export type EntityTypeUnion =
+  | 'ASSETS'
+  | 'CATEGORIES'
   | 'PAGES'
   | 'POSTS'
-  | 'USERS'
-  | 'CATEGORIES'
-  | 'ASSETS';
+  | 'TAGS'
+  | 'USERS';

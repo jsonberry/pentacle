@@ -7,6 +7,7 @@ export interface PostDTO {
   id: string;
   title: string;
   categories: PostCategory[];
+  tags: string[];
   date: PostDate;
   image?: PostImage; // TODO should get changed to one particular version, maybe thumbnail
   source?: PostSource; // TODO probably add some ACF for this
