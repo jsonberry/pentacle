@@ -52,6 +52,12 @@
       ],
       "@pentacle/tags-state": [
         "libs/tags-state/src/index.ts"
+      ],
+      "@pentacle/examples/retry-with-backoff": [
+        "libs/examples/retry-with-backoff/src/index.ts"
+      ],
+      "@pentacle/examples/root": [
+        "libs/examples/root/src/index.ts"
       ]
     }
   },

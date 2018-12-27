@@ -514,6 +514,62 @@
           }
         }
       }
+    },
+    "examples-retry-with-backoff": {
+      "root": "libs/examples/retry-with-backoff",
+      "sourceRoot": "libs/examples/retry-with-backoff/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/examples/retry-with-backoff/tsconfig.lib.json",
+              "libs/examples/retry-with-backoff/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/examples/retry-with-backoff/jest.config.js",
+            "tsConfig": "libs/examples/retry-with-backoff/tsconfig.spec.json",
+            "setupFile": "libs/examples/retry-with-backoff/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "examples-root": {
+      "root": "libs/examples/root",
+      "sourceRoot": "libs/examples/root/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/examples/root/tsconfig.lib.json",
+              "libs/examples/root/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/examples/root/jest.config.js",
+            "tsConfig": "libs/examples/root/tsconfig.spec.json",
+            "setupFile": "libs/examples/root/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {
