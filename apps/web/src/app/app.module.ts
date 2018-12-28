@@ -1,19 +1,21 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/nx';
+import { PagesStateModule } from '@pentacle/pages-state';
+import { PostsStateModule } from '@pentacle/posts-state';
 import { RouterStateModule } from '@pentacle/router-state';
+import { TagsStateModule } from '@pentacle/tags-state';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
-import { PagesStateModule } from '@pentacle/pages-state';
-import { PostsStateModule } from '@pentacle/posts-state';
-import { TagsStateModule } from '@pentacle/tags-state';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
@@ -32,6 +34,8 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
     RouterModule.forRoot(
       [
         {

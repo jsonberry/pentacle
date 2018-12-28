@@ -1,2 +1,12 @@
 <h1>{{ title$ | async }}</h1>
 <main [innerHTML]="content$ | async"></main>
+<h2>Next Steps</h2>
+<p>
+  Check out the <a [routerLink]="['/overview']">Overview</a> for a high level
+  walkthrough of the architecture.
+</p>
+<p>
+  Jump into the <a [routerLink]="['/layers']">Layers</a> to dig a bit deeper
+  into their responsibilities.
+</p>
+<p>Browse and filter through <a [routerLink]="['/resources']">Resources</a>.</p>
