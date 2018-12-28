@@ -1,3 +1,2 @@
-<main
-  [innerHTML]="(overviewPageData$ | async)?.content"
-></main>
+<h1>{{ title$ | async }}</h1>
+<main [innerHTML]="content$ | async"></main>
