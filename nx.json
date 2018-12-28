@@ -58,6 +58,9 @@
     },
     "examples-root": {
       "tags": []
+    },
+    "examples-toast": {
+      "tags": []
     }
   }
 }

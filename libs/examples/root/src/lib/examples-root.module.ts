@@ -16,6 +16,10 @@ import { ExamplesListComponent } from './examples-list/examples-list.component';
         loadChildren:
           '@pentacle/examples/retry-with-backoff#ExamplesRetryWithBackoffModule',
       },
+      {
+        path: 'examples-toast',
+        loadChildren: '@pentacle/examples/toast#ExamplesToastModule',
+      },
     ]),
   ],
   declarations: [ExamplesListComponent],

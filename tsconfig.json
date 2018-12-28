@@ -58,6 +58,9 @@
       ],
       "@pentacle/examples/root": [
         "libs/examples/root/src/index.ts"
+      ],
+      "@pentacle/examples/toast": [
+        "libs/examples/toast/src/index.ts"
       ]
     }
   },
