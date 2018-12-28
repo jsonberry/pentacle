@@ -12,12 +12,12 @@ import { ExamplesListComponent } from './examples-list/examples-list.component';
         component: ExamplesListComponent,
       },
       {
-        path: 'examples-retry-with-backoff',
+        path: 'retry-with-backoff',
         loadChildren:
           '@pentacle/examples/retry-with-backoff#ExamplesRetryWithBackoffModule',
       },
       {
-        path: 'examples-toast',
+        path: 'toast',
         loadChildren: '@pentacle/examples/toast#ExamplesToastModule',
       },
     ]),

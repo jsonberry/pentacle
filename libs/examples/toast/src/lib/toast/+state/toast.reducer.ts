@@ -1,5 +1,5 @@
-import { ToastUnion, ToastActionTypes, SuccessToast } from './toast.action';
-import { ToastStatus, ToastState } from '@pentacle/models';
+import { ToastState, ToastStatus } from '@pentacle/models';
+import { ToastActionTypes, ToastUnion } from './toast.action';
 
 export const initialState: ToastState = {
   message: undefined,
@@ -11,26 +11,30 @@ export function toastReducer(
   state: ToastState = initialState,
   action: ToastUnion,
 ): ToastState {
-  const activeToast = activeToastGenerator(action);
+  const toastState = toastStateGenerator(action);
+
   switch (action.type) {
     case ToastActionTypes.Pending: {
-      return { ...state, ...activeToast(ToastStatus.Pending) };
+      return toastState(ToastStatus.Pending);
     }
     case ToastActionTypes.Success: {
-      return { ...state, ...activeToast(ToastStatus.Success) };
+      return toastState(ToastStatus.Success);
     }
     case ToastActionTypes.Failure: {
-      return { ...state, ...activeToast(ToastStatus.Fail) };
+      return toastState(ToastStatus.Fail);
     }
     case ToastActionTypes.Hide: {
-      return { ...state, message: undefined, isActive: false };
+      return toastState(ToastStatus.Fail);
     }
     default: {
-      return { ...state };
+      return state;
     }
   }
 }
 
-export const activeToastGenerator = (action: any) => (status: ToastStatus) => {
-  return { message: action.message, isActive: true, status };
-};
+export const toastStateGenerator = (action: ToastUnion) => (
+  status: ToastStatus,
+) =>
+  action.type === ToastActionTypes.Hide
+    ? initialState
+    : { message: action.message, isActive: true, status };
