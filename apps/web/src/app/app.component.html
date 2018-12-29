@@ -1,19 +1,107 @@
-<mat-drawer-container>
-  <mat-drawer mode="side" opened>
-    <ul>
-      <li><a [routerLink]="['/']">Home</a></li>
-      <li><a [routerLink]="['/introduction']">Introduction</a></li>
-      <li><a [routerLink]="['/overview']">Overview</a></li>
-      <li>
-        <a [routerLink]="['/layers']">Layers</a>
-        <ul>
-          <li><a [routerLink]="['/layers/presentation']">Presentation</a></li>
-          <li><a [routerLink]="['/layers/containers']">Containers</a></li>
-        </ul>
-      </li>
-      <li><a [routerLink]="['/resources']">Resources</a></li>
-      <li><a [routerLink]="['/examples']">Examples</a></li>
-    </ul>
-  </mat-drawer>
-  <mat-drawer-content> <router-outlet></router-outlet> </mat-drawer-content>
-</mat-drawer-container>
+<div class="main-container">
+  <header class="header-6">
+    <div class="branding">
+      <a routerLink="/" class="nav-link"><span class="title">Pentacle - Reactive Web Application Architecture</span></a>
+    </div>
+  </header>
+  <div class="content-container">
+    <div class="content-area">
+      <main><router-outlet></router-outlet></main>
+    </div>
+    <clr-vertical-nav>
+      <a
+        clrVerticalNavLink
+        routerLink="/introduction"
+        routerLinkActive="active"
+        ><clr-icon clrVerticalNavIcon shape="map-marker"></clr-icon>Introduction</a
+      >
+      <a
+        clrVerticalNavLink
+        routerLink="/overview"
+        routerLinkActive="active"
+        ><clr-icon clrVerticalNavIcon shape="cloud"></clr-icon>Overview</a
+      >
+      <a
+        clrVerticalNavLink
+        routerLink="/blueprint"
+        routerLinkActive="active"
+        ><clr-icon clrVerticalNavIcon shape="map"></clr-icon>Blueprint</a
+      >
+      <clr-vertical-nav-group routerLinkActive="active">
+        <clr-icon shape="blocks-group" clrVerticalNavIcon></clr-icon>
+        Modules
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink routerLink="/modules/data" routerLinkActive="active">
+            Data
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/modules/commands"
+            routerLinkActive="active"
+          >
+            Commands
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/modules/queries"
+            routerLinkActive="active"
+          >
+            Queries
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/modules/facades"
+            routerLinkActive="active"
+          >
+            Facades
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/modules/containers"
+            routerLinkActive="active"
+          >
+            Containers
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/modules/presentational"
+            routerLinkActive="active"
+          >
+            Presentational
+          </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+      <clr-vertical-nav-group routerLinkActive="active">
+          <clr-icon shape="flag" clrVerticalNavIcon></clr-icon>
+          Principles
+          <clr-vertical-nav-group-children>
+            <a clrVerticalNavLink routerLink="/principles/unidirectional-data-flow" routerLinkActive="active">
+              Unidirectional Data Flow
+            </a>
+            <a clrVerticalNavLink routerLink="/principles/immutability" routerLinkActive="active">
+              Immutability
+            </a>
+            <a clrVerticalNavLink routerLink="/principles/declarative" routerLinkActive="active">
+              Declarative
+            </a>
+            <a clrVerticalNavLink routerLink="/principles/functional-reactive-programming" routerLinkActive="active">
+              FRP
+            </a>
+          </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+      <a
+        clrVerticalNavLink
+        routerLink="/resources"
+        routerLinkActive="active"
+      >
+        <clr-icon clrVerticalNavIcon shape="library"></clr-icon>Resources</a
+      >
+      <a
+        clrVerticalNavLink
+        routerLink="/examples"
+        routerLinkActive="active"
+        ><clr-icon clrVerticalNavIcon shape="flask"></clr-icon>Examples</a
+      >
+    </clr-vertical-nav>
+  </div>
+</div>

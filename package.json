@@ -46,6 +46,7 @@
     "@angular/platform-browser": "^7.0.0",
     "@angular/platform-browser-dynamic": "^7.0.0",
     "@angular/router": "^7.0.0",
+    "@clr/angular": "^1.0.3-patch",
     "@marblejs/core": "^1.2.1",
     "@marblejs/middleware-body": "^1.2.1",
     "@marblejs/middleware-joi": "^1.2.1",
@@ -63,7 +64,10 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.3.3",
     "rxjs-toolkit": "^1.1.2",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@clr/ui": "^1.0.3-patch",
+    "@clr/icons": "^1.0.3-patch",
+    "@webcomponents/custom-elements": "^1.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
