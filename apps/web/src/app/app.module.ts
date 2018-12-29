@@ -1,9 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -35,7 +35,6 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
     RouterModule.forRoot(
       [
         {
@@ -79,6 +78,7 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
       ? []
       : StoreDevtoolsModule.instrument(storeDevToolsConfig),
     NxModule.forRoot(),
+    ClarityModule,
   ],
   bootstrap: [AppComponent],
 })
