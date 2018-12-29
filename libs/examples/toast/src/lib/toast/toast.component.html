@@ -1,6 +1,88 @@
-<p>
-  The current state of the toast is: {{ isActive$ | async }}
-</p>
-<p>
-  The current status of the toast is: {{ status$ | async }}
-</p>
+<section>
+  <article>
+    <h1>
+      Toaster notifications in Angular 7
+    </h1>
+    <p>
+      By Alex Fallenstedt
+    </p>
+    <p>
+      The toast notification is an auto-expiring message that typically appears at the bottom of a user's screen. The toast notifications delivers feedback about a current activity that the user has performed. In this example, we will use <a href="https://ngrx.io/">ngrx</a>, an excellent framework for building reactive applications, to build a toast library that can be reused across an any angular application.
+    </p>
+    <p>
+      This guide assumes you have basic knowledge of <a href="https://ngrx.io/">ngrx</a> and <a href="https://rxjs-dev.firebaseapp.com/">rxjs</a>. You can also <a href="https://github.com/jsonberry/pentacle/tree/next/libs/examples/toast/src/lib">visit the github repository here</a> in case you get stuck.
+    </p>
+  </article>
+
+  <article>
+    <h2>Example</h2>
+    <p>
+      The two buttons each fire a unique async request. When an async request occurs, we provide snippets of information about the status of the request. The notification disappears after several seconds.
+    </p>
+    <br>
+    <button class="btn btn-success" (click)="sendSuccessToast()">Success</button>
+    <button class="btn btn-danger" (click)="sendFailureToast()">Failure</button>
+    <div 
+      role="alert"
+      *ngIf="isActive$ | async"
+      class="alert"
+      [ngClass]="(isActive$ | async) ? 'alert-' + (status$ | async) : '' ">
+      <span class="alert-text">
+        {{message$ | async}}
+      </span>
+    </div>
+  </article>
+
+  <article>
+    <h2>Actions</h2>
+    <p>Let's start with our actions. Actions express unique events that happen throughout your application. I know that for my example, I want to have four unique states for my toast</p>
+    <br>
+    <ul>
+      <li>
+        I need a away to show a 'Pending' status, a state that shows a request is in progress.
+      </li>
+      <li>
+        Likewise, I need a 'Success' and a 'Failure' state to handle the response of my async request.
+      </li>
+      <li>
+        I also need a way to 'Hide' my toast after a while, this way I can hide the toast after a period of time.
+      </li>
+    </ul>
+    <p>
+      While I am at it, I will create a ToastUnion. The consumers of actions, whether it be reducers or effects use the type information from an action to determine whether they need to handle the action. Actions are grouped together by feature area, but also need to expose the action type information. Essentially, when I create my toast effects and toast reducer, I want it to only care about my toast actions.
+    </p>
+    <br>
+
+    <pre class="language-typescript line-numbers">
+      <code [innerHTML]="actionsExample"></code>
+    </pre>
+  </article>
+
+  <article>
+    <h2>Reducer</h2>
+    <p>Now that I know how I want my toast to behave, I can begin handling the transitions from one state to the next. We can handle each action differently be creating our toast reducer to listen for each action.</p>
+    <p>I know that I want my reducer to manage two properties of my toast state when an action is dispatched.</p>
+    <ul>
+      <li>
+        The message that should be displayed in the toast pop-up. 
+      </li>
+      <li>
+        The status of the toast message to denote the Pending, Success, Failure, and Hidden state.
+      </li>
+    </ul>
+    <pre class="language-typescript line-numbers">
+        <code [innerHTML]="reducerExample"></code>
+      </pre>
+  </article>
+
+
+  <article>
+    <h2>Facade</h2>
+  </article>
+
+  <article>
+    <h2>Effects</h2>
+    <p>With our boilerplate created, let's start writing some effects so we can display some type of notification</p>
+    <img src="assets/examples/toast/step-1.jpg" alt="">
+  </article>
+</section>

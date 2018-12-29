@@ -5,6 +5,8 @@ import { ToastComponent } from './toast/toast.component';
 import { StoreModule } from '@ngrx/store';
 import { toastReducer, initialState } from './toast/+state/toast.reducer';
 import { TOAST_FEATURE_KEY } from '@pentacle/models';
+import { EffectsModule } from '@ngrx/effects';
+import { ToastEffects } from './toast/+state/toast.effects';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { TOAST_FEATURE_KEY } from '@pentacle/models';
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: ToastComponent },
     ]),
+    EffectsModule.forFeature([ToastEffects]),
   ],
   declarations: [ToastComponent],
 })

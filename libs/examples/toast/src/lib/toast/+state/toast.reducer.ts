@@ -3,38 +3,28 @@ import { ToastActionTypes, ToastUnion } from './toast.action';
 
 export const initialState: ToastState = {
   message: undefined,
-  status: ToastStatus.Pending,
-  isActive: false,
+  status: ToastStatus.Hide,
 };
 
 export function toastReducer(
   state: ToastState = initialState,
   action: ToastUnion,
 ): ToastState {
-  const toastState = toastStateGenerator(action);
-
   switch (action.type) {
     case ToastActionTypes.Pending: {
-      return toastState(ToastStatus.Pending);
+      return { message: action.message, status: ToastStatus.Info };
     }
     case ToastActionTypes.Success: {
-      return toastState(ToastStatus.Success);
+      return { message: action.message, status: ToastStatus.Success };
     }
     case ToastActionTypes.Failure: {
-      return toastState(ToastStatus.Fail);
+      return { message: action.message, status: ToastStatus.Danger };
     }
     case ToastActionTypes.Hide: {
-      return toastState(ToastStatus.Fail);
+      return { message: undefined, status: ToastStatus.Hide };
     }
     default: {
       return state;
     }
   }
 }
-
-export const toastStateGenerator = (action: ToastUnion) => (
-  status: ToastStatus,
-) =>
-  action.type === ToastActionTypes.Hide
-    ? initialState
-    : { message: action.message, isActive: true, status };

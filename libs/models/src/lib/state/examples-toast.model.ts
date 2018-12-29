@@ -1,13 +1,17 @@
+import { Action } from '@ngrx/store';
+
 export const TOAST_FEATURE_KEY = 'examples-toast';
 
 export enum ToastStatus {
-  Pending = '[Toast] Pending',
-  Success = '[Toast] Success',
-  Fail = '[Toast] Fail',
+  Info = 'info',
+  Success = 'success',
+  Danger = 'danger',
+  Hide = 'hide',
 }
 
 export interface ToastState {
   message: string;
   status: ToastStatus;
-  isActive: boolean;
 }
+
+export type ActionDelayTuple = [Action, number];
