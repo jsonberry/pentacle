@@ -1,16 +1,5 @@
 import { ToastUnion, ToastActionTypes, SuccessToast } from './toast.action';
-
-export enum ToastStatus {
-  Pending = '[Toast] Pending',
-  Success = '[Toast] Success',
-  Fail = '[Toast] Fail',
-}
-
-interface ToastState {
-  message: string;
-  status: ToastStatus;
-  isActive: boolean;
-}
+import { ToastStatus, ToastState } from '@pentacle/models';
 
 export const initialState: ToastState = {
   message: undefined,

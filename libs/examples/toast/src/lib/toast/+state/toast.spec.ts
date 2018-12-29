@@ -9,10 +9,10 @@ import {
 
 import {
   activeToastGenerator,
-  ToastStatus,
   toastReducer,
   initialState,
 } from './toast.reducer';
+import { ToastStatus } from '@pentacle/models';
 
 describe('Toast', () => {
   describe('Actions', () => {

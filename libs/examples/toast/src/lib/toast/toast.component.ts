@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastFacade } from './+state/toast.facade';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pentacle-toast',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent implements OnInit {
-  constructor() {}
+  isActive$: Observable<boolean> = this.toastFacade.isActive$;
+  status$: Observable<string> = this.toastFacade.status$;
+  constructor(private toastFacade: ToastFacade) {}
 
   ngOnInit() {}
 }
