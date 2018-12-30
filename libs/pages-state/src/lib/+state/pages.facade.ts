@@ -13,6 +13,9 @@ export class PagesFacade {
   pageIds$ = this.store.pipe(select(pagesQuery.getPageIds));
   pagesDictionary$ = this.store.pipe(select(pagesQuery.getPagesDictionary));
   pagesArray$ = this.store.pipe(select(pagesQuery.getPagesArray));
+  pageByRouteParamId$ = this.store.pipe(
+    select(pagesQuery.getPageByRouteParamId),
+  );
 
   constructor(
     private store: Store<State>,
