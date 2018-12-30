@@ -64,6 +64,10 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
           path: 'examples',
           loadChildren: '@pentacle/examples/root#ExamplesRootModule',
         },
+        {
+          path: 'blueprint',
+          loadChildren: '@pentacle/blueprint#BlueprintModule',
+        },
         { path: '**', loadChildren: '@pentacle/not-found#NotFoundModule' },
       ],
       { initialNavigation: 'enabled' },

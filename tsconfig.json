@@ -61,6 +61,9 @@
       ],
       "@pentacle/examples/toast": [
         "libs/examples/toast/src/index.ts"
+      ],
+      "@pentacle/blueprint": [
+        "libs/blueprint/src/index.ts"
       ]
     }
   },

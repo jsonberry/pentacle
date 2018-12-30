@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import { PagesFacade } from '@pentacle/pages-state';
+import { filter, pluck, shareReplay } from 'rxjs/operators';
+
+@Component({
+  selector: 'pentacle-blueprint',
+  templateUrl: './blueprint.component.html',
+  styleUrls: ['./blueprint.component.scss'],
+})
+export class BlueprintComponent {
+  bluePrintPageData$ = this.pagesFacade.page$('blueprint').pipe(
+    filter(data => !!data),
+    shareReplay(),
+  );
+  content$ = this.bluePrintPageData$.pipe(pluck('content'));
+
+  constructor(private pagesFacade: PagesFacade) {}
+}
