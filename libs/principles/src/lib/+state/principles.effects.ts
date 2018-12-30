@@ -4,16 +4,20 @@ import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
 import { fromPagesActions, PagesFacade } from '@pentacle/pages-state';
-import { HomeComponent } from './home/home.component';
+import { PrinciplesComponent } from '../principles/principles.component';
 
 @Injectable()
-export class HomeEffects {
+export class PrinciplesEffects {
   @Effect()
-  loadHomePageData$ = this.dataPersistence.navigation(HomeComponent, {
-    run: () => this.pagesFacade.fetchPageData$('home'),
-    onError: (a: ActivatedRouteSnapshot, error) =>
-      new fromPagesActions.PageLoadError(error),
-  });
+  loadPrinciplesPageData$ = this.dataPersistence.navigation(
+    PrinciplesComponent,
+    {
+      run: (a: ActivatedRouteSnapshot, s: State) =>
+        this.pagesFacade.fetchPageData$(s.router.state.params.id),
+      onError: (a: ActivatedRouteSnapshot, error) =>
+        new fromPagesActions.PageLoadError(error),
+    },
+  );
 
   constructor(
     private dataPersistence: DataPersistence<State>,

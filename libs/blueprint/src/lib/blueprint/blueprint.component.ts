@@ -12,6 +12,7 @@ export class BlueprintComponent {
     filter(data => !!data),
     shareReplay(),
   );
+  title$ = this.bluePrintPageData$.pipe(pluck('title'));
   content$ = this.bluePrintPageData$.pipe(pluck('content'));
 
   constructor(private pagesFacade: PagesFacade) {}
