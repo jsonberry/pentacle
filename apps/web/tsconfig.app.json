@@ -27,5 +27,7 @@
     "../../libs/examples/toast/src/index.ts",
 
     "../../libs/examples/root/src/index.ts"
-  ]
+  
+    , "../../libs/blueprint/src/index.ts"
+]
 }

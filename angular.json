@@ -603,6 +603,34 @@
           }
         }
       }
+    },
+    "blueprint": {
+      "root": "libs/blueprint",
+      "sourceRoot": "libs/blueprint/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/blueprint/tsconfig.lib.json",
+              "libs/blueprint/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/blueprint/jest.config.js",
+            "tsConfig": "libs/blueprint/tsconfig.spec.json",
+            "setupFile": "libs/blueprint/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {
