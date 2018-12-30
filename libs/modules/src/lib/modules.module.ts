@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { LayersEffects } from './+state/layers.effects';
-import { LayersComponent } from './layers/layers.component';
+import { ModulesEffects } from './+state/modules.effects';
+import { ModulesComponent } from './modules/modules.component';
 
 @NgModule({
   imports: [
@@ -11,15 +11,16 @@ import { LayersComponent } from './layers/layers.component';
     RouterModule.forChild([
       {
         path: ':id',
-        component: LayersComponent,
+        component: ModulesComponent,
       },
       {
         path: '',
-        component: LayersComponent,
+        redirectTo: '/overview',
+        pathMatch: 'full',
       },
     ]),
-    EffectsModule.forFeature([LayersEffects]),
+    EffectsModule.forFeature([ModulesEffects]),
   ],
-  declarations: [LayersComponent],
+  declarations: [ModulesComponent],
 })
-export class LayersModule {}
+export class ModulesModule {}

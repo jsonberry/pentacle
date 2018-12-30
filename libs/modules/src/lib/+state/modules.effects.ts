@@ -4,16 +4,14 @@ import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
 import { fromPagesActions, PagesFacade } from '@pentacle/pages-state';
-import { LayersComponent } from '../layers/layers.component';
+import { ModulesComponent } from '../modules/modules.component';
 
 @Injectable()
-export class LayersEffects {
+export class ModulesEffects {
   @Effect()
-  loadLayersPageData$ = this.dataPersistence.navigation(LayersComponent, {
+  loadModulesPageData$ = this.dataPersistence.navigation(ModulesComponent, {
     run: (a: ActivatedRouteSnapshot, s: State) =>
-      this.pagesFacade.fetchPageData$(
-        s.router.state.params.id ? s.router.state.params.id : 'layers',
-      ),
+      this.pagesFacade.fetchPageData$(s.router.state.params.id),
     onError: (a: ActivatedRouteSnapshot, error) =>
       new fromPagesActions.PageLoadError(error),
   });

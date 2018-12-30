@@ -41,8 +41,8 @@
       "@pentacle/overview": [
         "libs/overview/src/index.ts"
       ],
-      "@pentacle/layers": [
-        "libs/layers/src/index.ts"
+      "@pentacle/modules": [
+        "libs/modules/src/index.ts"
       ],
       "@pentacle/resources": [
         "libs/resources/src/index.ts"
