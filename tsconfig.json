@@ -64,6 +64,9 @@
       ],
       "@pentacle/blueprint": [
         "libs/blueprint/src/index.ts"
+      ],
+      "@pentacle/principles": [
+        "libs/principles/src/index.ts"
       ]
     }
   },

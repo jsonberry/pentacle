@@ -64,6 +64,9 @@
     },
     "blueprint": {
       "tags": []
+    },
+    "principles": {
+      "tags": []
     }
   }
 }

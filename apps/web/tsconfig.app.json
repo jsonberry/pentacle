@@ -29,5 +29,7 @@
     "../../libs/examples/root/src/index.ts"
 
     , "../../libs/blueprint/src/index.ts"
+
+    , "../../libs/principles/src/index.ts"
 ]
 }

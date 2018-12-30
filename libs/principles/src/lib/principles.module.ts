@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { ModulesEffects } from './+state/modules.effects';
-import { ModulesComponent } from './modules/modules.component';
+import { PrinciplesEffects } from './+state/principles.effects';
+import { PrinciplesComponent } from './principles/principles.component';
 
 @NgModule({
   imports: [
@@ -11,16 +11,16 @@ import { ModulesComponent } from './modules/modules.component';
     RouterModule.forChild([
       {
         path: ':id',
-        component: ModulesComponent,
+        component: PrinciplesComponent,
       },
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/overview',
+        redirectTo: '/',
       },
     ]),
-    EffectsModule.forFeature([ModulesEffects]),
+    EffectsModule.forFeature([PrinciplesEffects]),
   ],
-  declarations: [ModulesComponent],
+  declarations: [PrinciplesComponent],
 })
-export class ModulesModule {}
+export class PrinciplesModule {}
