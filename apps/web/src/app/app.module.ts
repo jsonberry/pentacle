@@ -21,7 +21,7 @@ export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
 ): ActionReducer<any> {
   return localStorageSync({
-    keys: ['pages', 'posts'],
+    keys: ['pages', 'posts', 'tags'],
     rehydrate: true,
     storage: sessionStorage,
   })(reducer);
