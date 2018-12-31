@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PagesFacade } from '@pentacle/pages-state';
-import { shareReplay, pluck, filter } from 'rxjs/operators';
+import { filter, pluck, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-home',
