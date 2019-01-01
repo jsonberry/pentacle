@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/nx';
+import { PagesLoadingProgressModule } from '@pentacle/pages-loading-progress';
 import { PagesStateModule } from '@pentacle/pages-state';
 import { PostsStateModule } from '@pentacle/posts-state';
 import { RouterStateModule } from '@pentacle/router-state';
@@ -76,6 +77,7 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
       ],
       { initialNavigation: 'enabled' },
     ),
+    PagesLoadingProgressModule,
     RouterStateModule,
     PostsStateModule,
     PagesStateModule,

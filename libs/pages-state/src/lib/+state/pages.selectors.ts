@@ -16,12 +16,14 @@ const getPageByRouteParamId = createSelector(
   routerQuery.getParams,
   (pages, params) => pages[params.id],
 );
+const getPagesLoading = createSelector(getPagesState, ({ loading }) => loading);
 
 export const pagesQuery = {
   getPage,
+  getPageByRouteParamId,
   getPageIds,
   getPagesArray,
   getPagesDictionary,
+  getPagesLoading,
   getPagesState,
-  getPageByRouteParamId,
 };

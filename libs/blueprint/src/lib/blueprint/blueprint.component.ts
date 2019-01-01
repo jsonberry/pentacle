@@ -8,7 +8,7 @@ import { filter, pluck, shareReplay } from 'rxjs/operators';
   styleUrls: ['./blueprint.component.scss'],
 })
 export class BlueprintComponent {
-  bluePrintPageData$ = this.pagesFacade.page$('blueprint').pipe(
+  bluePrintPageData$ = this.pagesFacade.getPage$('blueprint').pipe(
     filter(data => !!data),
     shareReplay(),
   );

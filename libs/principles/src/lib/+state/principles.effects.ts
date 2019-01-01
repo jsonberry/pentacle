@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
-import { fromPagesActions, PagesFacade } from '@pentacle/pages-state';
+import { PagesFacade } from '@pentacle/pages-state';
 import { PrinciplesComponent } from '../principles/principles.component';
 
 @Injectable()
@@ -13,9 +13,7 @@ export class PrinciplesEffects {
     PrinciplesComponent,
     {
       run: (a: ActivatedRouteSnapshot, s: State) =>
-        this.pagesFacade.fetchPageData$(s.router.state.params.id),
-      onError: (a: ActivatedRouteSnapshot, error) =>
-        new fromPagesActions.PageLoadError(error),
+        this.pagesFacade.loadPage(s.router.state.params.id),
     },
   );
 

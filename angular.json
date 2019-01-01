@@ -659,6 +659,34 @@
           }
         }
       }
+    },
+    "pages-loading-progress": {
+      "root": "libs/pages-loading-progress",
+      "sourceRoot": "libs/pages-loading-progress/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pages-loading-progress/tsconfig.lib.json",
+              "libs/pages-loading-progress/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/pages-loading-progress/jest.config.js",
+            "tsConfig": "libs/pages-loading-progress/tsconfig.spec.json",
+            "setupFile": "libs/pages-loading-progress/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {

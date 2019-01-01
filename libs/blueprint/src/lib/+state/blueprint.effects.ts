@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
-import { fromPagesActions, PagesFacade } from '@pentacle/pages-state';
+import { PagesFacade } from '@pentacle/pages-state';
 import { BlueprintComponent } from '../blueprint/blueprint.component';
 
 @Injectable()
 export class BlueprintEffects {
   @Effect()
   loadBlueprintPageData$ = this.dataPersistence.navigation(BlueprintComponent, {
-    run: () => this.pagesFacade.fetchPageData$('blueprint'),
-    onError: (a: ActivatedRouteSnapshot, error) =>
-      new fromPagesActions.PageLoadError(error),
+    run: () => this.pagesFacade.loadPage('blueprint'),
   });
 
   constructor(
