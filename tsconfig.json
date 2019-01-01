@@ -67,6 +67,9 @@
       ],
       "@pentacle/principles": [
         "libs/principles/src/index.ts"
+      ],
+      "@pentacle/pages-loading-progress": [
+        "libs/pages-loading-progress/src/index.ts"
       ]
     }
   },

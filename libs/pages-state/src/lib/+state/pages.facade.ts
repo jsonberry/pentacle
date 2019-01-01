@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { State } from '@pentacle/models';
-import { PagesDataService } from '@pentacle/services';
-import { filter, map, switchMapTo } from 'rxjs/operators';
 import { fromPagesActions } from './pages.actions';
 import { pagesQuery } from './pages.selectors';
 
@@ -16,24 +14,15 @@ export class PagesFacade {
   pageByRouteParamId$ = this.store.pipe(
     select(pagesQuery.getPageByRouteParamId),
   );
+  pagesLoading$ = this.store.pipe(select(pagesQuery.getPagesLoading));
 
-  constructor(
-    private store: Store<State>,
-    private pagesDataService: PagesDataService,
-  ) {}
+  constructor(private store: Store<State>) {}
 
-  page$(id: string) {
+  getPage$(id: string) {
     return this.store.pipe(select(pagesQuery.getPage(id)));
   }
 
-  fetchPageData$(id: string) {
-    return this.page$(id).pipe(
-      filter(page => !page),
-      switchMapTo(
-        this.pagesDataService
-          .getPage(id)
-          .pipe(map(page => new fromPagesActions.PageLoaded(page))),
-      ),
-    );
+  loadPage(id: string): void {
+    this.store.dispatch(new fromPagesActions.LoadPage(id));
   }
 }

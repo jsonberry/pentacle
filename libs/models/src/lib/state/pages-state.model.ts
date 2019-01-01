@@ -1,4 +1,6 @@
 import { EntityState } from '@ngrx/entity';
 import { PageDetailDTO } from '../page';
 
-export type PagesState = EntityState<PageDetailDTO>;
+export interface PagesState extends EntityState<PageDetailDTO> {
+  loading: boolean;
+}

@@ -67,6 +67,9 @@
     },
     "principles": {
       "tags": []
+    },
+    "pages-loading-progress": {
+      "tags": []
     }
   }
 }

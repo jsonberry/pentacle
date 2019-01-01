@@ -8,7 +8,7 @@ import { filter, shareReplay, pluck } from 'rxjs/operators';
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent {
-  overviewPageData$ = this.pagesFacade.page$('overview').pipe(
+  overviewPageData$ = this.pagesFacade.getPage$('overview').pipe(
     filter(data => !!data),
     shareReplay(),
   );
