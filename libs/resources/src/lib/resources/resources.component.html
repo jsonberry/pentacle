@@ -1,13 +1,13 @@
 <h1>Resources</h1>
 
+<p>{{count$ | async}} Resource(s)</p>
 <div *ngIf="(resources$ | async) as resources">
-  <div *ngIf="!resources.length; else hasResourcesTemplate">
-    No resources available for your filter criteria
+  <div class="viewport-container">
+    <cdk-virtual-scroll-viewport itemSize="4">
+      <pentacle-resources-article
+        *cdkVirtualFor="let resource of resources"
+        [article]="resource"
+      ></pentacle-resources-article>
+    </cdk-virtual-scroll-viewport>
   </div>
-  <ng-template #hasResourcesTemplate>
-    <pentacle-resources-article
-      *ngFor="let resource of resources"
-      [article]="resource"
-    ></pentacle-resources-article>
-  </ng-template>
 </div>

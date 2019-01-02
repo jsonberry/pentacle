@@ -22,8 +22,10 @@ export class ResourcesFacade {
     filter((post): post is PostDetailDTO => !!post && isPostDetailDTO(post)),
     pluck('title'),
   );
-
   resources$ = this.store.pipe(select(resourcesQuery.getResources));
+  filteredResourceCount$ = this.store.pipe(
+    select(resourcesQuery.getFilteredResourcesCount),
+  );
 
   constructor(private store: Store<State>, private sanitizer: DomSanitizer) {}
 }

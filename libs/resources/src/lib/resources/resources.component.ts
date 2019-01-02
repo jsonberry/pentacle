@@ -8,5 +8,6 @@ import { ResourcesFacade } from '../+state/resources.facade';
 })
 export class ResourcesComponent {
   resources$ = this.resourcesFacade.resources$;
+  count$ = this.resourcesFacade.filteredResourceCount$;
   constructor(private resourcesFacade: ResourcesFacade) {}
 }
