@@ -19,6 +19,11 @@ const getResources = createSelector(
   },
 );
 
+const getFilteredResourcesCount = createSelector(
+  getResources,
+  resources => resources.length,
+);
+
 const getResourceByRoute = createSelector(
   postsQuery.getPostsDictionary,
   routerQuery.getParams,
@@ -26,6 +31,7 @@ const getResourceByRoute = createSelector(
 );
 
 export const resourcesQuery = {
-  getResources,
   getResourceByRoute,
+  getFilteredResourcesCount,
+  getResources,
 };
