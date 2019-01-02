@@ -5,13 +5,9 @@
     No resources available for your filter criteria
   </div>
   <ng-template #hasResourcesTemplate>
-    <ul>
-      <li *ngFor="let resource of resources">
-        <a
-          [routerLink]="['/resources', resource.id]"
-          [innerHTML]="resource.title"
-        ></a>
-      </li>
-    </ul>
+    <pentacle-resources-article
+      *ngFor="let resource of resources"
+      [article]="resource"
+    ></pentacle-resources-article>
   </ng-template>
 </div>
