@@ -70,6 +70,9 @@
     },
     "pages-loading-progress": {
       "tags": []
+    },
+    "resources-filter": {
+      "tags": []
     }
   }
 }

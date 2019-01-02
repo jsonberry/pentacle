@@ -17,6 +17,7 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
+import { ResourcesFilterModule } from '@pentacle/resources-filter';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
@@ -78,6 +79,7 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
       { initialNavigation: 'enabled' },
     ),
     PagesLoadingProgressModule,
+    ResourcesFilterModule,
     RouterStateModule,
     PostsStateModule,
     PagesStateModule,
