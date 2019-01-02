@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ResourcesEffects } from './+state/resources.effects';
 import { ResourcesDetailComponent } from './resources-detail/resources-detail.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { ResourcesArticleComponent } from './resources-article/resources-article.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,10 @@ import { ResourcesComponent } from './resources/resources.component';
     ]),
     EffectsModule.forFeature([ResourcesEffects]),
   ],
-  declarations: [ResourcesComponent, ResourcesDetailComponent],
+  declarations: [
+    ResourcesComponent,
+    ResourcesDetailComponent,
+    ResourcesArticleComponent,
+  ],
 })
 export class ResourcesModule {}

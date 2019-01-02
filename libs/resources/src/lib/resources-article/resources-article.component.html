@@ -1,0 +1,15 @@
+<a [routerLink]="article?.id">
+  <article>
+    <section>
+      <div
+        [ngStyle]="{
+          'background-image':
+            'linear-gradient(to top, rgba(216, 216, 216, 0.5), rgba(216, 216, 216, 0.5)), url(' +
+            article?.image?.full +
+            ')'
+        }"
+      ></div>
+    </section>
+    <section><h2 [innerHTML]="article?.title"></h2></section>
+  </article>
+</a>
