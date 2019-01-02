@@ -1,0 +1,45 @@
+<div class="nav-divider"></div>
+<form [formGroup]="filter">
+  <ng-container *ngIf="formats">
+    <section formGroupName="formats">
+      <p class="p4">Formats</p>
+      <div
+        class="toggle-switch"
+        *ngFor="let format of (formats?.controls | keyvalue)"
+      >
+        <input
+          type="checkbox"
+          formControlName="{{ format?.key }}"
+          [id]="format.key"
+        />
+        <label [for]="format.key">{{
+          filterFormGroups.availableFormats[format.key]?.title
+        }}</label>
+      </div>
+      <button class="btn btn-sm btn-link" (click)="resetControl('formats')">
+        Reset Formats
+      </button>
+    </section>
+  </ng-container>
+  <ng-container *ngIf="topics">
+    <section formGroupName="topics">
+      <p class="p4">Topics</p>
+      <div
+        class="toggle-switch"
+        *ngFor="let topic of (topics?.controls | keyvalue)"
+      >
+        <input
+          type="checkbox"
+          formControlName="{{ topic?.key }}"
+          [id]="topic.key"
+        />
+        <label [for]="topic.key">
+          {{ filterFormGroups.availableTopics[topic.key]?.title }}
+        </label>
+      </div>
+      <button class="btn btn-sm btn-link" (click)="resetControl('topics')">
+        Reset Topics
+      </button>
+    </section>
+  </ng-container>
+</form>

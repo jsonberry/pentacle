@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ResourcesFilterPredicate } from '@pentacle/models';
-import { ResourcesFacade } from '../+state/resources.facade';
+import { ResourcesFilterFacade } from '../+state/resources-filter.facade';
 
 @Component({
   selector: 'pentacle-resources-filter-container',
@@ -8,11 +8,12 @@ import { ResourcesFacade } from '../+state/resources.facade';
   styleUrls: ['./resources-filter-container.component.scss'],
 })
 export class ResourcesFilterContainerComponent {
-  filterFormGroups$ = this.resourcesFacade.filterFormGroups$;
+  filterFormGroups$ = this.facade.filterFormGroups$;
+  show$ = this.facade.showFilter$;
 
-  constructor(private resourcesFacade: ResourcesFacade) {}
+  constructor(private facade: ResourcesFilterFacade) {}
 
   filterResources(predicate: ResourcesFilterPredicate) {
-    this.resourcesFacade.filterResources(predicate);
+    this.facade.filterResources(predicate);
   }
 }

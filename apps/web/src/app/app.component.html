@@ -7,7 +7,9 @@
   <div class="content-container">
     <div class="content-area">
       <pentacle-pages-loading-progress></pentacle-pages-loading-progress>
-      <router-outlet></router-outlet>
+      <div class="router-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
     <clr-vertical-nav>
       <a
@@ -79,8 +81,8 @@
             <a clrVerticalNavLink routerLink="/principles/unidirectional-data-flow" routerLinkActive="active">
               Unidirectional Data Flow
             </a>
-            <a clrVerticalNavLink routerLink="/principles/immutability" routerLinkActive="active">
-              Immutability
+            <a clrVerticalNavLink routerLink="/principles/projection" routerLinkActive="active">
+              Projection
             </a>
             <a clrVerticalNavLink routerLink="/principles/declarative" routerLinkActive="active">
               Declarative
@@ -103,6 +105,7 @@
         routerLinkActive="active"
         ><clr-icon clrVerticalNavIcon shape="flask"></clr-icon>Examples</a
       >
+      <pentacle-resources-filter-container></pentacle-resources-filter-container>
     </clr-vertical-nav>
   </div>
 </div>

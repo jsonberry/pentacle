@@ -1,4 +1,5 @@
 <pentacle-resources-filter
+  *ngIf="show$ | async"
   [filterFormGroups]="filterFormGroups$ | async"
   (filterPredicate)="filterResources($event)"
 ></pentacle-resources-filter>

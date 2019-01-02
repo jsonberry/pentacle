@@ -1,13 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { ResourcesFilterFormGroups } from '@pentacle/models';
 import { postsQuery } from '@pentacle/posts-state';
 import { routerQuery } from '@pentacle/router-state';
-import { tagsQuery } from '@pentacle/tags-state';
-import {
-  getInitialOptions,
-  getProjectedOptions,
-  getSelectedOptions,
-} from './resources.utils';
 
 const getResources = createSelector(
   postsQuery.getPostsArray,
@@ -29,45 +22,10 @@ const getResources = createSelector(
 const getResourceByRoute = createSelector(
   postsQuery.getPostsDictionary,
   routerQuery.getParams,
-  (resources, params) => (resources[params.id] ? resources[params.id] : null),
-);
-
-const getResourceFilterFormGroups = createSelector(
-  routerQuery.getQueryParams,
-  tagsQuery.getTagsDictionary,
-  tagsQuery.getTagsArray,
-  (queryParams, tags, tagsArray): ResourcesFilterFormGroups => {
-    const availableFormats = [
-      {
-        id: 'read',
-        title: 'Read',
-      },
-      { id: 'watch', title: 'Watch' },
-      { id: 'listen', title: 'Listen' },
-    ];
-
-    return {
-      availableFormats: availableFormats.reduce(
-        (acc, cur) => ({ ...acc, [cur.id]: cur }),
-        {},
-      ),
-      availableTopics: tags,
-      groups: {
-        formats: getProjectedOptions(
-          getInitialOptions(availableFormats),
-          getSelectedOptions(queryParams.formats),
-        ),
-        topics: getProjectedOptions(
-          getInitialOptions(tagsArray),
-          getSelectedOptions(queryParams.topics),
-        ),
-      },
-    };
-  },
+  (resources, params) => resources[params.id],
 );
 
 export const resourcesQuery = {
   getResources,
   getResourceByRoute,
-  getResourceFilterFormGroups,
 };
