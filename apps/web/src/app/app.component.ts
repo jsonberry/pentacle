@@ -6,6 +6,4 @@ import { environment } from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  show = !environment.production;
-}
+export class AppComponent {}

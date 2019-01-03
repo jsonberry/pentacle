@@ -1,9 +1,9 @@
-<div class="main-container">
-  <header class="header-6">
+<clr-main-container>
+  <clr-header class="header-6">
     <div class="branding">
-      <a routerLink="/" class="nav-link"><span class="title">Pentacle - Reactive Web Application Architecture</span></a>
+      <a routerLink="/" class="nav-link"><span class="title">Pentacle</span></a>
     </div>
-  </header>
+  </clr-header>
   <div class="content-container">
     <div class="content-area">
       <pentacle-pages-loading-progress></pentacle-pages-loading-progress>
@@ -11,7 +11,7 @@
         <router-outlet></router-outlet>
       </div>
     </div>
-    <clr-vertical-nav>
+    <clr-vertical-nav [clr-nav-level]="1">
       <a
         clrVerticalNavLink
         routerLink="/introduction"
@@ -108,4 +108,4 @@
       <pentacle-resources-filter-container></pentacle-resources-filter-container>
     </clr-vertical-nav>
   </div>
-</div>
+</clr-main-container>

@@ -4,4 +4,9 @@
 
 form {
   padding-left: 24px;
+  padding-top: 0;
+
+  p:first-child {
+    margin-top: 18px;
+  }
 }
