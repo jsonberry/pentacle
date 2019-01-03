@@ -1,5 +1,13 @@
-.content-area {
+.main-container .content-container .content-area {
   position: relative;
+  padding-top: 18px;
+  padding-left: 36px;
+
+  &::ng-deep {
+    h1:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .router-container {
