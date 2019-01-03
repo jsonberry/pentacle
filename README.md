@@ -22,6 +22,8 @@ npm run web:start:local
 You'll need to spin up the `api` project, see below.
 
 ## API Development
+> 🚨 API development is contingent upon your IP in an inclusion list to pull data from the source
+
 For local API development spin up the api:
 ```bash
 npm run api:start
