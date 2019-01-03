@@ -30,8 +30,14 @@ const getResourceByRoute = createSelector(
   (resources, params) => resources[params.id],
 );
 
+const getSourceByRoute = createSelector(
+  getResourceByRoute,
+  resource => (resource ? resource.source : null),
+);
+
 export const resourcesQuery = {
   getResourceByRoute,
   getFilteredResourcesCount,
   getResources,
+  getSourceByRoute,
 };

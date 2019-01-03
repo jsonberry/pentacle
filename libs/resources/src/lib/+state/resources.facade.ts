@@ -26,6 +26,7 @@ export class ResourcesFacade {
   filteredResourceCount$ = this.store.pipe(
     select(resourcesQuery.getFilteredResourcesCount),
   );
+  sourceByRoute$ = this.store.pipe(select(resourcesQuery.getSourceByRoute));
 
   constructor(private store: Store<State>, private sanitizer: DomSanitizer) {}
 }

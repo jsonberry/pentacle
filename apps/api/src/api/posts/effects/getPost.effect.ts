@@ -22,6 +22,7 @@ export const getPostEffect$: Effect = req$ =>
           title: post && post.title,
           date: post && post.date,
           format: post.format,
+          source: post.source,
           image:
             assets &&
             assets.dictionary &&
