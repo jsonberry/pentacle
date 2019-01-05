@@ -73,6 +73,9 @@
       ],
       "@pentacle/resources-filter": [
         "libs/resources-filter/src/index.ts"
+      ],
+      "@pentacle/utils": [
+        "libs/utils/src/index.ts"
       ]
     }
   },

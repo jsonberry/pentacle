@@ -3,7 +3,7 @@ import {
   createSelector,
   MemoizedSelector,
 } from '@ngrx/store';
-import { PostDetailDTO, PostDTO, PostsState } from '@pentacle/models';
+import { PostsState, PostDTO, PostDetailDTO } from '@pentacle/models';
 import { adapter, POSTS_FEATURE_KEY } from './posts.reducer';
 
 const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
@@ -16,24 +16,18 @@ const getPostsArray = createSelector(getPostsState, selectAll);
 
 const getPostsDictionary = createSelector(getPostsState, selectEntities);
 
-const getPostsLoaded = createSelector(getPostsState, ({ loaded }) => loaded);
-
 const getPost = (
   id: string,
-): MemoizedSelector<object, PostDetailDTO | PostDTO> =>
+): MemoizedSelector<object, PostDTO | PostDetailDTO> =>
   createSelector(getPostsDictionary, posts => posts[id]);
 
+const getLoading = createSelector(getPostsState, ({ loading }) => loading);
+
 export const postsQuery = {
-  getPostsState,
+  getLoading,
+  getPost,
   getPostIds,
   getPostsArray,
   getPostsDictionary,
-  getPostsLoaded,
-  getPost,
+  getPostsState,
 };
-
-export function isPostDetailDTO(
-  post: PostDetailDTO | PostDTO,
-): post is PostDetailDTO {
-  return !!(<PostDetailDTO>post).content;
-}

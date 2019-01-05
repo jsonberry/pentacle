@@ -12,7 +12,10 @@ const getTagsArray = createSelector(getTagsState, selectAll);
 
 const getTagsDictionary = createSelector(getTagsState, selectEntities);
 
-const getTagsLoaded = createSelector(getTagsState, ({ loaded }) => loaded);
+const getTagsLoaded = createSelector(
+  getTagsDictionary,
+  tags => !!Object.keys(tags).length,
+);
 
 export const tagsQuery = {
   getTagsState,

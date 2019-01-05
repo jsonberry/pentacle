@@ -1,6 +1,7 @@
 import { EntityState } from '@ngrx/entity';
-import { PostDTO, PostDetailDTO } from '../post';
+import { PostDetailDTO, PostDTO } from '../post';
+import { LoadingToggleState } from './loadable-state.model';
 
-export interface PostsState extends EntityState<PostDTO | PostDetailDTO> {
-  loaded: boolean;
-}
+export interface PostsState
+  extends EntityState<PostDTO | PostDetailDTO>,
+    LoadingToggleState {}
