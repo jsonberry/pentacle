@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PagesFacade } from '@pentacle/pages-state';
+import { PagesLoadingProgressFacade } from '../+state/pages-loading-progress.facade';
 
 @Component({
   selector: 'pentacle-pages-loading-progress',
@@ -7,6 +7,6 @@ import { PagesFacade } from '@pentacle/pages-state';
   styleUrls: ['./pages-loading-progress.component.scss'],
 })
 export class PagesLoadingProgressComponent {
-  loading$ = this.pagesFacade.pagesLoading$;
-  constructor(private pagesFacade: PagesFacade) {}
+  show$ = this.facade.show$;
+  constructor(private facade: PagesLoadingProgressFacade) {}
 }

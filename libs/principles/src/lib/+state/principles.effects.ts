@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
 import { PagesFacade } from '@pentacle/pages-state';
+import { pageNotLoaded } from '@pentacle/utils';
 import { PrinciplesComponent } from '../principles/principles.component';
 
 @Injectable()
 export class PrinciplesEffects {
-  @Effect()
+  @Effect({ dispatch: false })
   loadPrinciplesPageData$ = this.dataPersistence.navigation(
     PrinciplesComponent,
     {
-      run: (a: ActivatedRouteSnapshot, s: State) =>
-        this.pagesFacade.loadPage(s.router.state.params.id),
+      run: (a, s: State) => {
+        if (pageNotLoaded(s.router.state.params.id, s.pages.entities)) {
+          this.pagesFacade.loadPage(s.router.state.params.id);
+        }
+      },
     },
   );
 

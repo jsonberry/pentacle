@@ -3,25 +3,30 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
-import { fromPostsActions, PostsFacade } from '@pentacle/posts-state';
+import { PostsFacade } from '@pentacle/posts-state';
 import { fromTagsActions, TagsFacade } from '@pentacle/tags-state';
+import { postsNotLoaded, postContentNotLoaded } from '@pentacle/utils';
 import { ResourcesDetailComponent } from '../resources-detail/resources-detail.component';
 import { ResourcesComponent } from '../resources/resources.component';
 
 @Injectable()
 export class ResourcesEffects {
-  @Effect()
+  @Effect({ dispatch: false })
   loadResources$ = this.dataPersistence.navigation(ResourcesComponent, {
-    run: () => this.postsFacade.fetchPosts$(),
-    onError: (a: ActivatedRouteSnapshot, error) =>
-      new fromPostsActions.PostsLoadError(error),
+    run: (a, s: State) => {
+      if (postsNotLoaded(s.posts.entities)) {
+        this.postsFacade.loadPosts();
+      }
+    },
   });
 
-  @Effect()
+  @Effect({ dispatch: false })
   loadResource$ = this.dataPersistence.navigation(ResourcesDetailComponent, {
-    run: (a, s: State) => this.postsFacade.fetchPost$(s.router.state.params.id),
-    onError: (a: ActivatedRouteSnapshot, error) =>
-      new fromPostsActions.PostLoadError(error),
+    run: (a, s: State) => {
+      if (postContentNotLoaded(s.posts.entities[s.router.state.params.id])) {
+        this.postsFacade.resourceDetailRouteLoadPost(s.router.state.params.id);
+      }
+    },
   });
 
   @Effect()

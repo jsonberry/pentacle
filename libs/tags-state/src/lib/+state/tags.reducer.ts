@@ -5,7 +5,7 @@ import { TagDTO, TagsState } from '@pentacle/models';
 export const TAGS_FEATURE_KEY = 'tags';
 export const adapter: EntityAdapter<TagDTO> = createEntityAdapter<TagDTO>();
 export const initialState: TagsState = adapter.getInitialState({
-  loaded: false,
+  loading: false,
 });
 
 export function tagsReducer(
@@ -13,11 +13,14 @@ export function tagsReducer(
   action: TagsAction,
 ): TagsState {
   switch (action.type) {
-    case TagsActionTypes.TagsLoaded:
+    case TagsActionTypes.LoadTags:
       return {
-        ...adapter.addAll(action.tags, state),
-        loaded: true,
+        ...state,
+        loading: true,
       };
+
+    case TagsActionTypes.TagsLoaded:
+      return adapter.addAll(action.tags, state);
 
     default:
       return state;

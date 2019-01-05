@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import { PostDetailDTO, State } from '@pentacle/models';
-import { isPostDetailDTO } from '@pentacle/posts-state';
+import { postContentLoaded } from '@pentacle/utils';
 import { filter, map, pluck, shareReplay } from 'rxjs/operators';
 import { resourcesQuery } from './resources.selectors';
 
@@ -15,11 +15,11 @@ export class ResourcesFacade {
     shareReplay(),
   );
   contentByRoute$ = this.resourceByRoute$.pipe(
-    filter((post): post is PostDetailDTO => !!post && isPostDetailDTO(post)),
+    filter((post): post is PostDetailDTO => !!post && postContentLoaded(post)),
     map(post => this.sanitizer.bypassSecurityTrustHtml(post.content)), // this is for things like YouTube iframes
   );
   titleByRoute$ = this.resourceByRoute$.pipe(
-    filter((post): post is PostDetailDTO => !!post && isPostDetailDTO(post)),
+    filter((post): post is PostDetailDTO => !!post && postContentLoaded(post)),
     pluck('title'),
   );
   resources$ = this.store.pipe(select(resourcesQuery.getResources));

@@ -1,22 +1,23 @@
 import { Action } from '@ngrx/store';
-import { PostDetailDTO, PostDTO } from '@pentacle/models';
+import { PostDTO, PostDetailDTO } from '@pentacle/models';
 
 export enum PostsActionTypes {
-  LoadPost = '[Posts] Load Post',
-  PostLoaded = '[Posts] Post Loaded',
-  PostLoadError = '[Posts] Post Load Error',
-  LoadPosts = '[Posts] Load Posts',
-  PostsLoaded = '[Posts] Posts Loaded',
-  PostsLoadError = '[Posts] Posts Load Error',
+  ResourceDetailRouteLoadPost = '[Resources Detail Route] Load Post Detail',
+  PostLoaded = '[Posts API] Post Loaded',
+  PostLoadError = '[Posts API] Post Load Error',
+  LoadPosts = '[Resources Route] Load All Posts Summaries',
+  PostsLoaded = '[Posts API] Posts Loaded',
+  PostsLoadError = '[Posts API] Posts Load Error',
 }
 
-export class LoadPost implements Action {
-  readonly type = PostsActionTypes.LoadPost;
+export class ResourceDetailRouteLoadPost implements Action {
+  readonly type = PostsActionTypes.ResourceDetailRouteLoadPost;
+  constructor(public postId: string) {}
 }
 
 export class PostLoadError implements Action {
   readonly type = PostsActionTypes.PostLoadError;
-  constructor(public payload: any) {}
+  constructor(public error: any) {}
 }
 
 export class PostLoaded implements Action {
@@ -39,7 +40,7 @@ export class PostsLoaded implements Action {
 }
 
 export type PostsAction =
-  | LoadPosts
+  | ResourceDetailRouteLoadPost
   | PostLoaded
   | PostLoadError
   | LoadPosts
@@ -47,7 +48,7 @@ export type PostsAction =
   | PostsLoadError;
 
 export const fromPostsActions = {
-  LoadPost,
+  ResourceDetailRouteLoadPost,
   PostLoaded,
   PostLoadError,
   LoadPosts,

@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
-import { State } from '@pentacle/models';
+import { PageIds, State } from '@pentacle/models';
 import { PagesFacade } from '@pentacle/pages-state';
+import { pageNotLoaded } from '@pentacle/utils';
 import { BlueprintComponent } from '../blueprint/blueprint.component';
 
 @Injectable()
 export class BlueprintEffects {
-  @Effect()
+  @Effect({ dispatch: false })
   loadBlueprintPageData$ = this.dataPersistence.navigation(BlueprintComponent, {
-    run: () => this.pagesFacade.loadPage('blueprint'),
+    run: (a, s: State) => {
+      if (pageNotLoaded(PageIds.BLUEPRINT, s.pages.entities)) {
+        this.pagesFacade.loadPage(PageIds.BLUEPRINT);
+      }
+    },
   });
 
   constructor(
