@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { postsQuery } from '@pentacle/posts-state';
 import { routerQuery } from '@pentacle/router-state';
+import { postContentLoaded } from '@pentacle/utils';
 
 const getResources = createSelector(
   postsQuery.getPostsArray,
@@ -24,19 +25,24 @@ const getFilteredResourcesCount = createSelector(
   resources => resources.length,
 );
 
-const getResourceByRoute = createSelector(
+const getResouceDetailsByRoute = createSelector(
   postsQuery.getPostsDictionary,
   routerQuery.getParams,
-  (resources, params) => resources[params.id],
+  (resources, params) => {
+    const post = resources[params.id];
+    if (postContentLoaded(post)) {
+      return post;
+    }
+  },
 );
 
 const getSourceByRoute = createSelector(
-  getResourceByRoute,
-  resource => (resource ? resource.source : null),
+  getResouceDetailsByRoute,
+  resource => resource && resource.source,
 );
 
 export const resourcesQuery = {
-  getResourceByRoute,
+  getResouceDetailsByRoute,
   getFilteredResourcesCount,
   getResources,
   getSourceByRoute,
