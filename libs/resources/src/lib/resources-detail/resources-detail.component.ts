@@ -8,7 +8,10 @@ import { ResourcesFacade } from '../+state/resources.facade';
 })
 export class ResourcesDetailComponent {
   content$ = this.resourcesFacade.contentByRoute$;
+
   title$ = this.resourcesFacade.titleByRoute$;
+
   source$ = this.resourcesFacade.sourceByRoute$;
+
   constructor(private resourcesFacade: ResourcesFacade) {}
 }

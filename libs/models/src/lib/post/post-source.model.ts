@@ -1,5 +1,5 @@
 export interface PostSource {
-  name: string;
+  origin: string;
   title: string;
   url: string;
 }
