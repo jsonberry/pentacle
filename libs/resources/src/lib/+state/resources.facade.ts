@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import { PostDetailDTO, State } from '@pentacle/models';
-import { ignoreFalsySignals, propsAreTruthy } from '@pentacle/utils';
+import { ignoreFalsySignals, propsAreTruthy } from 'rxjs-toolkit';
 import { map, pluck, shareReplay } from 'rxjs/operators';
 import { resourcesQuery } from './resources.selectors';
 
@@ -32,7 +32,7 @@ export class ResourcesFacade {
 
   sourceByRoute$ = this.store.pipe(
     select(resourcesQuery.getSourceByRoute),
-    propsAreTruthy('origin', 'title', 'url'),
+    propsAreTruthy(),
     ignoreFalsySignals(),
   );
 
