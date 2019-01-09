@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
@@ -76,7 +76,10 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
         },
         { path: '**', loadChildren: '@pentacle/not-found#NotFoundModule' },
       ],
-      { initialNavigation: 'enabled' },
+      {
+        initialNavigation: 'enabled',
+        preloadingStrategy: PreloadAllModules,
+      },
     ),
     PagesLoadingProgressModule,
     ResourcesFilterModule,
