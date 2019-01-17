@@ -2,13 +2,13 @@ import { Action } from '@ngrx/store';
 import { TagDTO } from '@pentacle/models';
 
 export enum TagsActionTypes {
-  LoadTags = '[Tags] Load Tags',
-  TagsLoaded = '[Tags] Tags Loaded',
-  TagsLoadError = '[Tags] Tags Load Error',
+  ResourcesPageLoadTags = '[Resources Page] Load Tags',
+  TagsLoaded = '[Tags API] Tags Loaded',
+  TagsLoadError = '[Tags API] Tags Load Error',
 }
 
-export class LoadTags implements Action {
-  readonly type = TagsActionTypes.LoadTags;
+export class ResourcePageLoadTags implements Action {
+  readonly type = TagsActionTypes.ResourcesPageLoadTags;
 }
 
 export class TagsLoaded implements Action {
@@ -21,10 +21,10 @@ export class TagsLoadError implements Action {
   constructor(public error: any) {}
 }
 
-export type TagsAction = LoadTags | TagsLoaded | TagsLoadError;
+export type TagsAction = ResourcePageLoadTags | TagsLoaded | TagsLoadError;
 
 export const fromTagsActions = {
-  LoadTags,
+  ResourcePageLoadTags,
   TagsLoaded,
   TagsLoadError,
 };

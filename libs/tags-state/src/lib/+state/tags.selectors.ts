@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TAGS_FEATURE_KEY, adapter } from './tags.reducer';
 import { TagsState } from '@pentacle/models';
+import { tagsLoaded } from '@pentacle/utils';
 
 const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
 
@@ -12,9 +13,8 @@ const getTagsArray = createSelector(getTagsState, selectAll);
 
 const getTagsDictionary = createSelector(getTagsState, selectEntities);
 
-const getTagsLoaded = createSelector(
-  getTagsDictionary,
-  tags => !!Object.keys(tags).length,
+const getTagsLoaded = createSelector(getTagsDictionary, tags =>
+  tagsLoaded(tags),
 );
 
 export const tagsQuery = {

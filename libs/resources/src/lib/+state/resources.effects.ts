@@ -5,7 +5,11 @@ import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
 import { PostsFacade } from '@pentacle/posts-state';
 import { fromTagsActions, TagsFacade } from '@pentacle/tags-state';
-import { postsNotLoaded, postContentNotLoaded } from '@pentacle/utils';
+import {
+  postsNotLoaded,
+  postContentNotLoaded,
+  tagsNotLoaded,
+} from '@pentacle/utils';
 import { ResourcesDetailComponent } from '../resources-detail/resources-detail.component';
 import { ResourcesComponent } from '../resources/resources.component';
 
@@ -31,9 +35,11 @@ export class ResourcesEffects {
 
   @Effect()
   loadTags$ = this.dataPersistence.navigation(ResourcesComponent, {
-    run: () => this.tagsFacade.fetchTags$(),
-    onError: (a: ActivatedRouteSnapshot, error) =>
-      new fromTagsActions.TagsLoadError(error),
+    run: (a, s: State) => {
+      if (tagsNotLoaded(s.tags.entities)) {
+        return new fromTagsActions.ResourcePageLoadTags();
+      }
+    },
   });
 
   constructor(
