@@ -8,7 +8,7 @@ import { TagDTO } from '@pentacle/models';
 export class TagsDataService {
   constructor(private http: HttpClient) {}
 
-  getPosts() {
+  getTags() {
     return this.http.get<TagDTO[]>('api/v1/tags');
   }
 }
