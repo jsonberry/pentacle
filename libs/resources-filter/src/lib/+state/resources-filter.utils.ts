@@ -27,7 +27,10 @@ export function getSelectedOptions(queryParam) {
     .reduce((acc, option) => ({ ...acc, [option]: [true] }), {});
 }
 
-export function getProjectedOptions(initialOptions, selectedOptions) {
+export function getProjectedOptions<T extends string>(
+  initialOptions,
+  selectedOptions,
+): Record<T, [boolean]> {
   if (!Object.keys(initialOptions).length) {
     return null;
   }
@@ -36,4 +39,8 @@ export function getProjectedOptions(initialOptions, selectedOptions) {
     ...initialOptions,
     ...selectedOptions,
   };
+}
+
+export function mapFilterFormListToDictionary(list: any[]) {
+  return list.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {});
 }

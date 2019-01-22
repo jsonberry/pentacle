@@ -4,8 +4,13 @@ import { ResourcesFilterFacade } from '../+state/resources-filter.facade';
 
 @Component({
   selector: 'pentacle-resources-filter-container',
-  templateUrl: './resources-filter-container.component.html',
-  styleUrls: ['./resources-filter-container.component.scss'],
+  template: `
+    <pentacle-resources-filter
+      *ngIf="(show$ | async)"
+      [filterFormGroups]="filterFormGroups$ | async"
+      (filterPredicate)="filterResources($event)"
+    ></pentacle-resources-filter>
+  `,
 })
 export class ResourcesFilterContainerComponent {
   filterFormGroups$ = this.facade.filterFormGroups$;

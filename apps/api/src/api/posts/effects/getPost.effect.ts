@@ -53,6 +53,7 @@ export const getPostEffect$: Effect = req$ =>
                 tags.dictionary[tagId] &&
                 tags.dictionary[tagId].id,
             ),
+          difficulty: post.difficulty,
           content: post && post.content,
         };
       },

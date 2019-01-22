@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { State } from '@pentacle/models';
 import { PostsFacade } from '@pentacle/posts-state';
-import { fromTagsActions, TagsFacade } from '@pentacle/tags-state';
+import { fromTagsActions } from '@pentacle/tags-state';
 import {
-  postsNotLoaded,
   postContentNotLoaded,
+  postsNotLoaded,
   tagsNotLoaded,
 } from '@pentacle/utils';
 import { ResourcesDetailComponent } from '../resources-detail/resources-detail.component';
@@ -45,6 +44,5 @@ export class ResourcesEffects {
   constructor(
     private dataPersistence: DataPersistence<State>,
     private postsFacade: PostsFacade,
-    private tagsFacade: TagsFacade,
   ) {}
 }
