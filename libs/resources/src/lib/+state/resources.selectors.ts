@@ -7,7 +7,11 @@ const getResources = createSelector(
   postsQuery.getPostsArray,
   routerQuery.getQueryParams,
   (posts, queryParams) => {
-    if (!queryParams.formats && !queryParams.topics) {
+    if (
+      !queryParams.formats &&
+      !queryParams.topics &&
+      !queryParams.difficulties
+    ) {
       return posts;
     }
 
@@ -15,7 +19,9 @@ const getResources = createSelector(
       post =>
         (!queryParams.formats || queryParams.formats.includes(post.format)) &&
         (!queryParams.topics ||
-          post.tags.some(tag => queryParams.topics.includes(tag))),
+          post.tags.some(tag => queryParams.topics.includes(tag))) &&
+        (!queryParams.difficulties ||
+          queryParams.difficulties.includes(post.difficulty)),
     );
   },
 );

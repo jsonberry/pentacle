@@ -8,6 +8,7 @@ import { ResourcesDetailComponent } from './resources-detail/resources-detail.co
 import { ResourcesComponent } from './resources/resources.component';
 import { ResourcesArticleComponent } from './resources-article/resources-article.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ClrModalModule, ClrButtonModule } from '@clr/angular';
 
 @NgModule({
   imports: [
@@ -30,6 +31,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
       },
     ]),
     EffectsModule.forFeature([ResourcesEffects]),
+    ClrModalModule,
+    ClrButtonModule,
   ],
   declarations: [
     ResourcesComponent,

@@ -23,23 +23,23 @@ export class ResourcesFilterEffects {
         Object.keys(action.predicate.topics)
           .filter(topic => action.predicate.topics[topic])
           .join(','),
+      difficulties:
+        action.predicate.difficulties &&
+        Object.keys(action.predicate.difficulties)
+          .filter(difficulty => action.predicate.difficulties[difficulty])
+          .join(','),
     })),
-    map(({ formats, topics }) => {
-      const query = {};
-
-      if (formats) {
-        Object.assign(query, { formats });
-      }
-
-      if (topics) {
-        Object.assign(query, { topics });
-      }
-
-      return new fromRouterActions.Go({
-        path: ['/resources'],
-        query,
-      });
-    }),
+    map(
+      ({ formats, topics, difficulties }) =>
+        new fromRouterActions.Go({
+          path: ['/resources'],
+          query: {
+            ...(formats ? { formats } : {}),
+            ...(topics ? { topics } : {}),
+            ...(difficulties ? { difficulties } : {}),
+          },
+        }),
+    ),
   );
 
   constructor(private actions$: Actions) {}

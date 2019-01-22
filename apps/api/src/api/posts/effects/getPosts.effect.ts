@@ -44,6 +44,7 @@ export const getPostsEffect$: Effect = req$ =>
                   tags.dictionary[tagId].id,
               )
               .filter(Boolean),
+          difficulty: post.difficulty,
           image:
             assets &&
             assets.dictionary &&

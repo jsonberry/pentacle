@@ -55,6 +55,13 @@ export class ResourcesFilterComponent implements OnInit, OnChanges, OnDestroy {
         this.fb.group(this.filterFormGroups.groups.topics),
       );
     }
+
+    if (!this.difficulties && this.filterFormGroups.groups.difficulties) {
+      this.filter.addControl(
+        'difficulties',
+        this.fb.group(this.filterFormGroups.groups.difficulties),
+      );
+    }
   }
 
   ngOnDestroy() {
@@ -76,5 +83,9 @@ export class ResourcesFilterComponent implements OnInit, OnChanges, OnDestroy {
 
   get topics() {
     return this.filter.get('topics') as FormGroup;
+  }
+
+  get difficulties() {
+    return this.filter.get('difficulties') as FormGroup;
   }
 }

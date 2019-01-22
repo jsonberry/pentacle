@@ -5,16 +5,14 @@
       <p class="p4">Formats</p>
       <div
         class="toggle-switch"
-        *ngFor="let format of (formats?.controls | keyvalue)"
+        *ngFor="let format of (filterFormGroups.availableFormats | keyvalue)"
       >
         <input
           type="checkbox"
-          formControlName="{{ format?.key }}"
-          [id]="format.key"
+          [formControlName]="format.value.id"
+          [id]="format.value.id"
         />
-        <label [for]="format.key">{{
-          filterFormGroups.availableFormats[format.key]?.title
-        }}</label>
+        <label [for]="format.value.id">{{ format.value.title }}</label>
       </div>
       <button class="btn btn-sm btn-link" (click)="resetControl('formats')">
         Reset Formats
@@ -26,19 +24,45 @@
       <p class="p4">Topics</p>
       <div
         class="toggle-switch"
-        *ngFor="let topic of (topics?.controls | keyvalue)"
+        *ngFor="let topic of (filterFormGroups.availableTopics | keyvalue)"
       >
         <input
           type="checkbox"
-          formControlName="{{ topic?.key }}"
-          [id]="topic.key"
+          [formControlName]="topic.value.id"
+          [id]="topic.value.id"
         />
-        <label [for]="topic.key">
-          {{ filterFormGroups.availableTopics[topic.key]?.title }}
-        </label>
+        <label [for]="topic.value.id">{{ topic.value.title }}</label>
       </div>
       <button class="btn btn-sm btn-link" (click)="resetControl('topics')">
         Reset Topics
+      </button>
+    </section>
+  </ng-container>
+  <ng-container *ngIf="difficulties">
+    <section formGroupName="difficulties">
+      <p class="p4">Difficulties</p>
+      <div
+        class="toggle-switch"
+        *ngFor="
+          let difficulty of (filterFormGroups.availableDifficulties
+            | keyvalue
+            | pentacleResourcesFilterDifficultiesSort)
+        "
+      >
+        <input
+          type="checkbox"
+          [formControlName]="difficulty.value.id"
+          [id]="difficulty.value.id"
+        />
+        <label [for]="difficulty.value.id">
+          {{ difficulty.value.title }}
+        </label>
+      </div>
+      <button
+        class="btn btn-sm btn-link"
+        (click)="resetControl('difficulties')"
+      >
+        Reset Difficulties
       </button>
     </section>
   </ng-container>

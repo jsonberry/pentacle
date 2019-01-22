@@ -1,11 +1,16 @@
 import { createSelector } from '@ngrx/store';
 import { routerQuery } from '@pentacle/router-state';
 import { tagsQuery } from '@pentacle/tags-state';
-import { ResourcesFilterFormGroups } from '@pentacle/models';
+import {
+  ResourcesFilterFormGroups,
+  PostFormat,
+  PostDifficulty,
+} from '@pentacle/models';
 import {
   getProjectedOptions,
   getInitialOptions,
   getSelectedOptions,
+  mapFilterFormListToDictionary,
 } from './resources-filter.utils';
 
 const getShowResourcesFilter = createSelector(
@@ -28,20 +33,51 @@ const getResourceFilterFormGroups = createSelector(
       { id: 'listen', title: 'Listen' },
     ];
 
+    const availableDifficulties: {
+      id: PostDifficulty;
+      title: string;
+      rank: number;
+    }[] = [
+      {
+        id: 'introductory',
+        title: 'Introductory',
+        rank: 0,
+      },
+      {
+        id: 'beginner',
+        title: 'Beginner',
+        rank: 1,
+      },
+      {
+        id: 'intermediate',
+        title: 'Intermediate',
+        rank: 2,
+      },
+      {
+        id: 'advanced',
+        title: 'Advanced',
+        rank: 3,
+      },
+    ];
+
     return {
-      availableFormats: availableFormats.reduce(
-        (acc, cur) => ({ ...acc, [cur.id]: cur }),
-        {},
+      availableFormats: mapFilterFormListToDictionary(availableFormats),
+      availableDifficulties: mapFilterFormListToDictionary(
+        availableDifficulties,
       ),
       availableTopics: tags,
       groups: {
-        formats: getProjectedOptions(
+        formats: getProjectedOptions<PostFormat>(
           getInitialOptions(availableFormats),
           getSelectedOptions(queryParams.formats),
         ),
         topics: getProjectedOptions(
           getInitialOptions(tagsArray),
           getSelectedOptions(queryParams.topics),
+        ),
+        difficulties: getProjectedOptions<PostDifficulty>(
+          getInitialOptions(availableDifficulties),
+          getSelectedOptions(queryParams.difficulties),
         ),
       },
     };

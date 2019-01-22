@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PagesFacade } from '@pentacle/pages-state';
-import { listMarginReset } from '@pentacle/shared/util-style-framework';
+import { listMarginResetClass } from '@pentacle/shared/util-style-framework';
 import { ignoreFalsySignals } from 'rxjs-toolkit';
 import { pluck, shareReplay } from 'rxjs/operators';
 
@@ -23,7 +23,7 @@ export class PrinciplesComponent {
   title$ = this.principlesPageData$.pipe(pluck('title'));
   content$ = this.principlesPageData$.pipe(pluck('content'));
 
-  mainStyles = listMarginReset;
+  mainStyles = listMarginResetClass;
 
   constructor(private pagesFacade: PagesFacade) {}
 }
