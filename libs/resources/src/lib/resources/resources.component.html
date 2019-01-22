@@ -1,6 +1,6 @@
 <h1>Resources</h1>
 
-<p>{{count$ | async}} Resource(s)</p>
+<p>{{ count$ | async }} Resource(s)</p>
 <div *ngIf="(resources$ | async) as resources">
   <div class="viewport-container">
     <cdk-virtual-scroll-viewport itemSize="4">

@@ -10,18 +10,33 @@ const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
 
 const getPostsState = createFeatureSelector<PostsState>(POSTS_FEATURE_KEY);
 
-const getPostIds = createSelector(getPostsState, selectIds);
+const getPostIds = createSelector(
+  getPostsState,
+  selectIds,
+);
 
-const getPostsArray = createSelector(getPostsState, selectAll);
+const getPostsArray = createSelector(
+  getPostsState,
+  selectAll,
+);
 
-const getPostsDictionary = createSelector(getPostsState, selectEntities);
+const getPostsDictionary = createSelector(
+  getPostsState,
+  selectEntities,
+);
 
 const getPost = (
   id: string,
 ): MemoizedSelector<object, PostDTO | PostDetailDTO> =>
-  createSelector(getPostsDictionary, posts => posts[id]);
+  createSelector(
+    getPostsDictionary,
+    posts => posts[id],
+  );
 
-const getLoading = createSelector(getPostsState, ({ loading }) => loading);
+const getLoading = createSelector(
+  getPostsState,
+  ({ loading }) => loading,
+);
 
 export const postsQuery = {
   getLoading,

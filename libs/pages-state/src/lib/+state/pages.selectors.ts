@@ -7,14 +7,26 @@ const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
 
 const getPagesState = createFeatureSelector<PagesState>(PAGES_FEATURE_KEY);
 
-const getPageIds = createSelector(getPagesState, selectIds);
+const getPageIds = createSelector(
+  getPagesState,
+  selectIds,
+);
 
-const getPagesDictionary = createSelector(getPagesState, selectEntities);
+const getPagesDictionary = createSelector(
+  getPagesState,
+  selectEntities,
+);
 
-const getPagesArray = createSelector(getPagesState, selectAll);
+const getPagesArray = createSelector(
+  getPagesState,
+  selectAll,
+);
 
 const getPage = (id: string) =>
-  createSelector(getPagesDictionary, pages => pages[id]);
+  createSelector(
+    getPagesDictionary,
+    pages => pages[id],
+  );
 
 const getPageByRouteParamId = createSelector(
   getPagesDictionary,
@@ -22,7 +34,10 @@ const getPageByRouteParamId = createSelector(
   (pages, params) => pages[params.id],
 );
 
-const getLoading = createSelector(getPagesState, ({ loading }) => loading);
+const getLoading = createSelector(
+  getPagesState,
+  ({ loading }) => loading,
+);
 
 export const pagesQuery = {
   getLoading,

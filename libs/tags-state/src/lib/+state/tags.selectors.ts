@@ -7,14 +7,24 @@ const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
 
 const getTagsState = createFeatureSelector<TagsState>(TAGS_FEATURE_KEY);
 
-const getTagIds = createSelector(getTagsState, selectIds);
+const getTagIds = createSelector(
+  getTagsState,
+  selectIds,
+);
 
-const getTagsArray = createSelector(getTagsState, selectAll);
+const getTagsArray = createSelector(
+  getTagsState,
+  selectAll,
+);
 
-const getTagsDictionary = createSelector(getTagsState, selectEntities);
+const getTagsDictionary = createSelector(
+  getTagsState,
+  selectEntities,
+);
 
-const getTagsLoaded = createSelector(getTagsDictionary, tags =>
-  tagsLoaded(tags),
+const getTagsLoaded = createSelector(
+  getTagsDictionary,
+  tags => tagsLoaded(tags),
 );
 
 export const tagsQuery = {

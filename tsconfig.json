@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "esModuleInterop": true,
+    "importHelpers": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -78,7 +79,8 @@
       "@pentacle/utils": [
         "libs/utils/src/index.ts"
       ]
-    }
+    },
+    "module": "es2015"
   },
   "exclude": [
     "node_modules",
