@@ -7,34 +7,28 @@
   <div class="content-container">
     <div class="content-area">
       <pentacle-pages-loading-progress></pentacle-pages-loading-progress>
-      <div class="router-container">
-        <router-outlet></router-outlet>
-      </div>
+      <div class="router-container"><router-outlet></router-outlet></div>
     </div>
     <clr-vertical-nav [clr-nav-level]="1">
-      <a
-        clrVerticalNavLink
-        routerLink="/introduction"
-        routerLinkActive="active"
-        ><clr-icon clrVerticalNavIcon shape="map-marker"></clr-icon>Introduction</a
+      <a clrVerticalNavLink routerLink="/introduction" routerLinkActive="active"
+        ><clr-icon clrVerticalNavIcon shape="map-marker"></clr-icon
+        >Introduction</a
       >
-      <a
-        clrVerticalNavLink
-        routerLink="/overview"
-        routerLinkActive="active"
+      <a clrVerticalNavLink routerLink="/overview" routerLinkActive="active"
         ><clr-icon clrVerticalNavIcon shape="cloud"></clr-icon>Overview</a
       >
-      <a
-        clrVerticalNavLink
-        routerLink="/blueprint"
-        routerLinkActive="active"
+      <a clrVerticalNavLink routerLink="/blueprint" routerLinkActive="active"
         ><clr-icon clrVerticalNavIcon shape="map"></clr-icon>Blueprint</a
       >
       <clr-vertical-nav-group routerLinkActive="active">
         <clr-icon shape="blocks-group" clrVerticalNavIcon></clr-icon>
         Modules
         <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink routerLink="/modules/data" routerLinkActive="active">
+          <a
+            clrVerticalNavLink
+            routerLink="/modules/data"
+            routerLinkActive="active"
+          >
             Data
           </a>
           <a
@@ -75,34 +69,43 @@
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
       <clr-vertical-nav-group routerLinkActive="active">
-          <clr-icon shape="flag" clrVerticalNavIcon></clr-icon>
-          Principles
-          <clr-vertical-nav-group-children>
-            <a clrVerticalNavLink routerLink="/principles/unidirectional-data-flow" routerLinkActive="active">
-              Unidirectional Data Flow
-            </a>
-            <a clrVerticalNavLink routerLink="/principles/projection" routerLinkActive="active">
-              Projection
-            </a>
-            <a clrVerticalNavLink routerLink="/principles/declarative" routerLinkActive="active">
-              Declarative
-            </a>
-            <a clrVerticalNavLink routerLink="/principles/functional-reactive-programming" routerLinkActive="active">
-              FRP
-            </a>
-          </clr-vertical-nav-group-children>
-        </clr-vertical-nav-group>
-      <a
-        clrVerticalNavLink
-        routerLink="/resources"
-        routerLinkActive="active"
-      >
+        <clr-icon shape="flag" clrVerticalNavIcon></clr-icon>
+        Principles
+        <clr-vertical-nav-group-children>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/unidirectional-data-flow"
+            routerLinkActive="active"
+          >
+            Unidirectional Data Flow
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/projection"
+            routerLinkActive="active"
+          >
+            Projection
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/declarative"
+            routerLinkActive="active"
+          >
+            Declarative
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/functional-reactive-programming"
+            routerLinkActive="active"
+          >
+            FRP
+          </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+      <a clrVerticalNavLink routerLink="/resources" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="library"></clr-icon>Resources</a
       >
-      <a
-        clrVerticalNavLink
-        routerLink="/examples"
-        routerLinkActive="active"
+      <a clrVerticalNavLink routerLink="/examples" routerLinkActive="active"
         ><clr-icon clrVerticalNavIcon shape="flask"></clr-icon>Examples</a
       >
       <pentacle-resources-filter-container></pentacle-resources-filter-container>

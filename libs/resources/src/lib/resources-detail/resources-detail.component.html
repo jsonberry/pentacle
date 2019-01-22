@@ -1,4 +1,6 @@
-<!-- title$ and content$ are set to innerHTML to properly display HTML entities -->
+<!--
+  title$ and content$ are set to innerHTML to properly display HTML entities
+-->
 <h1 [innerHTML]="title$ | async"></h1>
 <main [innerHTML]="content$ | async"></main>
 <div *ngIf="(source$ | async) as source">

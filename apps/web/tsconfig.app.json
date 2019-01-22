@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/web",
     "types": []
@@ -7,29 +7,17 @@
   "exclude": ["src/test-setup.ts", "**/*.spec.ts"],
   "include": [
     "**/*.ts",
-
     "../../libs/home/src/index.ts",
-
     "../../libs/expertise/src/index.ts",
-
     "../../libs/not-found/src/index.ts",
-
     "../../libs/introduction/src/index.ts",
-
     "../../libs/overview/src/index.ts",
-
     "../../libs/modules/src/index.ts",
-
     "../../libs/resources/src/index.ts",
-
     "../../libs/examples/retry-with-backoff/src/index.ts",
-
     "../../libs/examples/toast/src/index.ts",
-
-    "../../libs/examples/root/src/index.ts"
-
-    , "../../libs/blueprint/src/index.ts"
-
-    , "../../libs/principles/src/index.ts"
-]
+    "../../libs/examples/root/src/index.ts",
+    "../../libs/blueprint/src/index.ts",
+    "../../libs/principles/src/index.ts"
+  ]
 }
