@@ -6,5 +6,12 @@ module.exports = {
   resolver: '@nrwl/builders/plugins/jest/resolver',
   moduleFileExtensions: ['ts', 'js', 'html'],
   collectCoverage: true,
-  coverageReporters: ['html']
+  coverageReporters: ['html'],
+  setupTestFrameworkScriptFile: "./test-setup.ts",
+  globals: {
+    'ts-jest': {
+      tsConfigFile: 'tsconfig.spec.json'
+    },
+    __TRANSFORM_HTML__: true
+  }
 };
