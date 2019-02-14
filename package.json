@@ -71,6 +71,7 @@
     "rxjs": "^6.4.0",
     "rxjs-toolkit": "^1.5.1",
     "tslib": "^1.9.0",
+    "typestyle": "^2.0.1",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
