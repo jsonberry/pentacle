@@ -4,8 +4,21 @@ import { filter, pluck, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-principles',
-  templateUrl: './principles.component.html',
-  styleUrls: ['./principles.component.scss'],
+  template: `
+    <h1 [innerHTML]="title$ | async"></h1>
+    <main
+      [innerHTML]="content$ | async | bypassSecurityTrustHtml"
+      pentacleCmsLink
+    ></main>
+  `,
+  styles: [
+    `
+      ::ng-deep ul {
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+      }
+    `,
+  ],
 })
 export class PrinciplesComponent {
   principlesPageData$ = this.pagesFacade.pageByRouteParamId$.pipe(

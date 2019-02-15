@@ -21,6 +21,48 @@
         ><clr-icon clrVerticalNavIcon shape="map"></clr-icon>Blueprint</a
       >
       <clr-vertical-nav-group routerLinkActive="active">
+        <clr-icon shape="flag" clrVerticalNavIcon></clr-icon>
+        Principles
+        <clr-vertical-nav-group-children>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/declare-what-instead-of-how"
+            routerLinkActive="active"
+          >
+            Declare What Instead of How
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/restrict-each-module-to-one-purpose"
+            routerLinkActive="active"
+          >
+            Restrict Each Module to One Purpose
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/think-of-everything-as-a-stream"
+            routerLinkActive="active"
+          >
+            Think of Everything as a Stream
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/dont-store-what-you-can-derive"
+            routerLinkActive="active"
+          >
+            Don't Store What You Can Derive
+          </a>
+          <a
+            clrVerticalNavLink
+            routerLink="/principles/flow-data-in-one-direction"
+            routerLinkActive="active"
+          >
+            Flow Data in One Direction
+          </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+
+      <clr-vertical-nav-group routerLinkActive="active">
         <clr-icon shape="blocks-group" clrVerticalNavIcon></clr-icon>
         Modules
         <clr-vertical-nav-group-children>
@@ -68,40 +110,7 @@
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
-      <clr-vertical-nav-group routerLinkActive="active">
-        <clr-icon shape="flag" clrVerticalNavIcon></clr-icon>
-        Principles
-        <clr-vertical-nav-group-children>
-          <a
-            clrVerticalNavLink
-            routerLink="/principles/unidirectional-data-flow"
-            routerLinkActive="active"
-          >
-            Unidirectional Data Flow
-          </a>
-          <a
-            clrVerticalNavLink
-            routerLink="/principles/projection"
-            routerLinkActive="active"
-          >
-            Projection
-          </a>
-          <a
-            clrVerticalNavLink
-            routerLink="/principles/declarative"
-            routerLinkActive="active"
-          >
-            Declarative
-          </a>
-          <a
-            clrVerticalNavLink
-            routerLink="/principles/functional-reactive-programming"
-            routerLinkActive="active"
-          >
-            FRP
-          </a>
-        </clr-vertical-nav-group-children>
-      </clr-vertical-nav-group>
+
       <a clrVerticalNavLink routerLink="/resources" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="library"></clr-icon>Resources</a
       >
