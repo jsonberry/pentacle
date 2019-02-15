@@ -4,8 +4,17 @@ import { filter, pluck, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-blueprint',
-  templateUrl: './blueprint.component.html',
-  styleUrls: ['./blueprint.component.scss'],
+  template: `
+    <h1 [ngStyle]="{ marginBottom: '1rem' }">{{ title$ | async }}</h1>
+    <main [innerHTML]="content$ | async"></main>
+  `,
+  styles: [
+    `
+      ::ng-deep img {
+        max-width: 100%;
+      }
+    `,
+  ],
 })
 export class BlueprintComponent {
   bluePrintPageData$ = this.pagesFacade.getPage$('blueprint').pipe(
