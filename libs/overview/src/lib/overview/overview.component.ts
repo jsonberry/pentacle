@@ -1,11 +1,26 @@
 import { Component } from '@angular/core';
 import { PagesFacade } from '@pentacle/pages-state';
-import { filter, shareReplay, pluck } from 'rxjs/operators';
+import { filter, pluck, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss'],
+  template: `
+    <h1>{{ title$ | async }}</h1>
+    <main
+      [innerHTML]="content$ | async | bypassSecurityTrustHtml"
+      pentacleCmsLink
+    ></main>
+  `,
+  styles: [
+    `
+      @media (max-width: 600px) {
+        ::ng-deep blockquote {
+          margin-inline-start: 20px;
+          margin-inline-end: 20px;
+        }
+      }
+    `,
+  ],
 })
 export class OverviewComponent {
   overviewPageData$ = this.pagesFacade.getPage$('overview').pipe(

@@ -76,6 +76,12 @@
     },
     "utils": {
       "tags": []
+    },
+    "shared-util-cms-link": {
+      "tags": ["scope:shared"]
+    },
+    "shared-util-bypass-security-trust-html": {
+      "tags": ["scope:shared"]
     }
   }
 }

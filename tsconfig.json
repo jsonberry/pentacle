@@ -10,80 +10,42 @@
     "experimentalDecorators": true,
     "downlevelIteration": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@pentacle/home": [
-        "libs/home/src/index.ts"
-      ],
-      "@pentacle/router-state": [
-        "libs/router-state/src/index.ts"
-      ],
-      "@pentacle/not-found": [
-        "libs/not-found/src/index.ts"
-      ],
-      "@pentacle/pages-state": [
-        "libs/pages-state/src/index.ts"
-      ],
-      "@pentacle/models": [
-        "libs/models/src/index.ts"
-      ],
-      "@pentacle/services": [
-        "libs/services/src/index.ts"
-      ],
-      "@pentacle/introduction": [
-        "libs/introduction/src/index.ts"
-      ],
-      "@pentacle/overview": [
-        "libs/overview/src/index.ts"
-      ],
-      "@pentacle/modules": [
-        "libs/modules/src/index.ts"
-      ],
-      "@pentacle/resources": [
-        "libs/resources/src/index.ts"
-      ],
-      "@pentacle/posts-state": [
-        "libs/posts-state/src/index.ts"
-      ],
-      "@pentacle/tags-state": [
-        "libs/tags-state/src/index.ts"
-      ],
+      "@pentacle/home": ["libs/home/src/index.ts"],
+      "@pentacle/router-state": ["libs/router-state/src/index.ts"],
+      "@pentacle/not-found": ["libs/not-found/src/index.ts"],
+      "@pentacle/pages-state": ["libs/pages-state/src/index.ts"],
+      "@pentacle/models": ["libs/models/src/index.ts"],
+      "@pentacle/services": ["libs/services/src/index.ts"],
+      "@pentacle/introduction": ["libs/introduction/src/index.ts"],
+      "@pentacle/overview": ["libs/overview/src/index.ts"],
+      "@pentacle/modules": ["libs/modules/src/index.ts"],
+      "@pentacle/resources": ["libs/resources/src/index.ts"],
+      "@pentacle/posts-state": ["libs/posts-state/src/index.ts"],
+      "@pentacle/tags-state": ["libs/tags-state/src/index.ts"],
       "@pentacle/examples/retry-with-backoff": [
         "libs/examples/retry-with-backoff/src/index.ts"
       ],
-      "@pentacle/examples/root": [
-        "libs/examples/root/src/index.ts"
-      ],
-      "@pentacle/examples/toast": [
-        "libs/examples/toast/src/index.ts"
-      ],
-      "@pentacle/blueprint": [
-        "libs/blueprint/src/index.ts"
-      ],
-      "@pentacle/principles": [
-        "libs/principles/src/index.ts"
-      ],
+      "@pentacle/examples/root": ["libs/examples/root/src/index.ts"],
+      "@pentacle/examples/toast": ["libs/examples/toast/src/index.ts"],
+      "@pentacle/blueprint": ["libs/blueprint/src/index.ts"],
+      "@pentacle/principles": ["libs/principles/src/index.ts"],
       "@pentacle/pages-loading-progress": [
         "libs/pages-loading-progress/src/index.ts"
       ],
-      "@pentacle/resources-filter": [
-        "libs/resources-filter/src/index.ts"
+      "@pentacle/resources-filter": ["libs/resources-filter/src/index.ts"],
+      "@pentacle/utils": ["libs/utils/src/index.ts"],
+      "@pentacle/shared/util-cms-link": [
+        "libs/shared/util-cms-link/src/index.ts"
       ],
-      "@pentacle/utils": [
-        "libs/utils/src/index.ts"
+      "@pentacle/shared/util-bypass-security-trust-html": [
+        "libs/shared/util-bypass-security-trust-html/src/index.ts"
       ]
     },
     "module": "es2015"
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
