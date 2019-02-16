@@ -82,6 +82,9 @@
     },
     "shared-util-bypass-security-trust-html": {
       "tags": ["scope:shared"]
+    },
+    "analytics-data-access": {
+      "tags": ["scope:analytics", "type:data-access"]
     }
   }
 }

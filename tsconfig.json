@@ -43,6 +43,9 @@
       ],
       "@pentacle/shared/util-bypass-security-trust-html": [
         "libs/shared/util-bypass-security-trust-html/src/index.ts"
+      ],
+      "@pentacle/analytics/data-access": [
+        "libs/analytics/data-access/src/index.ts"
       ]
     },
     "module": "es2015"

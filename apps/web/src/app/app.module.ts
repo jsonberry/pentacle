@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
 import { ResourcesFilterModule } from '@pentacle/resources-filter';
+import { AnalyticsDataAccessModule } from '@pentacle/analytics/data-access';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
@@ -87,6 +88,7 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
     PostsStateModule,
     PagesStateModule,
     TagsStateModule,
+    AnalyticsDataAccessModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, { metaReducers }),
     environment.production
