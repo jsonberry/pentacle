@@ -46,6 +46,9 @@
       ],
       "@pentacle/analytics/data-access": [
         "libs/analytics/data-access/src/index.ts"
+      ],
+      "@pentacle/shared/util-style-framework": [
+        "libs/shared/util-style-framework/src/index.ts"
       ]
     },
     "module": "es2015"
