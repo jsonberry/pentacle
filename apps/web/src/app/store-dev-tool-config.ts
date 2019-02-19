@@ -18,9 +18,9 @@ export const storeDevToolsConfig = {
         typeof value !== 'function'
       ) {
         return {
-          url: value.state.url,
-          params: value.state.params,
-          queryParams: value.state.queryParams,
+          url: value && value.state && value.state.url,
+          params: value && value.state && value.state.params,
+          queryParams: value && value.state && value.state.queryParams,
         };
       }
 
