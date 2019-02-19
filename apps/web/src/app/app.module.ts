@@ -2,23 +2,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, PreloadAllModules } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/nx';
+import { AnalyticsDataAccessModule } from '@pentacle/analytics/data-access';
 import { PagesLoadingProgressModule } from '@pentacle/pages-loading-progress';
 import { PagesStateModule } from '@pentacle/pages-state';
 import { PostsStateModule } from '@pentacle/posts-state';
+import { ResourcesFilterModule } from '@pentacle/resources-filter';
 import { RouterStateModule } from '@pentacle/router-state';
 import { TagsStateModule } from '@pentacle/tags-state';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { storeDevToolsConfig } from './store-dev-tool-config';
-import { ResourcesFilterModule } from '@pentacle/resources-filter';
-import { AnalyticsDataAccessModule } from '@pentacle/analytics/data-access';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>,
@@ -79,7 +79,7 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
       ],
       {
         initialNavigation: 'enabled',
-        preloadingStrategy: PreloadAllModules,
+        scrollPositionRestoration: 'disabled',
       },
     ),
     PagesLoadingProgressModule,
