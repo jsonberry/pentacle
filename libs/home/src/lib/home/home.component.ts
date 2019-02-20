@@ -11,7 +11,6 @@ import { pluck } from 'rxjs/operators';
       pentacleCmsLink
     ></main>
   `,
-  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
   content$ = this.pagesFacade.getPage$('home').pipe(
