@@ -10,7 +10,7 @@ import { pluck, shareReplay } from 'rxjs/operators';
     <h1 [innerHTML]="title$ | async"></h1>
     <main
       [innerHTML]="content$ | async | bypassSecurityTrustHtml"
-      class="${listMarginReset}"
+      [ngClass]="mainStyles"
       pentacleCmsLink
     ></main>
   `,
@@ -22,6 +22,8 @@ export class PrinciplesComponent {
   );
   title$ = this.principlesPageData$.pipe(pluck('title'));
   content$ = this.principlesPageData$.pipe(pluck('content'));
+
+  mainStyles = listMarginReset;
 
   constructor(private pagesFacade: PagesFacade) {}
 }
