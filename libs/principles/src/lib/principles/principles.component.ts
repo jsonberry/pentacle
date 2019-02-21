@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { PagesFacade } from '@pentacle/pages-state';
-import { filter, pluck, shareReplay } from 'rxjs/operators';
+import { listMarginReset } from '@pentacle/shared/util-style-framework';
+import { ignoreFalsySignals } from 'rxjs-toolkit';
+import { pluck, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-principles',
@@ -8,21 +10,14 @@ import { filter, pluck, shareReplay } from 'rxjs/operators';
     <h1 [innerHTML]="title$ | async"></h1>
     <main
       [innerHTML]="content$ | async | bypassSecurityTrustHtml"
+      class="${listMarginReset}"
       pentacleCmsLink
     ></main>
   `,
-  styles: [
-    `
-      ::ng-deep ul {
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-      }
-    `,
-  ],
 })
 export class PrinciplesComponent {
   principlesPageData$ = this.pagesFacade.pageByRouteParamId$.pipe(
-    filter(data => !!data),
+    ignoreFalsySignals(),
     shareReplay(),
   );
   title$ = this.principlesPageData$.pipe(pluck('title'));
