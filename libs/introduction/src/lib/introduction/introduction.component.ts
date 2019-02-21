@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { PagesFacade } from '@pentacle/pages-state';
-import { pluck } from 'rxjs/operators';
+import { listMarginReset } from '@pentacle/shared/util-style-framework';
 import { ignoreFalsySignals } from 'rxjs-toolkit';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-introduction',
   template: `
     <main
       [innerHTML]="introductionPageContent$ | async | bypassSecurityTrustHtml"
+      class="${listMarginReset}"
       pentacleCmsLink
     ></main>
   `,
