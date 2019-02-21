@@ -9,7 +9,7 @@ import { pluck } from 'rxjs/operators';
   template: `
     <main
       [innerHTML]="content$ | async | bypassSecurityTrustHtml"
-      class="${listMarginReset}"
+      [ngClass]="mainStyles"
       pentacleCmsLink
     ></main>
   `,
@@ -19,6 +19,8 @@ export class HomeComponent {
     ignoreFalsySignals(),
     pluck('content'),
   );
+
+  mainStyles = listMarginReset;
 
   constructor(private pagesFacade: PagesFacade) {}
 }
