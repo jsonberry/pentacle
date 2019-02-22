@@ -75,10 +75,12 @@ import { css } from 'emotion';
     >
 
     <p>{{ count$ | async }} Resource(s) match your filter criteria</p>
-    <pentacle-resources-article
-      *ngFor="let resource of (resources$ | async)"
-      [article]="resource"
-    ></pentacle-resources-article>
+    <section class="card-columns">
+      <pentacle-resources-article
+        *ngFor="let resource of (resources$ | async)"
+        [article]="resource"
+      ></pentacle-resources-article>
+    </section>
   `,
 })
 export class ResourcesComponent {
