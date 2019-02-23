@@ -7,14 +7,21 @@ import { ResourcesEffects } from './+state/resources.effects';
 import { ResourcesDetailComponent } from './resources-detail/resources-detail.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { ResourcesArticleComponent } from './resources-article/resources-article.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ClrModalModule, ClrButtonModule } from '@clr/angular';
+import {
+  ClrModalModule,
+  ClrButtonModule,
+  ClrCheckboxModule,
+} from '@clr/angular';
+import { ResourcesFilterModule } from '@pentacle/resources-filter';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ScrollingModule,
+    ClrModalModule,
+    ClrButtonModule,
+    ResourcesFilterModule,
+    EffectsModule.forFeature([ResourcesEffects]),
     RouterModule.forChild([
       {
         path: '',
@@ -30,9 +37,6 @@ import { ClrModalModule, ClrButtonModule } from '@clr/angular';
         ],
       },
     ]),
-    EffectsModule.forFeature([ResourcesEffects]),
-    ClrModalModule,
-    ClrButtonModule,
   ],
   declarations: [
     ResourcesComponent,

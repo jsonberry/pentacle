@@ -7,44 +7,29 @@ import { css } from 'emotion';
   selector: 'pentacle-resources',
   template: `
     <h1>Resources</h1>
-    <button type="button" class="btn btn-outline" (click)="filterModal = true">
-      How do I filter the list?
-    </button>
     <button
       type="button"
-      class="btn btn-outline"
-      (click)="difficultyModal = true"
+      class="btn btn-primary"
+      (click)="filterModalOpen = true"
     >
-      What do the difficulties mean?
+      Filter
     </button>
-    <clr-modal [(clrModalOpen)]="filterModal">
-      <h3 class="modal-title">Filtering the Resource List</h3>
-      <div class="modal-body">
-        <p>The filters are in the <strong>sidenav</strong>.</p>
-        <p>You can filter the list by format, topic, and difficulty.</p>
-        <p>
-          For easier sharing the filters are powered reactivey by the URL. Keep
-          in mind that if you hit 'back' in your browser from a resource detail
-          then your filters will remain intact.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="filterModal = false"
-        >
-          Close
-        </button>
-      </div></clr-modal
+    <button class="btn" (click)="difficultyModal = true">
+      Difficulties Explained
+    </button>
+    <pentacle-resources-filter-container
+      [open]="filterModalOpen"
+      (modalClosed)="filterModalOpen = false"
+    ></pentacle-resources-filter-container>
+    <clr-modal
+      [(clrModalOpen)]="difficultyModal"
+      [clrModalStaticBackdrop]="false"
     >
-    <clr-modal [(clrModalOpen)]="difficultyModal">
       <h3 class="modal-title">Difficulties Explained</h3>
       <div class="modal-body">
         <h4>Introductory</h4>
         <p>
-          You're brand new to this topic, you want to see what it's about or
-          just get a casual high-level glimpse into it.
+          You're brand new to this topic, you want to see what it's all about.
         </p>
         <h4>Beginner</h4>
         <p>
@@ -86,7 +71,7 @@ import { css } from 'emotion';
 export class ResourcesComponent {
   count$ = this.resourcesFacade.filteredResourceCount$;
   resources$ = this.resourcesFacade.resources$;
-  filterModal = false;
+  filterModalOpen = false;
   difficultyModal = false;
   ulStyles = css({ ...listMarginResetStyles });
 

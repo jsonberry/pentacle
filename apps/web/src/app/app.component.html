@@ -113,13 +113,17 @@
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
 
-      <a clrVerticalNavLink routerLink="/resources" routerLinkActive="active">
+      <a
+        clrVerticalNavLink
+        routerLink="/resources"
+        routerLinkActive="active"
+        [queryParamsHandling]="'preserve'"
+      >
         <clr-icon clrVerticalNavIcon shape="library"></clr-icon>Resources</a
       >
       <a clrVerticalNavLink routerLink="/examples" routerLinkActive="active"
         ><clr-icon clrVerticalNavIcon shape="flask"></clr-icon>Examples</a
       >
-      <pentacle-resources-filter-container></pentacle-resources-filter-container>
     </clr-vertical-nav>
   </div>
 </clr-main-container>

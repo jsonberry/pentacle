@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ResourcesFilterPredicate } from '@pentacle/models';
 import { ResourcesFilterFacade } from '../+state/resources-filter.facade';
 
@@ -6,19 +6,21 @@ import { ResourcesFilterFacade } from '../+state/resources-filter.facade';
   selector: 'pentacle-resources-filter-container',
   template: `
     <pentacle-resources-filter
-      *ngIf="(show$ | async)"
+      [open]="open"
       [filterFormGroups]="filterFormGroups$ | async"
-      (filterPredicate)="filterResources($event)"
+      (filtersApplied)="filterResources($event)"
     ></pentacle-resources-filter>
   `,
 })
 export class ResourcesFilterContainerComponent {
+  @Input() open: boolean;
+  @Output() modalClosed: EventEmitter<null> = new EventEmitter();
   filterFormGroups$ = this.facade.filterFormGroups$;
-  show$ = this.facade.showFilter$;
 
   constructor(private facade: ResourcesFilterFacade) {}
 
   filterResources(predicate: ResourcesFilterPredicate) {
     this.facade.filterResources(predicate);
+    this.modalClosed.emit();
   }
 }
