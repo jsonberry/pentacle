@@ -1,10 +1,11 @@
 import { css } from 'emotion';
+import { rem } from './rem';
 
 export const listMarginResetStyles = {
-  marginTop: '0.5rem',
-  marginLeft: '1rem',
+  marginTop: rem(12),
+  marginLeft: rem(24),
   li: {
-    marginBottom: '0.5rem',
+    marginBottom: rem(12),
   },
 };
 

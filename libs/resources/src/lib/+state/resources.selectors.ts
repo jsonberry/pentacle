@@ -2,6 +2,7 @@ import { createSelector } from '@ngrx/store';
 import { postsQuery } from '@pentacle/posts-state';
 import { routerQuery } from '@pentacle/router-state';
 import { postContentLoaded } from '@pentacle/utils';
+import { difficultyTooltips } from './difficulty-tooltips';
 
 const getResources = createSelector(
   postsQuery.getPostsArray,
@@ -37,7 +38,10 @@ const getResouceDetailsByRoute = createSelector(
   (resources, params) => {
     const post = resources[params.id];
     if (postContentLoaded(post)) {
-      return post;
+      return {
+        ...post,
+        difficultyTooltip: difficultyTooltips[post.difficulty],
+      };
     }
   },
 );

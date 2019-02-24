@@ -49,6 +49,9 @@
       ],
       "@pentacle/shared/util-style-framework": [
         "libs/shared/util-style-framework/src/index.ts"
+      ],
+      "@pentacle/shared/util-decode-html-entities": [
+        "libs/shared/util-decode-html-entities/src/index.ts"
       ]
     },
     "module": "es2015"

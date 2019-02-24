@@ -88,6 +88,9 @@
     },
     "shared-util-style-framework": {
       "tags": ["scope:shared", "type:util"]
+    },
+    "shared-util-decode-html-entities": {
+      "tags": ["scope:shared", "type:util"]
     }
   }
 }
