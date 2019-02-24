@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
-import { PostDetailDTO, State } from '@pentacle/models';
+import { State } from '@pentacle/models';
 import { ignoreFalsySignals, propsAreTruthy } from 'rxjs-toolkit';
-import { map, pluck, shareReplay } from 'rxjs/operators';
+import { mapTo } from 'rxjs/operators';
 import { resourcesQuery } from './resources.selectors';
 
 @Injectable({
@@ -19,21 +19,13 @@ export class ResourcesFacade {
   resourceByRoute$ = this.store.pipe(
     select(resourcesQuery.getResouceDetailsByRoute),
     ignoreFalsySignals(),
-    shareReplay(),
   );
 
-  contentByRoute$ = this.resourceByRoute$.pipe(
-    map(post => this.sanitizer.bypassSecurityTrustHtml(post.content)), // this is for things like YouTube iframes
-  );
-
-  titleByRoute$ = this.resourceByRoute$.pipe(
-    pluck<PostDetailDTO, string>('title'),
-  );
-
-  sourceByRoute$ = this.store.pipe(
+  hasSource$ = this.store.pipe(
     select(resourcesQuery.getSourceByRoute),
     propsAreTruthy(),
     ignoreFalsySignals(),
+    mapTo(true),
   );
 
   constructor(private store: Store<State>, private sanitizer: DomSanitizer) {}
