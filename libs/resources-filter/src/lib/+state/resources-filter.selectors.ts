@@ -60,7 +60,7 @@ const getResourceFilterFormGroups = createSelector(
       },
     ];
 
-    const availableBestOf = [{ id: 'bestOf', title: 'Best Of' }];
+    const availableBestOf = [{ id: 'bestOf', title: 'Best of' }];
 
     return {
       availableTopics,
@@ -84,7 +84,7 @@ const getResourceFilterFormGroups = createSelector(
         ),
         bestOf: getProjectedOptions(
           getInitialOptions(availableBestOf),
-          getSelectedOptions(queryParams.bestOf),
+          getSelectedOptions(queryParams.bestOf ? 'bestOf' : null),
         ),
       },
     };

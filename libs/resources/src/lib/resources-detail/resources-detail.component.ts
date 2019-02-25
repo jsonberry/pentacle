@@ -1,27 +1,37 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { RouterFacade } from '@pentacle/router-state';
 import {
   listMarginResetClass,
   mq,
   rem,
 } from '@pentacle/shared/util-style-framework';
 import { css, cx } from 'emotion';
+import { map } from 'rxjs/operators';
 import { ResourcesFacade } from '../+state/resources.facade';
 
 @Component({
   selector: 'pentacle-resources-detail',
   template: `
+    <a
+      [ngClass]="['btn', 'btn-icon', 'btn-link', backButtonStyles]"
+      href="/resources"
+      (click)="goBack($event)"
+      ><clr-icon shape="caret left"></clr-icon> Back</a
+    >
     <main *ngIf="(resource$ | async) as resource">
       <h1 [ngClass]="titleStyles">
         {{ resource?.title | decodeHtmlEntities }}
       </h1>
+      <hr [ngClass]="hrStyles" />
       <div *ngIf="resource.bestOf" [ngClass]="bestOfStyles">
         <clr-icon shape="star" class="is-solid is-warning"></clr-icon>
-        <span>Best Of</span>
+        <span>Best of</span>
       </div>
       <span class="p4">{{ resource?.difficulty | titlecase }}</span>
       <clr-tooltip>
         <clr-icon clrTooltipTrigger shape="info-circle" size="24"></clr-icon>
-        <clr-tooltip-content clrSize="lg" *clrIfOpen>
+        <clr-tooltip-content [clrSize]="toolTipSize$ | async" *clrIfOpen>
           <span>{{ resource?.difficultyTooltip?.content }}</span>
         </clr-tooltip-content>
       </clr-tooltip>
@@ -63,8 +73,23 @@ import { ResourcesFacade } from '../+state/resources.facade';
   `,
 })
 export class ResourcesDetailComponent {
+  toolTipSize$ = this.bp$
+    .observe([Breakpoints.XSmall])
+    .pipe(map(bpstate => (bpstate.matches ? 'sm' : 'lg')));
+
   resource$ = this.resourcesFacade.resourceByRoute$;
+
   hasSource$ = this.resourcesFacade.hasSource$;
+
+  backButtonStyles = css({
+    marginLeft: `${rem(-17)} !important`,
+  });
+
+  hrStyles = css({
+    marginTop: rem(12),
+    marginBottom: rem(12),
+  });
+
   bestOfStyles = css({
     display: 'flex',
     alignItems: 'center',
@@ -72,10 +97,13 @@ export class ResourcesDetailComponent {
       marginLeft: rem(8),
     },
   });
+
   titleStyles = css({
-    marginBottom: rem(16),
-    maxWidth: rem(500),
+    margin: '0 auto',
+    maxWidth: rem(700),
+    textAlign: 'center',
   });
+
   summaryStyles = cx(
     listMarginResetClass,
     css(
@@ -96,5 +124,14 @@ export class ResourcesDetailComponent {
     ),
   );
 
-  constructor(private resourcesFacade: ResourcesFacade) {}
+  constructor(
+    private resourcesFacade: ResourcesFacade,
+    private routerFacade: RouterFacade,
+    private bp$: BreakpointObserver,
+  ) {}
+
+  goBack(e) {
+    e.preventDefault();
+    this.routerFacade.back();
+  }
 }

@@ -32,7 +32,7 @@ import { css } from 'emotion';
       </div>
       <div class="card-block" *ngIf="article.bestOf" [ngClass]="bestOfStyles">
         <clr-icon shape="star" class="is-solid is-warning"></clr-icon>
-        <span>Best Of</span>
+        <span>Best of</span>
       </div>
     </a>
   `,
