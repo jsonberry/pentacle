@@ -24,7 +24,7 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
           <ng-container *ngIf="bestOf">
             <section formGroupName="bestOf">
               <clr-toggle-container>
-                <label>Best Of</label>
+                <label>Best of</label>
                 <clr-toggle-wrapper>
                   <input
                     type="checkbox"
