@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -20,34 +21,33 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
       <h3 class="modal-title">Refine by</h3>
       <div class="modal-body">
         <form [formGroup]="filter">
-          <ng-container *ngIf="formats">
-            <section formGroupName="formats">
+          <ng-container *ngIf="bestOf">
+            <section formGroupName="bestOf">
               <clr-toggle-container>
-                <label>Format</label>
-                <clr-toggle-wrapper
-                  *ngFor="
-                    let format of (filterFormGroups.availableFormats | keyvalue)
-                  "
-                >
+                <label>Best Of</label>
+                <clr-toggle-wrapper>
                   <input
                     type="checkbox"
-                    [formControlName]="format.value.id"
-                    [id]="format.value.id"
                     clrToggle
+                    [formControlName]="
+                      filterFormGroups.availableBestOf.bestOf.id
+                    "
+                    [id]="filterFormGroups.availableBestOf.bestOf.id"
                   />
-                  <label [for]="format.value.id">{{
-                    format.value.title
-                  }}</label>
+                  <label [for]="filterFormGroups.availableBestOf.bestOf.id">
+                    {{ filterFormGroups.availableBestOf.bestOf.title }}
+                  </label>
                 </clr-toggle-wrapper>
               </clr-toggle-container>
               <button
                 class="btn btn-sm btn-link"
-                (click)="resetControl('formats')"
+                (click)="resetControl('bestOf')"
               >
                 Reset
               </button>
             </section>
           </ng-container>
+
           <ng-container *ngIf="topics">
             <section formGroupName="topics">
               <clr-toggle-container>
@@ -74,6 +74,7 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
               </button>
             </section>
           </ng-container>
+
           <ng-container *ngIf="difficulties">
             <section formGroupName="difficulties">
               <clr-toggle-container>
@@ -104,6 +105,35 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
               </button>
             </section>
           </ng-container>
+
+          <ng-container *ngIf="formats">
+            <section formGroupName="formats">
+              <clr-toggle-container>
+                <label>Format</label>
+                <clr-toggle-wrapper
+                  *ngFor="
+                    let format of (filterFormGroups.availableFormats | keyvalue)
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    [formControlName]="format.value.id"
+                    [id]="format.value.id"
+                    clrToggle
+                  />
+                  <label [for]="format.value.id">{{
+                    format.value.title
+                  }}</label>
+                </clr-toggle-wrapper>
+              </clr-toggle-container>
+              <button
+                class="btn btn-sm btn-link"
+                (click)="resetControl('formats')"
+              >
+                Reset
+              </button>
+            </section>
+          </ng-container>
         </form>
       </div>
       <div class="modal-footer">
@@ -119,7 +149,7 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
   styleUrls: ['./resources-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourcesFilterComponent implements OnChanges {
+export class ResourcesFilterComponent implements OnInit, OnChanges {
   @Input() open: boolean;
   @Input() filterFormGroups;
   @Output() filtersApplied: EventEmitter<
@@ -130,13 +160,6 @@ export class ResourcesFilterComponent implements OnChanges {
   constructor(private fb: FormBuilder) {}
 
   ngOnChanges() {
-    if (!this.formats && this.filterFormGroups.groups.formats) {
-      this.filter.addControl(
-        'formats',
-        this.fb.group(this.filterFormGroups.groups.formats),
-      );
-    }
-
     // topics come through asynchronously
     // they aren't always available on the first tick, or Init
     // this sets the control once it becomes available
@@ -146,13 +169,23 @@ export class ResourcesFilterComponent implements OnChanges {
         this.fb.group(this.filterFormGroups.groups.topics),
       );
     }
+  }
 
-    if (!this.difficulties && this.filterFormGroups.groups.difficulties) {
-      this.filter.addControl(
-        'difficulties',
-        this.fb.group(this.filterFormGroups.groups.difficulties),
-      );
-    }
+  ngOnInit() {
+    this.filter.addControl(
+      'formats',
+      this.fb.group(this.filterFormGroups.groups.formats),
+    );
+
+    this.filter.addControl(
+      'difficulties',
+      this.fb.group(this.filterFormGroups.groups.difficulties),
+    );
+
+    this.filter.addControl(
+      'bestOf',
+      this.fb.group(this.filterFormGroups.groups.bestOf),
+    );
   }
 
   resetAll() {
@@ -178,5 +211,9 @@ export class ResourcesFilterComponent implements OnChanges {
 
   get difficulties() {
     return this.filter.get('difficulties') as FormGroup;
+  }
+
+  get bestOf() {
+    return this.filter.get('bestOf') as FormGroup;
   }
 }

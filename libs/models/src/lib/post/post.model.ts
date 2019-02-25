@@ -12,4 +12,5 @@ export interface Post extends Entity {
   difficulty: PostDifficulty;
   author_id: number;
   categories: number[];
+  bestOf: boolean;
 }

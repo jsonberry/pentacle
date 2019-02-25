@@ -9,5 +9,6 @@ export interface ResourcesFilterFormGroups {
     PostDifficulty,
     { id: PostDifficulty; title: string; rank: number }
   >;
+  availableBestOf: { bestOf: { id: string; title: string } };
   groups: ResourcesFilterPredicate;
 }

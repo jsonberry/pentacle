@@ -3,16 +3,13 @@ import { postsQuery } from '@pentacle/posts-state';
 import { routerQuery } from '@pentacle/router-state';
 import { postContentLoaded } from '@pentacle/utils';
 import { difficultyTooltips } from './difficulty-tooltips';
+import { isEmpty } from 'lodash';
 
 const getResources = createSelector(
   postsQuery.getPostsArray,
   routerQuery.getQueryParams,
   (posts, queryParams) => {
-    if (
-      !queryParams.formats &&
-      !queryParams.topics &&
-      !queryParams.difficulties
-    ) {
+    if (isEmpty(queryParams)) {
       return posts;
     }
 
@@ -22,7 +19,8 @@ const getResources = createSelector(
         (!queryParams.topics ||
           post.tags.some(tag => queryParams.topics.includes(tag))) &&
         (!queryParams.difficulties ||
-          queryParams.difficulties.includes(post.difficulty)),
+          queryParams.difficulties.includes(post.difficulty)) &&
+        (!queryParams.bestOf || post.bestOf),
     );
   },
 );

@@ -54,6 +54,7 @@ export const getPostEffect$: Effect = req$ =>
                 tags.dictionary[tagId].id,
             ),
           difficulty: post.difficulty,
+          bestOf: post.bestOf,
           content: post && post.content,
         };
       },

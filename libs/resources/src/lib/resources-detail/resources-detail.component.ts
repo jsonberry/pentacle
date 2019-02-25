@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
+  listMarginResetClass,
   mq,
   rem,
-  listMarginResetClass,
 } from '@pentacle/shared/util-style-framework';
 import { css, cx } from 'emotion';
 import { ResourcesFacade } from '../+state/resources.facade';
@@ -14,6 +14,10 @@ import { ResourcesFacade } from '../+state/resources.facade';
       <h1 [ngClass]="titleStyles">
         {{ resource?.title | decodeHtmlEntities }}
       </h1>
+      <div *ngIf="resource.bestOf" [ngClass]="bestOfStyles">
+        <clr-icon shape="star" class="is-solid is-warning"></clr-icon>
+        <span>Best Of</span>
+      </div>
       <span class="p4">{{ resource?.difficulty | titlecase }}</span>
       <clr-tooltip>
         <clr-icon clrTooltipTrigger shape="info-circle" size="24"></clr-icon>
@@ -61,13 +65,19 @@ import { ResourcesFacade } from '../+state/resources.facade';
 export class ResourcesDetailComponent {
   resource$ = this.resourcesFacade.resourceByRoute$;
   hasSource$ = this.resourcesFacade.hasSource$;
-
+  bestOfStyles = css({
+    display: 'flex',
+    alignItems: 'center',
+    span: {
+      marginLeft: rem(8),
+    },
+  });
   titleStyles = css({
     marginBottom: rem(16),
     maxWidth: rem(500),
   });
-
   summaryStyles = cx(
+    listMarginResetClass,
     css(
       mq({
         img: {
@@ -84,7 +94,6 @@ export class ResourcesDetailComponent {
         },
       }),
     ),
-    listMarginResetClass,
   );
 
   constructor(private resourcesFacade: ResourcesFacade) {}

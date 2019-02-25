@@ -43,6 +43,7 @@ export class PostsDao extends EntitiesDao<Post> {
           categories: post && post.categories,
           tags: post && post.tags,
           difficulty: post && post.acf && post.acf.difficulty,
+          bestOf: post && post.acf && post.acf.best_of,
           author_id: post && post.author,
           content: post && post.content && post.content.rendered,
           acf: post && post.acf,
