@@ -28,15 +28,17 @@ export class ResourcesFilterEffects {
         Object.keys(action.predicate.difficulties)
           .filter(difficulty => action.predicate.difficulties[difficulty])
           .join(','),
+      bestOf: action.predicate.bestOf.bestOf,
     })),
     map(
-      ({ formats, topics, difficulties }) =>
+      ({ formats, topics, difficulties, bestOf }) =>
         new fromRouterActions.Go({
           path: ['/resources'],
           query: {
             ...(formats ? { formats } : {}),
             ...(topics ? { topics } : {}),
             ...(difficulties ? { difficulties } : {}),
+            ...(bestOf ? { bestOf } : {}),
           },
         }),
     ),

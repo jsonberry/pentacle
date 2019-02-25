@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PostDTO } from '@pentacle/models';
+import { rem } from '@pentacle/shared/util-style-framework';
+import { css } from 'emotion';
 
 @Component({
   selector: 'pentacle-resources-article',
@@ -14,9 +16,9 @@ import { PostDTO } from '@pentacle/models';
             <span class="card-media-title"
               ><strong>{{ article?.difficulty | titlecase }}</strong></span
             >
-            <span class="card-media-text">
-              {{ article?.format | uppercase }}
-            </span>
+            <div class="card-media-text">
+              <span>{{ article?.format | uppercase }}</span>
+            </div>
           </div>
         </div>
         <div class="card-text">
@@ -28,9 +30,20 @@ import { PostDTO } from '@pentacle/models';
           </span>
         </div>
       </div>
+      <div class="card-block" *ngIf="article.bestOf" [ngClass]="bestOfStyles">
+        <clr-icon shape="star" class="is-solid is-warning"></clr-icon>
+        <span>Best Of</span>
+      </div>
     </a>
   `,
 })
 export class ResourcesArticleComponent {
   @Input() article: PostDTO;
+  bestOfStyles = css({
+    display: 'flex',
+    alignItems: 'center',
+    span: {
+      marginLeft: rem(8),
+    },
+  });
 }

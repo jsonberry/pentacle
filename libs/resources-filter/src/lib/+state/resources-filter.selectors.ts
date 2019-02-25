@@ -23,7 +23,7 @@ const getResourceFilterFormGroups = createSelector(
   routerQuery.getQueryParams,
   tagsQuery.getTagsDictionary,
   tagsQuery.getTagsArray,
-  (queryParams, tags, tagsArray): ResourcesFilterFormGroups => {
+  (queryParams, availableTopics, tagsArray): ResourcesFilterFormGroups => {
     const availableFormats = [
       {
         id: 'read',
@@ -60,12 +60,15 @@ const getResourceFilterFormGroups = createSelector(
       },
     ];
 
+    const availableBestOf = [{ id: 'bestOf', title: 'Best Of' }];
+
     return {
+      availableTopics,
+      availableBestOf: mapFilterFormListToDictionary(availableBestOf),
       availableFormats: mapFilterFormListToDictionary(availableFormats),
       availableDifficulties: mapFilterFormListToDictionary(
         availableDifficulties,
       ),
-      availableTopics: tags,
       groups: {
         formats: getProjectedOptions<PostFormat>(
           getInitialOptions(availableFormats),
@@ -78,6 +81,10 @@ const getResourceFilterFormGroups = createSelector(
         difficulties: getProjectedOptions<PostDifficulty>(
           getInitialOptions(availableDifficulties),
           getSelectedOptions(queryParams.difficulties),
+        ),
+        bestOf: getProjectedOptions(
+          getInitialOptions(availableBestOf),
+          getSelectedOptions(queryParams.bestOf),
         ),
       },
     };
