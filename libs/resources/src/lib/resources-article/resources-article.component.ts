@@ -18,6 +18,15 @@ import { css } from 'emotion';
             >
             <div class="card-media-text">
               <span>{{ article?.format | uppercase }}</span>
+              <span
+                class="p7"
+                [ngStyle]="{
+                  display: 'block',
+                  marginTop: '0',
+                  color: article?.cost === 'free' ? '#48960C' : '#F52F22'
+                }"
+                >{{ article?.cost === 'free' ? 'Free 🍺' : 'Paid' }}</span
+              >
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 export * from './post-author.model';
 export * from './post-category.model';
+export * from './post-cost.model';
 export * from './post-date.model';
 export * from './post-detail-dto.model';
 export * from './post-difficulty.model';

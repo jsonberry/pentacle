@@ -1,3 +1,10 @@
+import {
+  PostCost,
+  PostDifficulty,
+  PostFormat,
+  TopicsOperator,
+} from '@pentacle/models';
+
 export const difficultyTooltips = {
   introductory: {
     id: 'introductory',
@@ -25,20 +32,38 @@ export const difficultyTooltips = {
   },
 };
 
-export function filterByFormats(formats, format) {
-  return !formats || formats.includes(format);
+export function filterByBestOf(
+  queryBestOf: string,
+  postBestOf: boolean,
+): boolean {
+  return !queryBestOf || postBestOf;
 }
 
-export function filterByTopics(topics, tags, topicsOperator) {
-  return !topics || topicsOperator === 'inclusive'
-    ? tags.some(tag => topics.includes(tag))
-    : topics.split(',').every(topic => tags.includes(topic));
+export function filterByCost(costs: string, cost: PostCost): boolean {
+  return !costs || costs.includes(cost);
 }
 
-export function filterByDifficulties(difficulties, difficulty) {
+export function filterByDifficulties(
+  difficulties: string,
+  difficulty: PostDifficulty,
+): boolean {
   return !difficulties || difficulties.includes(difficulty);
 }
 
-export function filterByBestOf(queryBestOf, postBestOf) {
-  return !queryBestOf || postBestOf;
+export function filterByFormats(formats: string, format: PostFormat): boolean {
+  return !formats || formats.includes(format);
+}
+
+export function filterByTopics(
+  topics: string,
+  tags: string[],
+  topicsOperator: TopicsOperator,
+): boolean {
+  if (!topics) {
+    return true;
+  }
+
+  return topicsOperator === 'inclusive'
+    ? tags.some(tag => topics.includes(tag))
+    : topics.split(',').every(topic => tags.includes(topic));
 }

@@ -9,6 +9,7 @@ import {
   filterByDifficulties,
   filterByFormats,
   filterByTopics,
+  filterByCost,
 } from './resources.utils';
 
 const getResources = createSelector(
@@ -28,7 +29,8 @@ const getResources = createSelector(
           queryParams.topicsOperator,
         ) &&
         filterByDifficulties(queryParams.difficulties, post.difficulty) &&
-        filterByBestOf(queryParams.bestOf, post.bestOf),
+        filterByBestOf(queryParams.bestOf, post.bestOf) &&
+        filterByCost(queryParams.costs, post.cost),
     );
   },
 );

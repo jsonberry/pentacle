@@ -46,6 +46,7 @@ export const getPostsEffect$: Effect = req$ =>
               .filter(Boolean),
           difficulty: post.difficulty,
           bestOf: post.bestOf,
+          cost: post.cost,
           image:
             assets &&
             assets.dictionary &&

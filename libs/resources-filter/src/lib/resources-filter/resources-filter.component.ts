@@ -48,6 +48,33 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
             </section>
           </ng-container>
 
+          <ng-container *ngIf="costs">
+            <section formGroupName="costs">
+              <clr-toggle-container>
+                <label>Cost</label>
+                <clr-toggle-wrapper
+                  *ngFor="
+                    let cost of (filterFormGroups.availableCosts | keyvalue)
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    clrToggle
+                    [formControlName]="cost.value.id"
+                    [id]="cost.value.id"
+                  />
+                  <label [for]="cost.value.id"> {{ cost.value.title }} </label>
+                </clr-toggle-wrapper>
+              </clr-toggle-container>
+              <button
+                class="btn btn-sm btn-link"
+                (click)="resetControl('costs')"
+              >
+                Reset
+              </button>
+            </section>
+          </ng-container>
+
           <ng-container *ngIf="difficulties">
             <section formGroupName="difficulties">
               <clr-toggle-container>
@@ -204,20 +231,21 @@ export class ResourcesFilterComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.filter.addControl(
-      'formats',
-      this.fb.group(this.filterFormGroups.groups.formats),
+      'bestOf',
+      this.fb.group(this.filterFormGroups.groups.bestOf),
     );
-
+    this.filter.addControl(
+      'costs',
+      this.fb.group(this.filterFormGroups.groups.costs),
+    );
     this.filter.addControl(
       'difficulties',
       this.fb.group(this.filterFormGroups.groups.difficulties),
     );
-
     this.filter.addControl(
-      'bestOf',
-      this.fb.group(this.filterFormGroups.groups.bestOf),
+      'formats',
+      this.fb.group(this.filterFormGroups.groups.formats),
     );
-
     this.filter.addControl(
       'topicsOperator',
       this.fb.control(this.filterFormGroups.groups.topicsOperator),
@@ -260,5 +288,9 @@ export class ResourcesFilterComponent implements OnInit, OnChanges {
 
   get bestOf() {
     return this.filter.get('bestOf') as FormGroup;
+  }
+
+  get costs() {
+    return this.filter.get('costs') as FormGroup;
   }
 }
