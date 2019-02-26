@@ -86,8 +86,8 @@ export class ResourcesDetailComponent {
   });
 
   hrStyles = css({
-    marginTop: rem(12),
-    marginBottom: rem(12),
+    marginTop: rem(24),
+    marginBottom: rem(24),
   });
 
   bestOfStyles = css({
