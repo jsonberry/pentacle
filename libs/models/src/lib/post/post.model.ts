@@ -1,16 +1,18 @@
 import { Entity } from '../entity/entity.model';
+import { PostCost } from './post-cost.model';
+import { PostDifficulty } from './post-difficulty.model';
 import { PostFormat } from './post-format.model';
 import { PostSource } from './post-source.model';
-import { PostDifficulty } from './post-difficulty.model';
 
 export interface Post extends Entity {
   excerpt?: string;
   source?: PostSource;
-  format: PostFormat;
-  featured_media_id?: number;
-  tags: number[];
-  difficulty: PostDifficulty;
   author_id: number;
-  categories: number[];
   bestOf: boolean;
+  categories: number[];
+  cost: PostCost;
+  difficulty: PostDifficulty;
+  featured_media_id?: number;
+  format: PostFormat;
+  tags: number[];
 }

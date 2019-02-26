@@ -55,6 +55,7 @@ export const getPostEffect$: Effect = req$ =>
             ),
           difficulty: post.difficulty,
           bestOf: post.bestOf,
+          cost: post.cost,
           content: post && post.content,
         };
       },

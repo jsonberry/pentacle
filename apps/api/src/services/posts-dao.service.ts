@@ -1,11 +1,11 @@
+import { Post } from '@pentacle/models';
 import { Inject, Injectable } from 'injection-js';
 import { map, reduce } from 'rxjs/operators';
+import { EntityState } from '../common';
 import { EntitiesDao } from './entities-dao.service';
 import { HttpService } from './http.service';
 import { URL_BASE_TOKEN } from './injection-tokens';
 import { StoreService } from './store.service';
-import { EntityState } from '../common';
-import { Post } from '@pentacle/models';
 
 @Injectable()
 export class PostsDao extends EntitiesDao<Post> {
@@ -44,6 +44,7 @@ export class PostsDao extends EntitiesDao<Post> {
           tags: post && post.tags,
           difficulty: post && post.acf && post.acf.difficulty,
           bestOf: post && post.acf && post.acf.best_of,
+          cost: post && post.acf && post.acf.cost,
           author_id: post && post.author,
           content: post && post.content && post.content.rendered,
           acf: post && post.acf,

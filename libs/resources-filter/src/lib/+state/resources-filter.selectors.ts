@@ -1,14 +1,18 @@
 import { createSelector } from '@ngrx/store';
+import {
+  PostDifficulty,
+  PostFormat,
+  ResourcesFilterFormGroups,
+} from '@pentacle/models';
 import { routerQuery } from '@pentacle/router-state';
 import { tagsQuery } from '@pentacle/tags-state';
 import {
-  ResourcesFilterFormGroups,
-  PostFormat,
-  PostDifficulty,
-} from '@pentacle/models';
-import {
-  getProjectedOptions,
+  availableBestOf,
+  availableDifficulties,
+  availableFormats,
+  availableCosts,
   getInitialOptions,
+  getProjectedOptions,
   getSelectedOptions,
   mapFilterFormListToDictionary,
 } from './resources-filter.utils';
@@ -23,73 +27,36 @@ const getResourceFilterFormGroups = createSelector(
   routerQuery.getQueryParams,
   tagsQuery.getTagsDictionary,
   tagsQuery.getTagsArray,
-  (queryParams, availableTopics, tagsArray): ResourcesFilterFormGroups => {
-    const availableFormats = [
-      {
-        id: 'read',
-        title: 'Read',
-      },
-      { id: 'watch', title: 'Watch' },
-      { id: 'listen', title: 'Listen' },
-    ];
-
-    const availableDifficulties: {
-      id: PostDifficulty;
-      title: string;
-      rank: number;
-    }[] = [
-      {
-        id: 'introductory',
-        title: 'Introductory',
-        rank: 0,
-      },
-      {
-        id: 'beginner',
-        title: 'Beginner',
-        rank: 1,
-      },
-      {
-        id: 'intermediate',
-        title: 'Intermediate',
-        rank: 2,
-      },
-      {
-        id: 'advanced',
-        title: 'Advanced',
-        rank: 3,
-      },
-    ];
-
-    const availableBestOf = [{ id: 'bestOf', title: 'Best of' }];
-
-    return {
-      availableTopics,
-      availableBestOf: mapFilterFormListToDictionary(availableBestOf),
-      availableFormats: mapFilterFormListToDictionary(availableFormats),
-      availableDifficulties: mapFilterFormListToDictionary(
-        availableDifficulties,
+  (queryParams, availableTopics, tagsArray): ResourcesFilterFormGroups => ({
+    availableBestOf: mapFilterFormListToDictionary(availableBestOf),
+    availableCosts: mapFilterFormListToDictionary(availableCosts),
+    availableDifficulties: mapFilterFormListToDictionary(availableDifficulties),
+    availableFormats: mapFilterFormListToDictionary(availableFormats),
+    availableTopics,
+    groups: {
+      bestOf: getProjectedOptions(
+        getInitialOptions(availableBestOf),
+        getSelectedOptions(queryParams.bestOf ? 'bestOf' : null),
       ),
-      groups: {
-        formats: getProjectedOptions<PostFormat>(
-          getInitialOptions(availableFormats),
-          getSelectedOptions(queryParams.formats),
-        ),
-        topics: getProjectedOptions(
-          getInitialOptions(tagsArray),
-          getSelectedOptions(queryParams.topics),
-        ),
-        difficulties: getProjectedOptions<PostDifficulty>(
-          getInitialOptions(availableDifficulties),
-          getSelectedOptions(queryParams.difficulties),
-        ),
-        bestOf: getProjectedOptions(
-          getInitialOptions(availableBestOf),
-          getSelectedOptions(queryParams.bestOf ? 'bestOf' : null),
-        ),
-        topicsOperator: queryParams.topicsOperator || 'exclusive',
-      },
-    };
-  },
+      costs: getProjectedOptions(
+        getInitialOptions(availableCosts),
+        getSelectedOptions(queryParams.costs),
+      ),
+      difficulties: getProjectedOptions<PostDifficulty>(
+        getInitialOptions(availableDifficulties),
+        getSelectedOptions(queryParams.difficulties),
+      ),
+      formats: getProjectedOptions<PostFormat>(
+        getInitialOptions(availableFormats),
+        getSelectedOptions(queryParams.formats),
+      ),
+      topics: getProjectedOptions(
+        getInitialOptions(tagsArray),
+        getSelectedOptions(queryParams.topics),
+      ),
+      topicsOperator: queryParams.topicsOperator || 'exclusive',
+    },
+  }),
 );
 
 export const resourcesFilterQuery = {

@@ -4,16 +4,18 @@ import { PostSource } from './post-source.model';
 import { PostDate } from './post-date.model';
 import { PostFormat } from './post-format.model';
 import { PostDifficulty } from './post-difficulty.model';
+import { PostCost } from './post-cost.model';
 
 export interface PostDTO {
   id: string;
-  title: string;
-  categories: PostCategory[];
-  format: PostFormat;
-  tags: string[];
-  difficulty: PostDifficulty;
-  bestOf: boolean;
-  date: PostDate;
   image?: PostImage; // TODO should get changed to one particular version, maybe thumbnail
   source?: PostSource; // TODO probably add some ACF for this
+  bestOf: boolean;
+  categories: PostCategory[];
+  cost: PostCost;
+  date: PostDate;
+  difficulty: PostDifficulty;
+  format: PostFormat;
+  tags: string[];
+  title: string;
 }
