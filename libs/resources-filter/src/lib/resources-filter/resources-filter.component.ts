@@ -48,33 +48,6 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
             </section>
           </ng-container>
 
-          <ng-container *ngIf="topics">
-            <section formGroupName="topics">
-              <clr-toggle-container>
-                <label>Topic</label>
-                <clr-toggle-wrapper
-                  *ngFor="
-                    let topic of (filterFormGroups.availableTopics | keyvalue)
-                  "
-                >
-                  <input
-                    type="checkbox"
-                    clrToggle
-                    [formControlName]="topic.value.id"
-                    [id]="topic.value.id"
-                  />
-                  <label [for]="topic.value.id">{{ topic.value.title }}</label>
-                </clr-toggle-wrapper>
-              </clr-toggle-container>
-              <button
-                class="btn btn-sm btn-link"
-                (click)="resetControl('topics')"
-              >
-                Reset
-              </button>
-            </section>
-          </ng-container>
-
           <ng-container *ngIf="difficulties">
             <section formGroupName="difficulties">
               <clr-toggle-container>
@@ -134,6 +107,64 @@ import { ResourcesFilterPredicate } from '@pentacle/models';
               </button>
             </section>
           </ng-container>
+
+          <hr />
+
+          <ng-container *ngIf="topics">
+            <section formGroupName="topics">
+              <clr-toggle-container>
+                <label>Topics</label>
+                <clr-toggle-wrapper
+                  *ngFor="
+                    let topic of (filterFormGroups.availableTopics | keyvalue)
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    clrToggle
+                    [formControlName]="topic.value.id"
+                    [id]="topic.value.id"
+                  />
+                  <label [for]="topic.value.id">{{ topic.value.title }}</label>
+                </clr-toggle-wrapper>
+              </clr-toggle-container>
+
+              <button
+                class="btn btn-sm btn-link"
+                (click)="resetControl('topics')"
+              >
+                Reset
+              </button>
+            </section>
+
+            <section>
+              <div class="btn-group">
+                <div class="radio btn btn-sm">
+                  <input
+                    type="radio"
+                    formControlName="topicsOperator"
+                    value="exclusive"
+                    id="topicsOperatorExclusive"
+                    checked
+                  />
+                  <label for="topicsOperatorExclusive">exclusive</label>
+                </div>
+                <div class="radio btn btn-sm">
+                  <input
+                    type="radio"
+                    formControlName="topicsOperator"
+                    value="inclusive"
+                    id="topicsOperatorInclusive"
+                  />
+                  <label for="topicsOperatorInclusive">inclusive</label>
+                </div>
+              </div>
+              <span class="p7"
+                >Exclusive shows resources that have all selected topics.
+                Inclusive will show any resources for selected topics.</span
+              >
+            </section>
+          </ng-container>
         </form>
       </div>
       <div class="modal-footer">
@@ -186,15 +217,29 @@ export class ResourcesFilterComponent implements OnInit, OnChanges {
       'bestOf',
       this.fb.group(this.filterFormGroups.groups.bestOf),
     );
+
+    this.filter.addControl(
+      'topicsOperator',
+      this.fb.control(this.filterFormGroups.groups.topicsOperator),
+    );
   }
 
   resetAll() {
     this.filter.reset();
+    this.resetTopicsOperator();
     this.applyFilters();
   }
 
   resetControl(id: string) {
+    if (id === 'topics') {
+      this.resetTopicsOperator();
+    }
+
     this.filter.get(id).reset();
+  }
+
+  resetTopicsOperator() {
+    this.filter.get('topicsOperator').setValue('exclusive');
   }
 
   applyFilters() {

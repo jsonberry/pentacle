@@ -86,6 +86,7 @@ const getResourceFilterFormGroups = createSelector(
           getInitialOptions(availableBestOf),
           getSelectedOptions(queryParams.bestOf ? 'bestOf' : null),
         ),
+        topicsOperator: queryParams.topicsOperator || 'exclusive',
       },
     };
   },

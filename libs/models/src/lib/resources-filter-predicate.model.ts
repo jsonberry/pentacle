@@ -5,4 +5,5 @@ export interface ResourcesFilterPredicate {
   topics: Record<string, [boolean] | null> | null;
   difficulties: Record<PostDifficulty, [boolean] | null> | null;
   bestOf: { bestOf: [boolean] };
+  topicsOperator: 'exclusive' | 'inclusive';
 }
