@@ -13,6 +13,12 @@ export class ResourcesFilterEffects {
   filterResources$ = this.actions$.pipe(
     ofType<FilterResources>(ResourcesFilterActionTypes.FilterResources),
     map(action => ({
+      bestOf: action.predicate.bestOf.bestOf,
+      difficulties:
+        action.predicate.difficulties &&
+        Object.keys(action.predicate.difficulties)
+          .filter(difficulty => action.predicate.difficulties[difficulty])
+          .join(','),
       formats:
         action.predicate.formats &&
         Object.keys(action.predicate.formats)
@@ -23,22 +29,17 @@ export class ResourcesFilterEffects {
         Object.keys(action.predicate.topics)
           .filter(topic => action.predicate.topics[topic])
           .join(','),
-      difficulties:
-        action.predicate.difficulties &&
-        Object.keys(action.predicate.difficulties)
-          .filter(difficulty => action.predicate.difficulties[difficulty])
-          .join(','),
-      bestOf: action.predicate.bestOf.bestOf,
+      topicsOperator: action.predicate.topicsOperator,
     })),
     map(
-      ({ formats, topics, difficulties, bestOf }) =>
+      ({ bestOf, difficulties, formats, topics, topicsOperator }) =>
         new fromRouterActions.Go({
           path: ['/resources'],
           query: {
-            ...(formats ? { formats } : {}),
-            ...(topics ? { topics } : {}),
-            ...(difficulties ? { difficulties } : {}),
             ...(bestOf ? { bestOf } : {}),
+            ...(difficulties ? { difficulties } : {}),
+            ...(formats ? { formats } : {}),
+            ...(topics ? { topics, topicsOperator } : {}),
           },
         }),
     ),

@@ -6,6 +6,8 @@ import {
   ClrSignpostModule,
   ClrModalModule,
   ClrButtonModule,
+  ClrButtonGroupModule,
+  ClrRadioModule,
 } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { ResourcesFilterEffects } from './+state/resources-filter.effects';
@@ -21,6 +23,8 @@ import { ResourcesFilterComponent } from './resources-filter/resources-filter.co
     ClrSignpostModule,
     ClrModalModule,
     ClrButtonModule,
+    ClrButtonGroupModule,
+    ClrRadioModule,
     EffectsModule.forFeature([ResourcesFilterEffects]),
   ],
   exports: [ResourcesFilterContainerComponent],

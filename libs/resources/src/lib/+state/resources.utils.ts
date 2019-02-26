@@ -24,3 +24,21 @@ export const difficultyTooltips = {
       "You're well beyond the basics, you've worked with this enough to have solved some difficult challenges, and you're ready for advancedconcepts.",
   },
 };
+
+export function filterByFormats(formats, format) {
+  return !formats || formats.includes(format);
+}
+
+export function filterByTopics(topics, tags, topicsOperator) {
+  return !topics || topicsOperator === 'inclusive'
+    ? tags.some(tag => topics.includes(tag))
+    : topics.split(',').every(topic => tags.includes(topic));
+}
+
+export function filterByDifficulties(difficulties, difficulty) {
+  return !difficulties || difficulties.includes(difficulty);
+}
+
+export function filterByBestOf(queryBestOf, postBestOf) {
+  return !queryBestOf || postBestOf;
+}

@@ -2,8 +2,14 @@ import { createSelector } from '@ngrx/store';
 import { postsQuery } from '@pentacle/posts-state';
 import { routerQuery } from '@pentacle/router-state';
 import { postContentLoaded } from '@pentacle/utils';
-import { difficultyTooltips } from './difficulty-tooltips';
 import { isEmpty } from 'lodash';
+import {
+  difficultyTooltips,
+  filterByBestOf,
+  filterByDifficulties,
+  filterByFormats,
+  filterByTopics,
+} from './resources.utils';
 
 const getResources = createSelector(
   postsQuery.getPostsArray,
@@ -15,12 +21,14 @@ const getResources = createSelector(
 
     return posts.filter(
       post =>
-        (!queryParams.formats || queryParams.formats.includes(post.format)) &&
-        (!queryParams.topics ||
-          post.tags.some(tag => queryParams.topics.includes(tag))) &&
-        (!queryParams.difficulties ||
-          queryParams.difficulties.includes(post.difficulty)) &&
-        (!queryParams.bestOf || post.bestOf),
+        filterByFormats(queryParams.formats, post.format) &&
+        filterByTopics(
+          queryParams.topics,
+          post.tags,
+          queryParams.topicsOperator,
+        ) &&
+        filterByDifficulties(queryParams.difficulties, post.difficulty) &&
+        filterByBestOf(queryParams.bestOf, post.bestOf),
     );
   },
 );
