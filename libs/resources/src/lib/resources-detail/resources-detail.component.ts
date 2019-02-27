@@ -38,6 +38,15 @@ import { ResourcesFacade } from '../+state/resources.facade';
       <span [ngStyle]="{ display: 'block' }">{{
         resource?.format | uppercase
       }}</span>
+      <span
+        class="p7"
+        [ngStyle]="{
+          display: 'block',
+          marginTop: '0',
+          color: resource?.cost === 'free' ? '#48960C' : '#F52F22'
+        }"
+        >{{ resource?.cost === 'free' ? 'Free 🍺' : 'Paid' }}</span
+      >
       <div>
         <span
           *ngFor="let topic of resource?.tags; index as i"
@@ -76,20 +85,15 @@ export class ResourcesDetailComponent {
   toolTipSize$ = this.bp$
     .observe([Breakpoints.XSmall])
     .pipe(map(bpstate => (bpstate.matches ? 'sm' : 'lg')));
-
   resource$ = this.resourcesFacade.resourceByRoute$;
-
   hasSource$ = this.resourcesFacade.hasSource$;
-
   backButtonStyles = css({
     marginLeft: `${rem(-17)} !important`,
   });
-
   hrStyles = css({
     marginTop: rem(24),
     marginBottom: rem(24),
   });
-
   bestOfStyles = css({
     display: 'flex',
     alignItems: 'center',
@@ -97,13 +101,11 @@ export class ResourcesDetailComponent {
       marginLeft: rem(8),
     },
   });
-
   titleStyles = css({
     margin: '0 auto',
     maxWidth: rem(700),
     textAlign: 'center',
   });
-
   summaryStyles = cx(
     listMarginResetClass,
     css(
