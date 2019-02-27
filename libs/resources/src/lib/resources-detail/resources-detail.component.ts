@@ -56,8 +56,9 @@ import { ResourcesFacade } from '../+state/resources.facade';
         </span>
       </div>
       <section
-        [ngClass]="summaryStyles"
         [innerHTML]="resource?.content | bypassSecurityTrustHtml"
+        [ngClass]="summaryStyles"
+        pentacleCmsLink
       ></section>
       <section class="clr-row" *ngIf="(hasSource$ | async)">
         <div class="clr-col-lg-6 clr-col-12">

@@ -10,11 +10,12 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 import { ResourcesFilterModule } from '@pentacle/resources-filter';
 import { SharedUtilBypassSecurityTrustHtmlModule } from '@pentacle/shared/util-bypass-security-trust-html';
+import { SharedUtilCmsLinkModule } from '@pentacle/shared/util-cms-link';
+import { SharedUtilDecodeHtmlEntitiesModule } from '@pentacle/shared/util-decode-html-entities';
 import { ResourcesEffects } from './+state/resources.effects';
 import { ResourcesArticleComponent } from './resources-article/resources-article.component';
 import { ResourcesDetailComponent } from './resources-detail/resources-detail.component';
 import { ResourcesComponent } from './resources/resources.component';
-import { SharedUtilDecodeHtmlEntitiesModule } from '@pentacle/shared/util-decode-html-entities';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { SharedUtilDecodeHtmlEntitiesModule } from '@pentacle/shared/util-decode
     ClrTooltipModule,
     ResourcesFilterModule,
     SharedUtilBypassSecurityTrustHtmlModule,
+    SharedUtilCmsLinkModule,
     SharedUtilDecodeHtmlEntitiesModule,
     EffectsModule.forFeature([ResourcesEffects]),
     RouterModule.forChild([
