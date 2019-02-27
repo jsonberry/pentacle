@@ -28,7 +28,7 @@ export const difficultyTooltips = {
     id: 'advanced',
     title: 'Advanced',
     content:
-      "You're well beyond the basics, you've worked with this enough to have solved some difficult challenges, and you're ready for advancedconcepts.",
+      "You're well beyond the basics, you've worked with this enough to have solved some difficult challenges, and you're ready for advanced concepts.",
   },
 };
 
