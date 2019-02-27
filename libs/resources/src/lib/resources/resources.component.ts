@@ -5,9 +5,15 @@ import { ResourcesFacade } from '../+state/resources.facade';
   selector: 'pentacle-resources',
   template: `
     <h1>Resources</h1>
+    <a
+      href="https://github.com/jsonberry/pentacle/issues/new?assignees=jsonberry&labels=resources&template=new-resource.md&title=New+Resource+Request"
+      target="_blank"
+      >Submit New Resource</a
+    >
     <button
       type="button"
       class="btn btn-primary"
+      [ngStyle]="{ display: 'block' }"
       (click)="filterModalOpen = true"
     >
       Filter
