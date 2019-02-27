@@ -21,8 +21,8 @@ import { ResourcesFacade } from '../+state/resources.facade';
 
     <p>
       <em
-        >Note: We're still in alpha - new features and resources are still being
-        added before a launch announcement</em
+        >Note: Pentacle is still in Beta - new resources are still being added
+        and bugs are being squashed</em
       >
     </p>
 
