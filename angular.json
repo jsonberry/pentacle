@@ -847,6 +847,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "shared-util-ghosts": {
+      "root": "libs/shared/util-ghosts",
+      "sourceRoot": "libs/shared/util-ghosts/src",
+      "projectType": "library",
+      "prefix": "pentacle",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/util-ghosts/tsconfig.lib.json",
+              "libs/shared/util-ghosts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-ghosts/jest.config.js",
+            "tsConfig": "libs/shared/util-ghosts/tsconfig.spec.json",
+            "setupFile": "libs/shared/util-ghosts/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

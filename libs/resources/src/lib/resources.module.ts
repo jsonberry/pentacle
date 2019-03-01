@@ -16,6 +16,7 @@ import { ResourcesEffects } from './+state/resources.effects';
 import { ResourcesArticleComponent } from './resources-article/resources-article.component';
 import { ResourcesDetailComponent } from './resources-detail/resources-detail.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { SharedUtilGhostsModule } from '@pentacle/shared/util-ghosts';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ResourcesComponent } from './resources/resources.component';
     SharedUtilBypassSecurityTrustHtmlModule,
     SharedUtilCmsLinkModule,
     SharedUtilDecodeHtmlEntitiesModule,
+    SharedUtilGhostsModule,
     EffectsModule.forFeature([ResourcesEffects]),
     RouterModule.forChild([
       {

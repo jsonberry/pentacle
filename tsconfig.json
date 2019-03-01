@@ -52,7 +52,8 @@
       ],
       "@pentacle/shared/util-decode-html-entities": [
         "libs/shared/util-decode-html-entities/src/index.ts"
-      ]
+      ],
+      "@pentacle/shared/util-ghosts": ["libs/shared/util-ghosts/src/index.ts"]
     },
     "module": "es2015"
   },
