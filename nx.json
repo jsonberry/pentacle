@@ -91,6 +91,9 @@
     },
     "shared-util-decode-html-entities": {
       "tags": ["scope:shared", "type:util"]
+    },
+    "shared-util-ghosts": {
+      "tags": ["scope:shared", "type:util"]
     }
   }
 }

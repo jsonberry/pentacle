@@ -11,7 +11,12 @@ import { css } from 'emotion';
       <div class="card-header" [innerHtml]="article.title"></div>
       <div class="card-block">
         <div class="card-media-block">
-          <img [src]="article?.image?.thumbnail" class="card-media-image" />
+          <img
+            [src]="article?.image?.thumbnail"
+            class="card-media-image"
+            pentacleGhostImage
+            ghostImageSize="60"
+          />
           <div class="card-media-description">
             <span class="card-media-title"
               ><strong>{{ article?.difficulty | titlecase }}</strong></span
