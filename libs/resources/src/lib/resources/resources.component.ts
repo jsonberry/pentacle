@@ -19,13 +19,6 @@ import { ResourcesFacade } from '../+state/resources.facade';
       Filter
     </button>
 
-    <p>
-      <em
-        >Note: Pentacle is still in Beta - new resources are still being added
-        and bugs are being squashed</em
-      >
-    </p>
-
     <pentacle-resources-filter-container
       [open]="filterModalOpen"
       (modalClosed)="filterModalOpen = false"
