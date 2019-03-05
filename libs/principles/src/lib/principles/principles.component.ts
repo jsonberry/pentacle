@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { PagesFacade } from '@pentacle/pages-state';
 import { listMarginResetClass } from '@pentacle/shared/util-style-framework';
 import { ignoreFalsySignals } from 'rxjs-toolkit';
-import { pluck, shareReplay } from 'rxjs/operators';
+import { pluck, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-principles',
@@ -20,10 +21,13 @@ export class PrinciplesComponent {
     ignoreFalsySignals(),
     shareReplay(),
   );
-  title$ = this.principlesPageData$.pipe(pluck('title'));
+  title$ = this.principlesPageData$.pipe(
+    pluck('title'),
+    tap(title => this.titleService.setTitle(`Pentacle - ${title}`)),
+  );
   content$ = this.principlesPageData$.pipe(pluck('content'));
 
   mainStyles = listMarginResetClass;
 
-  constructor(private pagesFacade: PagesFacade) {}
+  constructor(private pagesFacade: PagesFacade, private titleService: Title) {}
 }

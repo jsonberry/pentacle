@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { PagesFacade } from '@pentacle/pages-state';
 import { ignoreFalsySignals } from 'rxjs-toolkit';
-import { pluck, shareReplay } from 'rxjs/operators';
+import { pluck, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-modules',
@@ -48,8 +49,11 @@ export class ModulesComponent {
     ignoreFalsySignals(),
     shareReplay(),
   );
-  title$ = this.modulesPageData$.pipe(pluck('title'));
+  title$ = this.modulesPageData$.pipe(
+    pluck('title'),
+    tap(title => this.titleService.setTitle(`Pentacle - ${title}`)),
+  );
   content$ = this.modulesPageData$.pipe(pluck('content'));
 
-  constructor(private pagesFacade: PagesFacade) {}
+  constructor(private pagesFacade: PagesFacade, private titleService: Title) {}
 }

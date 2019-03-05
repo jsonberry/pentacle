@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { PagesFacade } from '@pentacle/pages-state';
-import { filter, pluck, shareReplay } from 'rxjs/operators';
+import { filter, pluck, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-blueprint',
@@ -21,8 +22,11 @@ export class BlueprintComponent {
     filter(data => !!data),
     shareReplay(),
   );
-  title$ = this.bluePrintPageData$.pipe(pluck('title'));
+  title$ = this.bluePrintPageData$.pipe(
+    pluck('title'),
+    tap(title => this.titleService.setTitle(`Pentacle - ${title}`)),
+  );
   content$ = this.bluePrintPageData$.pipe(pluck('content'));
 
-  constructor(private pagesFacade: PagesFacade) {}
+  constructor(private pagesFacade: PagesFacade, private titleService: Title) {}
 }

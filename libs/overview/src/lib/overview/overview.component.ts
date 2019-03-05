@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { PagesFacade } from '@pentacle/pages-state';
-import { filter, pluck, shareReplay } from 'rxjs/operators';
+import { filter, pluck, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'pentacle-overview',
@@ -27,8 +28,11 @@ export class OverviewComponent {
     filter(data => !!data),
     shareReplay(),
   );
-  title$ = this.overviewPageData$.pipe(pluck('title'));
+  title$ = this.overviewPageData$.pipe(
+    pluck('title'),
+    tap(title => this.titleService.setTitle(`Pentacle - ${title}`)),
+  );
   content$ = this.overviewPageData$.pipe(pluck('content'));
 
-  constructor(private pagesFacade: PagesFacade) {}
+  constructor(private pagesFacade: PagesFacade, private titleService: Title) {}
 }
