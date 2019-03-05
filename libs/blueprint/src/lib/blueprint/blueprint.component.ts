@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { PagesFacade } from '@pentacle/pages-state';
 import { filter, pluck, shareReplay, tap } from 'rxjs/operators';
 
@@ -28,5 +28,45 @@ export class BlueprintComponent {
   );
   content$ = this.bluePrintPageData$.pipe(pluck('content'));
 
-  constructor(private pagesFacade: PagesFacade, private titleService: Title) {}
+  constructor(
+    private pagesFacade: PagesFacade,
+    private titleService: Title,
+    private metaService: Meta,
+  ) {
+    metaService.addTags([
+      {
+        name: 'description',
+        content: "Pentacle's Blueprint of Reactive Web Architecture",
+      },
+      {
+        name: 'twitter:card',
+        content: "Pentacle's Blueprint of Reactive Web Architecture",
+      },
+      {
+        property: 'og:title',
+        content: 'Pentacle - Blueprint',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:url',
+        content: 'https://pentacledev.com/blueprint',
+      },
+      {
+        property: 'og:image',
+        content:
+          'https://pentacledev.sfo2.cdn.digitaloceanspaces.com/2019/02/pentacle-blueprint-1.png',
+      },
+      {
+        property: 'og:description',
+        content: "Pentacle's Blueprint of Reactive Web Architecture",
+      },
+      {
+        property: 'og:site_name',
+        content: 'Pentacle',
+      },
+    ]);
+  }
 }

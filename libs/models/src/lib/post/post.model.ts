@@ -5,13 +5,13 @@ import { PostFormat } from './post-format.model';
 import { PostSource } from './post-source.model';
 
 export interface Post extends Entity {
-  excerpt?: string;
   source?: PostSource;
   author_id: number;
   bestOf: boolean;
   categories: number[];
   cost: PostCost;
   difficulty: PostDifficulty;
+  excerpt: string;
   featured_media_id?: number;
   format: PostFormat;
   tags: number[];
