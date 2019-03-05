@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterFacade } from '@pentacle/router-state';
 import {
   listMarginResetClass,
@@ -7,7 +8,7 @@ import {
   rem,
 } from '@pentacle/shared/util-style-framework';
 import { css, cx } from 'emotion';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ResourcesFacade } from '../+state/resources.facade';
 
 @Component({
@@ -86,7 +87,9 @@ export class ResourcesDetailComponent {
   toolTipSize$ = this.bp$
     .observe([Breakpoints.XSmall])
     .pipe(map(bpstate => (bpstate.matches ? 'sm' : 'lg')));
-  resource$ = this.resourcesFacade.resourceByRoute$;
+  resource$ = this.resourcesFacade.resourceByRoute$.pipe(
+    tap(({ title }) => this.titleService.setTitle(`Pentacle - ${title}`)),
+  );
   hasSource$ = this.resourcesFacade.hasSource$;
   backButtonStyles = css({
     marginLeft: `${rem(-17)} !important`,
@@ -131,6 +134,7 @@ export class ResourcesDetailComponent {
     private resourcesFacade: ResourcesFacade,
     private routerFacade: RouterFacade,
     private bp$: BreakpointObserver,
+    private titleService: Title,
   ) {}
 
   goBack(e) {

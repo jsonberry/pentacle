@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ResourcesFacade } from '../+state/resources.facade';
 
 @Component({
@@ -39,5 +40,10 @@ export class ResourcesComponent {
   resources$ = this.resourcesFacade.resources$;
   filterModalOpen = false;
 
-  constructor(private resourcesFacade: ResourcesFacade) {}
+  constructor(
+    private resourcesFacade: ResourcesFacade,
+    private titleService: Title,
+  ) {
+    titleService.setTitle('Pentacle - Resources');
+  }
 }
