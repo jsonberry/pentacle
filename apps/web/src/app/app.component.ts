@@ -17,7 +17,7 @@ interface ScrollPositionRestore {
       <clr-header class="header-6">
         <div class="branding">
           <a routerLink="/" class="nav-link"
-            ><span class="title">Pentacle (Beta)</span></a
+            ><span class="title">Pentacle</span></a
           >
         </div>
       </clr-header>
