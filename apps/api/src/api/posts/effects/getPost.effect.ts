@@ -57,6 +57,7 @@ export const getPostEffect$: Effect = req$ =>
           bestOf: post.bestOf,
           cost: post.cost,
           content: post && post.content,
+          excerpt: post && post.excerpt,
         };
       },
     ),
