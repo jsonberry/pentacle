@@ -12,13 +12,7 @@ import { ResourcesComponent } from '../resources/resources.component';
 export class ResourcesEffects {
   @Effect({ dispatch: false })
   loadResources$ = this.dataPersistence.navigation(ResourcesComponent, {
-    run: (a, s: State) => {
-      // This is just a quick and dirty fix for
-      // https://github.com/jsonberry/pentacle/issues/156
-      if (Object.keys(s.posts.entities).length < 2) {
-        this.postsFacade.loadPosts();
-      }
-    },
+    run: (a, s: State) => this.postsFacade.loadPosts(),
   });
 
   @Effect({ dispatch: false })
