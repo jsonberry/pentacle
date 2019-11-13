@@ -1,3 +1,8 @@
+# Project Archived and moved to learnreactive.com
+This was the first version of the project, and a lean version was created instead at https://learnreactive.com
+
+This repository exists as prior art only, nothing new will be added here.
+
 # Pentacle
 https://pentacledev.com
 
